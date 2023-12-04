@@ -216,6 +216,10 @@
         <module>ruoyi-modules</module>
         <module>ruoyi-api</module>
         <module>ruoyi-common</module>
+        <module>ruoyi-modules/service-live</module>
+        <module>ruoyi-modules/service-user</module>
+        <module>ruoyi-modules/service-comment</module>
+        <module>ruoyi-modules/service-notice</module>
     </modules>
     <packaging>pom</packaging>
 
