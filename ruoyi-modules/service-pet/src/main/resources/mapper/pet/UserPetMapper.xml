@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.pet.mapper.UserPetMapper">
+    
+    <resultMap type="UserPet" id="UserPetResult">
+        <result property="petId"    column="pet_id"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="engName"    column="engName"    />
+        <result property="img"    column="img"    />
+        <result property="nation"    column="nation"    />
+        <result property="character"    column="character"    />
+        <result property="easyOfDisease"    column="easyOfDisease"    />
+        <result property="life"    column="life"    />
+        <result property="price"    column="price"    />
+        <result property="des"    column="des"    />
+        <result property="feature"    column="feature"    />
+        <result property="characterFeature"    column="characterFeature"    />
+        <result property="careKnowledge"    column="careKnowledge"    />
+        <result property="feedPoints"    column="feedPoints"    />
+    </resultMap>
+
+    <sql id="selectUserPetVo">
+        select pet_id, name, type, engName, img, nation, `character`, easyOfDisease, life, price, des, feature, characterFeature, careKnowledge, feedPoints from user_pet
+    </sql>
+
+    <select id="selectUserPetList" parameterType="UserPet" resultMap="UserPetResult">
+        <include refid="selectUserPetVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="type != null  and type != ''"> and type = #{type}</if>
+            <if test="nation != null  and nation != ''"> and nation = #{nation}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserPetByPetId" parameterType="String" resultMap="UserPetResult">
+        <include refid="selectUserPetVo"/>
+        where pet_id = #{petId}
+    </select>
+        
+    <insert id="insertUserPet" parameterType="UserPet" useGeneratedKeys="true" keyProperty="petId">
+        insert into user_pet
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">name,</if>
+            <if test="type != null and type != ''">type,</if>
+            <if test="engName != null">engName,</if>
+            <if test="img != null and img != ''">img,</if>
+            <if test="nation != null">nation,</if>
+            <if test="character != null">character,</if>
+            <if test="easyOfDisease != null">easyOfDisease,</if>
+            <if test="life != null">life,</if>
+            <if test="price != null">price,</if>
+            <if test="des != null">des,</if>
+            <if test="feature != null">feature,</if>
+            <if test="characterFeature != null">characterFeature,</if>
+            <if test="careKnowledge != null">careKnowledge,</if>
+            <if test="feedPoints != null">feedPoints,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="type != null and type != ''">#{type},</if>
+            <if test="engName != null">#{engName},</if>
+            <if test="img != null and img != ''">#{img},</if>
+            <if test="nation != null">#{nation},</if>
+            <if test="character != null">#{character},</if>
+            <if test="easyOfDisease != null">#{easyOfDisease},</if>
+            <if test="life != null">#{life},</if>
+            <if test="price != null">#{price},</if>
+            <if test="des != null">#{des},</if>
+            <if test="feature != null">#{feature},</if>
+            <if test="characterFeature != null">#{characterFeature},</if>
+            <if test="careKnowledge != null">#{careKnowledge},</if>
+            <if test="feedPoints != null">#{feedPoints},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserPet" parameterType="UserPet">
+        update user_pet
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="engName != null">engName = #{engName},</if>
+            <if test="img != null and img != ''">img = #{img},</if>
+            <if test="nation != null">nation = #{nation},</if>
+            <if test="character != null">character = #{character},</if>
+            <if test="easyOfDisease != null">easyOfDisease = #{easyOfDisease},</if>
+            <if test="life != null">life = #{life},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="des != null">des = #{des},</if>
+            <if test="feature != null">feature = #{feature},</if>
+            <if test="characterFeature != null">characterFeature = #{characterFeature},</if>
+            <if test="careKnowledge != null">careKnowledge = #{careKnowledge},</if>
+            <if test="feedPoints != null">feedPoints = #{feedPoints},</if>
+        </trim>
+        where pet_id = #{petId}
+    </update>
+
+    <delete id="deleteUserPetByPetId" parameterType="String">
+        delete from user_pet where pet_id = #{petId}
+    </delete>
+
+    <delete id="deleteUserPetByPetIds" parameterType="String">
+        delete from user_pet where pet_id in 
+        <foreach item="petId" collection="array" open="(" separator="," close=")">
+            #{petId}
+        </foreach>
+    </delete>
+</mapper>

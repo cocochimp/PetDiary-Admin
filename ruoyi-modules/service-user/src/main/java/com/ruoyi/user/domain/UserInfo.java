@@ -22,12 +22,12 @@ public class UserInfo extends BaseEntity
     @Excel(name = "微信名称")
     private String nickname;
 
-    /** 用户openid */
-    @Excel(name = "用户openid")
+    /** openid */
+    @Excel(name = "openid")
     private String openid;
 
-    /** 用户session */
-    @Excel(name = "用户session")
+    /** session */
+    @Excel(name = "session")
     private String sessionKey;
 
     /** 头像地址 */
@@ -43,7 +43,6 @@ public class UserInfo extends BaseEntity
     private String address;
 
     /** 个人简介 */
-    @Excel(name = "个人简介")
     private String brief;
 
     /** 用户状态（0正常 1封禁 2拉黑） */

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.picture.mapper.UserPictureMapper">
+    
+    <resultMap type="UserPicture" id="UserPictureResult">
+        <result property="contentId"    column="content_id"    />
+        <result property="title"    column="title"    />
+        <result property="description"    column="description"    />
+        <result property="contentType"    column="content_type"    />
+        <result property="coverPath"    column="cover_path"    />
+        <result property="videoPath"    column="video_path"    />
+        <result property="categoryId"    column="category_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="status"    column="status"    />
+        <result property="rejectInfo"    column="reject_info"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectUserPictureVo">
+        select content_id, title, description, content_type, cover_path, video_path, category_id, user_id, status, reject_info, create_time, update_time from user_content
+    </sql>
+
+    <select id="selectUserPictureList" parameterType="UserPicture" resultMap="UserPictureResult">
+        <include refid="selectUserPictureVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title like concat('%', #{title}, '%')</if>
+            <if test="description != null  and description != ''"> and description like concat('%', #{description}, '%')</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserPictureByContentId" parameterType="Long" resultMap="UserPictureResult">
+        <include refid="selectUserPictureVo"/>
+        where content_id = #{contentId}
+    </select>
+        
+    <insert id="insertUserPicture" parameterType="UserPicture" useGeneratedKeys="true" keyProperty="contentId">
+        insert into user_content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">title,</if>
+            <if test="description != null">description,</if>
+            <if test="contentType != null">content_type,</if>
+            <if test="coverPath != null and coverPath != ''">cover_path,</if>
+            <if test="videoPath != null">video_path,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="status != null and status != ''">status,</if>
+            <if test="rejectInfo != null">reject_info,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="description != null">#{description},</if>
+            <if test="contentType != null">#{contentType},</if>
+            <if test="coverPath != null and coverPath != ''">#{coverPath},</if>
+            <if test="videoPath != null">#{videoPath},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="status != null and status != ''">#{status},</if>
+            <if test="rejectInfo != null">#{rejectInfo},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserPicture" parameterType="UserPicture">
+        update user_content
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="contentType != null">content_type = #{contentType},</if>
+            <if test="coverPath != null and coverPath != ''">cover_path = #{coverPath},</if>
+            <if test="videoPath != null">video_path = #{videoPath},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="rejectInfo != null">reject_info = #{rejectInfo},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where content_id = #{contentId}
+    </update>
+
+    <delete id="deleteUserPictureByContentId" parameterType="Long">
+        delete from user_content where content_id = #{contentId}
+    </delete>
+
+    <delete id="deleteUserPictureByContentIds" parameterType="String">
+        delete from user_content where content_id in 
+        <foreach item="contentId" collection="array" open="(" separator="," close=")">
+            #{contentId}
+        </foreach>
+    </delete>
+</mapper>
