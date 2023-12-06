@@ -1,18 +1,18 @@
 package com.ruoyi.common.core.enums;
 
 /**
- * 内容类型
+ * 直播状态
  * 
  * @author ruoyi
  */
-public enum ContentType
+public enum LiveStatus
 {
-    PICTURE("0" , "图文"), VIDEO("1" , "视频");
+    OK("0", "正常"), BAN("1", "封禁"), END("2", "结束");
 
     private final String code;
     private final String info;
 
-    ContentType(String code, String info)
+    LiveStatus(String code, String info)
     {
         this.code = code;
         this.info = info;

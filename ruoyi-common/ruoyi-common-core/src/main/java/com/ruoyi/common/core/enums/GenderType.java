@@ -1,18 +1,18 @@
 package com.ruoyi.common.core.enums;
 
 /**
- * 内容类型
+ * 性别分类
  * 
  * @author ruoyi
  */
-public enum ContentType
+public enum GenderType
 {
-    PICTURE("0" , "图文"), VIDEO("1" , "视频");
+    MALE("0", "男"), FEMALE("1", "女"), UNKNOWN("2", "未知");
 
     private final String code;
     private final String info;
 
-    ContentType(String code, String info)
+    GenderType(String code, String info)
     {
         this.code = code;
         this.info = info;

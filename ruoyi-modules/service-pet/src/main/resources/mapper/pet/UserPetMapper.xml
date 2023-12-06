@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="engName != null">engName,</if>
             <if test="img != null and img != ''">img,</if>
             <if test="nation != null">nation,</if>
-            <if test="character != null">character,</if>
+            <if test="character != null">`character`,</if>
             <if test="easyOfDisease != null">easyOfDisease,</if>
             <if test="life != null">life,</if>
             <if test="price != null">price,</if>
@@ -84,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="engName != null">engName = #{engName},</if>
             <if test="img != null and img != ''">img = #{img},</if>
             <if test="nation != null">nation = #{nation},</if>
-            <if test="character != null">character = #{character},</if>
+            <if test="character != null">`character` = #{character},</if>
             <if test="easyOfDisease != null">easyOfDisease = #{easyOfDisease},</if>
             <if test="life != null">life = #{life},</if>
             <if test="price != null">price = #{price},</if>

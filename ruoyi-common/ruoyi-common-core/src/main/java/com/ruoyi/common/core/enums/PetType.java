@@ -1,18 +1,18 @@
 package com.ruoyi.common.core.enums;
 
 /**
- * 内容类型
+ * 宠物类型
  * 
  * @author ruoyi
  */
-public enum ContentType
+public enum PetType
 {
-    PICTURE("0" , "图文"), VIDEO("1" , "视频");
+    CAT("0", "猫"), DOG("1", "狗");
 
     private final String code;
     private final String info;
 
-    ContentType(String code, String info)
+    PetType(String code, String info)
     {
         this.code = code;
         this.info = info;
