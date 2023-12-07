@@ -1,13 +1,14 @@
 package com.ruoyi.user.domain;
 
-import java.util.Date;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.ruoyi.common.core.web.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+import com.ruoyi.common.core.web.domain.BaseEntity;
 
 @Data
 @NoArgsConstructor
@@ -42,4 +43,3 @@ public class UserBan extends BaseEntity {
 
 
 }
-

@@ -17,6 +17,7 @@
         <module>ruoyi-common-security</module>
         <module>ruoyi-common-datascope</module>
         <module>ruoyi-common-datasource</module>
+        <module>ruoyi-common-generator</module>
     </modules>
 
     <artifactId>ruoyi-common</artifactId>
