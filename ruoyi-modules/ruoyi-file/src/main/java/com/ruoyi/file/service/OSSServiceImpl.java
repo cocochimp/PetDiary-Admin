@@ -18,6 +18,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -102,11 +103,8 @@ public class OSSServiceImpl implements ISysFileService{
      */
     public String getSingeNatureUrl(String filename, int expSeconds) {
         Date expiration = new Date(System.currentTimeMillis() + expSeconds * 1000);
-        URL url = ossClient.generatePresignedUrl(ossConfiguration.getBucketName(), filename, expiration);
-        if (url != null) {
-            return url.toString();
-        }
-        return null;
+        Optional<URL> optionalUrl = Optional.ofNullable(ossClient.generatePresignedUrl(ossConfiguration.getBucketName(), filename, expiration));
+        return optionalUrl.map(url -> url.toString().split("\\?")[0]).orElse(null);
     }
 
     /**
