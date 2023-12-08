@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  */
 @Configuration
 @Component
-public class OSSConfiguration {
+public class OSSConfig {
 
     private volatile static OSS ossClient;
 
@@ -33,17 +33,17 @@ public class OSSConfiguration {
 
     @Value("${aliyun.endpoint}")
     public void setEndpoint(String endpoint) {
-        OSSConfiguration.endpoint = endpoint;
+        OSSConfig.endpoint = endpoint;
     }
 
     @Value("${aliyun.accessKeyId}")
     public void setAccessKeyId(String accessKeyId) {
-        OSSConfiguration.accessKeyId = accessKeyId;
+        OSSConfig.accessKeyId = accessKeyId;
     }
 
     @Value("${aliyun.accessKeySecret}")
     public void setAccessKeySecret(String accessKeySecret) {
-        OSSConfiguration.accessKeySecret = accessKeySecret;
+        OSSConfig.accessKeySecret = accessKeySecret;
     }
 
     public String getBucketName() {
@@ -54,7 +54,7 @@ public class OSSConfiguration {
     @Scope("prototype")
     public static OSS initOSSClient() {
         if (ossClient == null) {
-            synchronized (OSSConfiguration.class) {
+            synchronized (OSSConfig.class) {
                 if (ossClient == null) {
                     ossClient = initOSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
                 }
@@ -65,7 +65,7 @@ public class OSSConfiguration {
 
     public static OSSClientBuilder initOSSClientBuilder() {
         if (ossClientBuilder == null) {
-            synchronized (OSSConfiguration.class) {
+            synchronized (OSSConfig.class) {
                 if (ossClientBuilder == null) {
                     ossClientBuilder = new OSSClientBuilder();
                 }

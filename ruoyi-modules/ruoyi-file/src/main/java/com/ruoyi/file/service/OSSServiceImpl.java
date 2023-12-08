@@ -5,7 +5,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.*;
 import com.ruoyi.common.core.utils.DateUtils;
-import com.ruoyi.file.config.OSSConfiguration;
+import com.ruoyi.file.config.OSSConfig;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class OSSServiceImpl implements ISysFileService{
     public static Logger log = LoggerFactory.getLogger(OSSServiceImpl.class);
 
     @Autowired
-    private OSSConfiguration ossConfiguration;
+    private OSSConfig ossConfiguration;
 
     @Autowired
     private OSS ossClient;
