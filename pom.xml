@@ -36,6 +36,8 @@
         <poi.version>4.1.2</poi.version>
         <transmittable-thread-local.version>2.14.3</transmittable-thread-local.version>
         <lombok.version>1.18.20</lombok.version>
+        <mybatis-plus.version>3.1.1</mybatis-plus.version>
+        <aliyun-sdk-oss.version>3.10.2</aliyun-sdk-oss.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -211,6 +213,18 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${aliyun-sdk-oss.version}</version>
             </dependency>
 
         </dependencies>
