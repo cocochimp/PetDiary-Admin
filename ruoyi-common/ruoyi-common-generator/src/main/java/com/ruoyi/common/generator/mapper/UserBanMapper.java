@@ -2,11 +2,13 @@ package com.ruoyi.common.generator.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.ruoyi.common.generator.entity.UserBan;
 import com.ruoyi.common.generator.entity.UserBanExample;
 
+@Mapper
 public interface UserBanMapper {
     long countByExample(UserBanExample example);
 
