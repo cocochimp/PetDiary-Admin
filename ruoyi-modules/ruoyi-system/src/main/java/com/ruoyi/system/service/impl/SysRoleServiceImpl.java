@@ -248,14 +248,16 @@ public class SysRoleServiceImpl implements ISysRoleService
     {
         // 修改角色信息
         roleMapper.updateRole(role);
-        // 删除角色与菜单关联
-        roleMenuMapper.deleteRoleMenuByRoleId(role.getRoleId());
+        if(role.getMenuIds()!=null){
+            // 删除角色与菜单关联
+            roleMenuMapper.deleteRoleMenuByRoleId(role.getRoleId());
+        }
         return insertRoleMenu(role);
     }
 
     /**
      * 修改角色状态
-     * 
+     * gu
      * @param role 角色信息
      * @return 结果
      */
@@ -293,16 +295,18 @@ public class SysRoleServiceImpl implements ISysRoleService
         int rows = 1;
         // 新增用户与角色管理
         List<SysRoleMenu> list = new ArrayList<SysRoleMenu>();
-        for (Long menuId : role.getMenuIds())
-        {
-            SysRoleMenu rm = new SysRoleMenu();
-            rm.setRoleId(role.getRoleId());
-            rm.setMenuId(menuId);
-            list.add(rm);
-        }
-        if (list.size() > 0)
-        {
-            rows = roleMenuMapper.batchRoleMenu(list);
+        if(role.getMenuIds()!=null){
+            for (Long menuId : role.getMenuIds())
+            {
+                SysRoleMenu rm = new SysRoleMenu();
+                rm.setRoleId(role.getRoleId());
+                rm.setMenuId(menuId);
+                list.add(rm);
+            }
+            if (list.size() > 0)
+            {
+                rows = roleMenuMapper.batchRoleMenu(list);
+            }
         }
         return rows;
     }
