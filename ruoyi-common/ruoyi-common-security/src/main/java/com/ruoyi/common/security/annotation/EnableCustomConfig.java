@@ -1,17 +1,13 @@
 package com.ruoyi.common.security.annotation;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.ruoyi.common.security.config.ApplicationConfig;
+import com.ruoyi.common.security.feign.FeignAutoConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
-import com.ruoyi.common.security.config.ApplicationConfig;
-import com.ruoyi.common.security.feign.FeignAutoConfiguration;
+
+import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

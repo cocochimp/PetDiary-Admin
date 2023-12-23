@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.core.mapper.UserLiveMapper">
+    
+    <resultMap type="UserLive" id="UserLiveResult">
+        <result property="liveId"    column="live_id"    />
+        <result property="title"    column="title"    />
+        <result property="description"    column="description"    />
+        <result property="coverPath"    column="cover_path"    />
+        <result property="userId"    column="user_id"    />
+        <result property="categoryId"    column="category_id"    />
+        <result property="status"    column="status"    />
+        <result property="banInfo"    column="ban_info"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectUserLiveVo">
+        select live_id, title, description, cover_path, user_id, category_id, status, ban_info, create_time, update_time from user_live
+    </sql>
+
+    <select id="selectUserLiveList" parameterType="UserLive" resultMap="UserLiveResult">
+        <include refid="selectUserLiveVo"/>
+        <where>  
+            <if test="title != null  and title != ''"> and title like concat('%', #{title}, '%')</if>
+            <if test="userId != null "> and user_id like concat('%', #{userId}, '%')</if>
+            <if test="categoryId != null "> and category_id like concat('%', #{categoryId}, '%')</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+            <if test="params.beginCreateTime != null and params.beginCreateTime != '' and params.endCreateTime != null and params.endCreateTime != ''"> and create_time between #{params.beginCreateTime} and #{params.endCreateTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserLiveByLiveId" parameterType="Long" resultMap="UserLiveResult">
+        <include refid="selectUserLiveVo"/>
+        where live_id = #{liveId}
+    </select>
+        
+    <insert id="insertUserLive" parameterType="UserLive" useGeneratedKeys="true" keyProperty="liveId">
+        insert into user_live
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">title,</if>
+            <if test="description != null">description,</if>
+            <if test="coverPath != null and coverPath != ''">cover_path,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="status != null and status != ''">status,</if>
+            <if test="banInfo != null">ban_info,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null and title != ''">#{title},</if>
+            <if test="description != null">#{description},</if>
+            <if test="coverPath != null and coverPath != ''">#{coverPath},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="status != null and status != ''">#{status},</if>
+            <if test="banInfo != null">#{banInfo},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserLive" parameterType="UserLive">
+        update user_live
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null and title != ''">title = #{title},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="coverPath != null and coverPath != ''">cover_path = #{coverPath},</if>
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="banInfo != null">ban_info = #{banInfo},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where live_id = #{liveId}
+    </update>
+
+    <delete id="deleteUserLiveByLiveId" parameterType="Long">
+        delete from user_live where live_id = #{liveId}
+    </delete>
+
+    <delete id="deleteUserLiveByLiveIds" parameterType="String">
+        delete from user_live where live_id in 
+        <foreach item="liveId" collection="array" open="(" separator="," close=")">
+            #{liveId}
+        </foreach>
+    </delete>
+</mapper>

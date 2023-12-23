@@ -13,10 +13,7 @@
         <module>ruoyi-gen</module>
         <module>ruoyi-job</module>
         <module>ruoyi-file</module>
-        <module>service-live</module>
-        <module>service-pet</module>
-        <module>service-picture</module>
-        <module>service-video</module>
+        <module>service-core</module>
     </modules>
 
     <artifactId>ruoyi-modules</artifactId>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.core.mapper.UserInfoMapper">
+    
+    <resultMap type="UserInfo" id="UserInfoResult">
+        <result property="userId"    column="user_id"    />
+        <result property="nickname"    column="nickname"    />
+        <result property="openid"    column="openid"    />
+        <result property="sessionKey"    column="session_key"    />
+        <result property="avatar"    column="avatar"    />
+        <result property="gender"    column="gender"    />
+        <result property="address"    column="address"    />
+        <result property="brief"    column="brief"    />
+        <result property="status"    column="status"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectUserInfoVo">
+        select user_id, nickname, openid, session_key, avatar, gender, address, brief, status, del_flag, create_time, update_time, remark from user_info
+    </sql>
+
+    <select id="selectUserInfoList" parameterType="UserInfo" resultMap="UserInfoResult">
+        <include refid="selectUserInfoVo"/>
+        <where>  
+            <if test="nickname != null  and nickname != ''"> and nickname like concat('%', #{nickname}, '%')</if>
+            <if test="openid != null  and openid != ''"> and openid like concat('%', #{openid}, '%')</if>
+            <if test="sessionKey != null  and sessionKey != ''"> and session_key like concat('%', #{sessionKey}, '%')</if>
+            <if test="gender != null  and gender != ''"> and gender = #{gender}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserInfoByUserId" parameterType="Long" resultMap="UserInfoResult">
+        <include refid="selectUserInfoVo"/>
+        where user_id = #{userId}
+    </select>
+        
+    <insert id="insertUserInfo" parameterType="UserInfo" useGeneratedKeys="true" keyProperty="userId">
+        insert into user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="nickname != null and nickname != ''">nickname,</if>
+            <if test="openid != null and openid != ''">openid,</if>
+            <if test="sessionKey != null and sessionKey != ''">session_key,</if>
+            <if test="avatar != null and avatar != ''">avatar,</if>
+            <if test="gender != null and gender != ''">gender,</if>
+            <if test="address != null">address,</if>
+            <if test="brief != null">brief,</if>
+            <if test="status != null and status != ''">status,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="nickname != null and nickname != ''">#{nickname},</if>
+            <if test="openid != null and openid != ''">#{openid},</if>
+            <if test="sessionKey != null and sessionKey != ''">#{sessionKey},</if>
+            <if test="avatar != null and avatar != ''">#{avatar},</if>
+            <if test="gender != null and gender != ''">#{gender},</if>
+            <if test="address != null">#{address},</if>
+            <if test="brief != null">#{brief},</if>
+            <if test="status != null and status != ''">#{status},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserInfo" parameterType="UserInfo">
+        update user_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="nickname != null and nickname != ''">nickname = #{nickname},</if>
+            <if test="openid != null and openid != ''">openid = #{openid},</if>
+            <if test="sessionKey != null and sessionKey != ''">session_key = #{sessionKey},</if>
+            <if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
+            <if test="gender != null and gender != ''">gender = #{gender},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="brief != null">brief = #{brief},</if>
+            <if test="status != null and status != ''">status = #{status},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteUserInfoByUserId" parameterType="Long">
+        delete from user_info where user_id = #{userId}
+    </delete>
+
+    <delete id="deleteUserInfoByUserIds" parameterType="String">
+        delete from user_info where user_id in 
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+</mapper>

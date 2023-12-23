@@ -12,6 +12,25 @@
     <url>http://www.ruoyi.vip</url>
     <description>若依微服务系统</description>
 
+    <modules>
+        <module>ruoyi-auth</module>
+        <module>ruoyi-gateway</module>
+        <module>ruoyi-visual</module>
+        <module>ruoyi-modules</module>
+        <module>ruoyi-api</module>
+        <module>ruoyi-common</module>
+<!--        <module>ruoyi-modules/service-core</module>-->
+    </modules>
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <!-- bootstrap 启动器 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+    </dependencies>
+
     <properties>
         <ruoyi.version>3.6.3</ruoyi.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -44,7 +63,6 @@
     <!-- 依赖声明 -->
     <dependencyManagement>
         <dependencies>
-
             <!-- SpringCloud 微服务 -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -236,28 +254,6 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <modules>
-        <module>ruoyi-auth</module>
-        <module>ruoyi-gateway</module>
-        <module>ruoyi-visual</module>
-        <module>ruoyi-modules</module>
-        <module>ruoyi-api</module>
-        <module>ruoyi-common</module>
-        <module>ruoyi-modules/service-live</module>
-        <module>ruoyi-modules/service-user</module>
-        <module>ruoyi-modules/service-comment</module>
-        <module>ruoyi-modules/service-notice</module>
-    </modules>
-    <packaging>pom</packaging>
-
-    <dependencies>
-        <!-- bootstrap 启动器 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-bootstrap</artifactId>
-        </dependency>
-    </dependencies>
 
     <build>
         <pluginManagement>
