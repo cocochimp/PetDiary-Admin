@@ -10,9 +10,7 @@
 
     <modules>
         <module>ruoyi-system</module>
-        <module>ruoyi-gen</module>
-        <module>ruoyi-job</module>
-        <module>ruoyi-file</module>
+        <module>service-functions</module>
         <module>service-core</module>
     </modules>
 
