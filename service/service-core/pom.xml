@@ -56,29 +56,18 @@
             <artifactId>mysql-connector-j</artifactId>
         </dependency>
 
-        <!-- RuoYi Common DataSource -->
+        <!-- 核心模块 -->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-datasource</artifactId>
+            <artifactId>common-system</artifactId>
         </dependency>
 
-        <!-- RuoYi Common DataScope -->
+        <!-- 安全模块 -->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-datascope</artifactId>
+            <artifactId>spring-security</artifactId>
         </dependency>
 
-        <!-- RuoYi Common Log -->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-log</artifactId>
-        </dependency>
-
-        <!-- RuoYi Common Swagger -->
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-swagger</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -95,13 +84,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-generator</artifactId>
-            <version>3.6.3</version>
-            <scope>compile</scope>
-        </dependency>
-
     </dependencies>
 
     <build>

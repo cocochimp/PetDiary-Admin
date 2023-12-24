@@ -71,13 +71,13 @@
         <!-- RuoYi Common Log -->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-log</artifactId>
+            <artifactId>spring-security</artifactId>
         </dependency>
         
         <!-- RuoYi Common Swagger -->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-swagger</artifactId>
+            <artifactId>common-swagger</artifactId>
         </dependency>
 
         <!-- FastDFS -->
@@ -96,7 +96,7 @@
         <!-- RuoYi Api System -->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-api-system</artifactId>
+            <artifactId>service-api-system</artifactId>
         </dependency>
 
         <!-- Oss -->
