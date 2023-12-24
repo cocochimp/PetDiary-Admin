@@ -1,5 +1,11 @@
 package com.ruoyi.core.controller;
 
+import com.ruoyi.common.core.entity.UserBan;
+import com.ruoyi.common.core.entity.UserBanExample;
+import com.ruoyi.common.core.entity.UserBlock;
+import com.ruoyi.common.core.entity.UserBlockExample;
+import com.ruoyi.common.core.mapper.UserBanMapper;
+import com.ruoyi.common.core.mapper.UserBlockMapper;
 import com.ruoyi.core.domain.UserInfo;
 import com.ruoyi.core.service.IUserInfoService;
 import com.ruoyi.common.core.enums.DelFlag;
@@ -8,12 +14,6 @@ import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
-import com.ruoyi.common.generator.entity.UserBan;
-import com.ruoyi.common.generator.entity.UserBanExample;
-import com.ruoyi.common.generator.entity.UserBlock;
-import com.ruoyi.common.generator.entity.UserBlockExample;
-import com.ruoyi.common.generator.mapper.UserBanMapper;
-import com.ruoyi.common.generator.mapper.UserBlockMapper;
 import com.ruoyi.common.security.annotation.Log;
 import com.ruoyi.common.security.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;

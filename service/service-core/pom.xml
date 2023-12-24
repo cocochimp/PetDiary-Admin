@@ -50,6 +50,12 @@
             <version>${swagger.fox.version}</version>
         </dependency>
 
+        <!-- 接口模块 -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>common-swagger</artifactId>
+        </dependency>
+
         <!-- Mysql Connector -->
         <dependency>
             <groupId>com.mysql</groupId>
