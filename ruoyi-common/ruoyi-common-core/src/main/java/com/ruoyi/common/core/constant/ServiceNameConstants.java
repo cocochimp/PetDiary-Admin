@@ -10,7 +10,7 @@ public class ServiceNameConstants
     /**
      * 认证服务的serviceid
      */
-    public static final String AUTH_SERVICE = "ruoyi-auth";
+    public static final String AUTH_SERVICE = "service-auth";
 
     /**
      * 系统模块的serviceid

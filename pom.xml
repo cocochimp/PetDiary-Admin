@@ -13,8 +13,7 @@
     <description>PetDiary宠物日记</description>
 
     <modules>
-        <module>ruoyi-auth</module>
-        <module>ruoyi-modules</module>
+        <module>service</module>
         <module>ruoyi-api</module>
         <module>ruoyi-common</module>
     </modules>
