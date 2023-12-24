@@ -15,10 +15,10 @@ public class ServiceNameConstants
     /**
      * 系统模块的serviceid
      */
-    public static final String SYSTEM_SERVICE = "ruoyi-system";
+    public static final String SYSTEM_SERVICE = "service-system";
 
     /**
      * 文件服务的serviceid
      */
-    public static final String FILE_SERVICE = "ruoyi-file";
+    public static final String FILE_SERVICE = "service-function";
 }
