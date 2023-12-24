@@ -15,7 +15,7 @@
     <modules>
         <module>service</module>
         <module>ruoyi-api</module>
-        <module>ruoyi-common</module>
+        <module>common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -164,7 +164,12 @@
             <!-- 核心模块 -->
             <dependency>
                 <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-common-core</artifactId>
+                <artifactId>common-service</artifactId>
+                <version>${ruoyi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ruoyi</groupId>
+                <artifactId>common-system</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 
@@ -178,8 +183,8 @@
             <!-- 安全模块 -->
             <dependency>
                 <groupId>com.ruoyi</groupId>
-                <artifactId>ruoyi-common-security</artifactId>
-                <version>${ruoyi.version}</version>
+                <artifactId>spring-security</artifactId>
+                <version>3.6.3</version>
             </dependency>
 
             <!-- 权限范围 -->

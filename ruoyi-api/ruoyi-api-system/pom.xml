@@ -20,7 +20,7 @@
         <!-- RuoYi Common Core-->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>ruoyi-common-core</artifactId>
+            <artifactId>common-system</artifactId>
         </dependency>
         
     </dependencies>

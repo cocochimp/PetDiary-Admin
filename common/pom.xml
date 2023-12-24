@@ -10,16 +10,17 @@
 
     <modules>
         <module>ruoyi-common-log</module>
-        <module>ruoyi-common-core</module>
         <module>ruoyi-common-redis</module>
         <module>ruoyi-common-swagger</module>
-        <module>ruoyi-common-security</module>
         <module>ruoyi-common-datascope</module>
         <module>ruoyi-common-datasource</module>
         <module>ruoyi-common-generator</module>
+        <module>common-system</module>
+        <module>common-service</module>
+        <module>spring-security</module>
     </modules>
 
-    <artifactId>ruoyi-common</artifactId>
+    <artifactId>common</artifactId>
     <packaging>pom</packaging>
 
     <description>
