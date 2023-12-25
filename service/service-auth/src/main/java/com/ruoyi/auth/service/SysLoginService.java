@@ -9,7 +9,7 @@ import com.ruoyi.common.core.constant.UserConstants;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.common.core.enums.UserStatus;
 import com.ruoyi.common.core.exception.ServiceException;
-import com.ruoyi.common.core.text.Convert;
+import com.ruoyi.common.core.utils.text.Convert;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.ip.IpUtils;
 import com.ruoyi.common.redis.service.RedisService;

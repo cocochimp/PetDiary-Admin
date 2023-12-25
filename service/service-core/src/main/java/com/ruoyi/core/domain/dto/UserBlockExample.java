@@ -1,4 +1,4 @@
-package com.ruoyi.common.core.entity;
+package com.ruoyi.core.domain.dto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

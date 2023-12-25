@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.common.core.mapper.UserBlockMapper">
-  <resultMap id="BaseResultMap" type="com.ruoyi.common.core.entity.UserBlock">
+<mapper namespace="com.ruoyi.core.mapper.UserBlockMapper">
+  <resultMap id="BaseResultMap" type="com.ruoyi.core.domain.UserBlock">
     <id column="block_id" jdbcType="BIGINT" property="blockId" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="del_flag" jdbcType="CHAR" property="delFlag" />
@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     block_id, openid, del_flag, create_time, update_time, remark
   </sql>
-  <select id="selectByExample" parameterType="com.ruoyi.common.core.entity.UserBlockExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ruoyi.core.domain.dto.UserBlockExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +95,13 @@
     delete from user_block
     where block_id = #{blockId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ruoyi.common.core.entity.UserBlockExample">
+  <delete id="deleteByExample" parameterType="com.ruoyi.core.domain.dto.UserBlockExample">
     delete from user_block
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ruoyi.common.core.entity.UserBlock">
+  <insert id="insert" parameterType="com.ruoyi.core.domain.UserBlock">
     insert into user_block (block_id, openid, del_flag, 
       create_time, update_time, remark
       )
@@ -109,7 +109,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.ruoyi.common.core.entity.UserBlock">
+  <insert id="insertSelective" parameterType="com.ruoyi.core.domain.UserBlock">
     insert into user_block
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="blockId != null">
@@ -152,7 +152,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ruoyi.common.core.entity.UserBlockExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ruoyi.core.domain.dto.UserBlockExample" resultType="java.lang.Long">
     select count(*) from user_block
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -196,7 +196,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.common.core.entity.UserBlock">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.core.domain.UserBlock">
     update user_block
     <set>
       <if test="openid != null">
@@ -217,7 +217,7 @@
     </set>
     where block_id = #{blockId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ruoyi.common.core.entity.UserBlock">
+  <update id="updateByPrimaryKey" parameterType="com.ruoyi.core.domain.UserBlock">
     update user_block
     set openid = #{openid,jdbcType=VARCHAR},
       del_flag = #{delFlag,jdbcType=CHAR},

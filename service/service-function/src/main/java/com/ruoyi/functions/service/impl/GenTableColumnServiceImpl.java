@@ -1,6 +1,6 @@
 package com.ruoyi.functions.service.impl;
 
-import com.ruoyi.common.core.text.Convert;
+import com.ruoyi.common.core.utils.text.Convert;
 import com.ruoyi.functions.domain.GenTableColumn;
 import com.ruoyi.functions.mapper.GenTableColumnMapper;
 import com.ruoyi.functions.service.IGenTableColumnService;

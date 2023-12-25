@@ -1,12 +1,12 @@
 package com.ruoyi.core.controller;
 
-import com.ruoyi.common.core.entity.UserBan;
-import com.ruoyi.common.core.entity.UserBanExample;
-import com.ruoyi.common.core.entity.UserBlock;
-import com.ruoyi.common.core.entity.UserBlockExample;
-import com.ruoyi.common.core.mapper.UserBanMapper;
-import com.ruoyi.common.core.mapper.UserBlockMapper;
+import com.ruoyi.core.domain.UserBan;
+import com.ruoyi.core.domain.UserBlock;
 import com.ruoyi.core.domain.UserInfo;
+import com.ruoyi.core.domain.dto.UserBanExample;
+import com.ruoyi.core.domain.dto.UserBlockExample;
+import com.ruoyi.core.mapper.UserBanMapper;
+import com.ruoyi.core.mapper.UserBlockMapper;
 import com.ruoyi.core.service.IUserInfoService;
 import com.ruoyi.common.core.enums.DelFlag;
 import com.ruoyi.common.core.enums.UserInfoStatus;

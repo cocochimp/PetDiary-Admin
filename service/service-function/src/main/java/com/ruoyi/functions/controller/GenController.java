@@ -1,6 +1,6 @@
 package com.ruoyi.functions.controller;
 
-import com.ruoyi.common.core.text.Convert;
+import com.ruoyi.common.core.utils.text.Convert;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;

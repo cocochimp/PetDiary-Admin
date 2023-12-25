@@ -12,7 +12,7 @@ import org.apache.commons.lang3.Validate;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.ruoyi.common.core.text.Convert;
+import com.ruoyi.common.core.utils.text.Convert;
 import com.ruoyi.common.core.utils.DateUtils;
 
 /**

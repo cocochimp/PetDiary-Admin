@@ -1,4 +1,4 @@
-package com.ruoyi.common.core.text;
+package com.ruoyi.common.core.utils.text;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;

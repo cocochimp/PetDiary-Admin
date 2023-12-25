@@ -56,7 +56,7 @@ import com.ruoyi.common.core.annotation.Excel.ColumnType;
 import com.ruoyi.common.core.annotation.Excel.Type;
 import com.ruoyi.common.core.annotation.Excels;
 import com.ruoyi.common.core.exception.UtilException;
-import com.ruoyi.common.core.text.Convert;
+import com.ruoyi.common.core.utils.text.Convert;
 import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.file.FileTypeUtils;

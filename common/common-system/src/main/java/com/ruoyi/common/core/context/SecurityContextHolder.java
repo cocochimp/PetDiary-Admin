@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.ruoyi.common.core.constant.SecurityConstants;
-import com.ruoyi.common.core.text.Convert;
+import com.ruoyi.common.core.utils.text.Convert;
 import com.ruoyi.common.core.utils.StringUtils;
 
 /**

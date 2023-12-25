@@ -1,9 +1,9 @@
-package com.ruoyi.common.core.mapper;
+package com.ruoyi.core.mapper;
 
 import java.util.List;
 
-import com.ruoyi.common.core.entity.UserBan;
-import com.ruoyi.common.core.entity.UserBanExample;
+import com.ruoyi.core.domain.UserBan;
+import com.ruoyi.core.domain.dto.UserBanExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

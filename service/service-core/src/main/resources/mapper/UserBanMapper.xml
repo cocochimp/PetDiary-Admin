@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ruoyi.common.core.mapper.UserBanMapper">
-  <resultMap id="BaseResultMap" type="com.ruoyi.common.core.entity.UserBan">
+<mapper namespace="com.ruoyi.core.mapper.UserBanMapper">
+  <resultMap id="BaseResultMap" type="com.ruoyi.core.domain.UserBan">
     <id column="ban_id" jdbcType="BIGINT" property="banId" />
     <result column="openid" jdbcType="VARCHAR" property="openid" />
     <result column="ban_time" jdbcType="TIMESTAMP" property="banTime" />
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List">
     ban_id, openid, ban_time, remove_ban_time, del_flag, create_time, update_time, remark
   </sql>
-  <select id="selectByExample" parameterType="com.ruoyi.common.core.entity.UserBanExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ruoyi.core.domain.dto.UserBanExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,13 +97,13 @@
     delete from user_ban
     where ban_id = #{banId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ruoyi.common.core.entity.UserBanExample">
+  <delete id="deleteByExample" parameterType="com.ruoyi.core.domain.dto.UserBanExample">
     delete from user_ban
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ruoyi.common.core.entity.UserBan">
+  <insert id="insert" parameterType="com.ruoyi.core.domain.UserBan">
     insert into user_ban (ban_id, openid, ban_time, 
       remove_ban_time, del_flag, create_time, 
       update_time, remark)
@@ -111,7 +111,7 @@
       #{removeBanTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.ruoyi.common.core.entity.UserBan">
+  <insert id="insertSelective" parameterType="com.ruoyi.core.domain.UserBan">
     insert into user_ban
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="banId != null">
@@ -166,7 +166,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ruoyi.common.core.entity.UserBanExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ruoyi.core.domain.dto.UserBanExample" resultType="java.lang.Long">
     select count(*) from user_ban
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -218,7 +218,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.common.core.entity.UserBan">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ruoyi.core.domain.UserBan">
     update user_ban
     <set>
       <if test="openid != null">
@@ -245,7 +245,7 @@
     </set>
     where ban_id = #{banId,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ruoyi.common.core.entity.UserBan">
+  <update id="updateByPrimaryKey" parameterType="com.ruoyi.core.domain.UserBan">
     update user_ban
     set openid = #{openid,jdbcType=VARCHAR},
       ban_time = #{banTime,jdbcType=TIMESTAMP},

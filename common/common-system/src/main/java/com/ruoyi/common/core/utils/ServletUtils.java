@@ -24,7 +24,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.alibaba.fastjson2.JSON;
 import com.ruoyi.common.core.constant.Constants;
 import com.ruoyi.common.core.domain.R;
-import com.ruoyi.common.core.text.Convert;
+import com.ruoyi.common.core.utils.text.Convert;
 import reactor.core.publisher.Mono;
 
 /**
