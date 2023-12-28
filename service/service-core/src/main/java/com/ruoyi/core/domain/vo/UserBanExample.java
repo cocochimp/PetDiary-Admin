@@ -1,17 +1,17 @@
-package com.ruoyi.core.domain.dto;
+package com.ruoyi.core.domain.vo;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserBlockExample {
+public class UserBanExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UserBlockExample() {
+    public UserBanExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,63 +105,63 @@ public class UserBlockExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andBlockIdIsNull() {
-            addCriterion("block_id is null");
+        public Criteria andBanIdIsNull() {
+            addCriterion("ban_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdIsNotNull() {
-            addCriterion("block_id is not null");
+        public Criteria andBanIdIsNotNull() {
+            addCriterion("ban_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdEqualTo(Long value) {
-            addCriterion("block_id =", value, "blockId");
+        public Criteria andBanIdEqualTo(Long value) {
+            addCriterion("ban_id =", value, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdNotEqualTo(Long value) {
-            addCriterion("block_id <>", value, "blockId");
+        public Criteria andBanIdNotEqualTo(Long value) {
+            addCriterion("ban_id <>", value, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdGreaterThan(Long value) {
-            addCriterion("block_id >", value, "blockId");
+        public Criteria andBanIdGreaterThan(Long value) {
+            addCriterion("ban_id >", value, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("block_id >=", value, "blockId");
+        public Criteria andBanIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("ban_id >=", value, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdLessThan(Long value) {
-            addCriterion("block_id <", value, "blockId");
+        public Criteria andBanIdLessThan(Long value) {
+            addCriterion("ban_id <", value, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdLessThanOrEqualTo(Long value) {
-            addCriterion("block_id <=", value, "blockId");
+        public Criteria andBanIdLessThanOrEqualTo(Long value) {
+            addCriterion("ban_id <=", value, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdIn(List<Long> values) {
-            addCriterion("block_id in", values, "blockId");
+        public Criteria andBanIdIn(List<Long> values) {
+            addCriterion("ban_id in", values, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdNotIn(List<Long> values) {
-            addCriterion("block_id not in", values, "blockId");
+        public Criteria andBanIdNotIn(List<Long> values) {
+            addCriterion("ban_id not in", values, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdBetween(Long value1, Long value2) {
-            addCriterion("block_id between", value1, value2, "blockId");
+        public Criteria andBanIdBetween(Long value1, Long value2) {
+            addCriterion("ban_id between", value1, value2, "banId");
             return (Criteria) this;
         }
 
-        public Criteria andBlockIdNotBetween(Long value1, Long value2) {
-            addCriterion("block_id not between", value1, value2, "blockId");
+        public Criteria andBanIdNotBetween(Long value1, Long value2) {
+            addCriterion("ban_id not between", value1, value2, "banId");
             return (Criteria) this;
         }
 
@@ -232,6 +232,126 @@ public class UserBlockExample {
 
         public Criteria andOpenidNotBetween(String value1, String value2) {
             addCriterion("openid not between", value1, value2, "openid");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeIsNull() {
+            addCriterion("ban_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeIsNotNull() {
+            addCriterion("ban_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeEqualTo(LocalDateTime value) {
+            addCriterion("ban_time =", value, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeNotEqualTo(LocalDateTime value) {
+            addCriterion("ban_time <>", value, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeGreaterThan(LocalDateTime value) {
+            addCriterion("ban_time >", value, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeGreaterThanOrEqualTo(LocalDateTime value) {
+            addCriterion("ban_time >=", value, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeLessThan(LocalDateTime value) {
+            addCriterion("ban_time <", value, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeLessThanOrEqualTo(LocalDateTime value) {
+            addCriterion("ban_time <=", value, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeIn(List<LocalDateTime> values) {
+            addCriterion("ban_time in", values, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeNotIn(List<LocalDateTime> values) {
+            addCriterion("ban_time not in", values, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("ban_time between", value1, value2, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andBanTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("ban_time not between", value1, value2, "banTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeIsNull() {
+            addCriterion("remove_ban_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeIsNotNull() {
+            addCriterion("remove_ban_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeEqualTo(LocalDateTime value) {
+            addCriterion("remove_ban_time =", value, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeNotEqualTo(LocalDateTime value) {
+            addCriterion("remove_ban_time <>", value, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeGreaterThan(LocalDateTime value) {
+            addCriterion("remove_ban_time >", value, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeGreaterThanOrEqualTo(LocalDateTime value) {
+            addCriterion("remove_ban_time >=", value, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeLessThan(LocalDateTime value) {
+            addCriterion("remove_ban_time <", value, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeLessThanOrEqualTo(LocalDateTime value) {
+            addCriterion("remove_ban_time <=", value, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeIn(List<LocalDateTime> values) {
+            addCriterion("remove_ban_time in", values, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeNotIn(List<LocalDateTime> values) {
+            addCriterion("remove_ban_time not in", values, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("remove_ban_time between", value1, value2, "removeBanTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andRemoveBanTimeNotBetween(LocalDateTime value1, LocalDateTime value2) {
+            addCriterion("remove_ban_time not between", value1, value2, "removeBanTime");
             return (Criteria) this;
         }
 

@@ -70,7 +70,7 @@
   <sql id="Base_Column_List">
     block_id, openid, del_flag, create_time, update_time, remark
   </sql>
-  <select id="selectByExample" parameterType="com.ruoyi.core.domain.dto.UserBlockExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ruoyi.core.domain.vo.UserBlockExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,7 +95,7 @@
     delete from user_block
     where block_id = #{blockId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ruoyi.core.domain.dto.UserBlockExample">
+  <delete id="deleteByExample" parameterType="com.ruoyi.core.domain.vo.UserBlockExample">
     delete from user_block
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -152,7 +152,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ruoyi.core.domain.dto.UserBlockExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ruoyi.core.domain.vo.UserBlockExample" resultType="java.lang.Long">
     select count(*) from user_block
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

@@ -72,7 +72,7 @@
   <sql id="Base_Column_List">
     ban_id, openid, ban_time, remove_ban_time, del_flag, create_time, update_time, remark
   </sql>
-  <select id="selectByExample" parameterType="com.ruoyi.core.domain.dto.UserBanExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ruoyi.core.domain.vo.UserBanExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -97,7 +97,7 @@
     delete from user_ban
     where ban_id = #{banId,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ruoyi.core.domain.dto.UserBanExample">
+  <delete id="deleteByExample" parameterType="com.ruoyi.core.domain.vo.UserBanExample">
     delete from user_ban
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -166,7 +166,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ruoyi.core.domain.dto.UserBanExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ruoyi.core.domain.vo.UserBanExample" resultType="java.lang.Long">
     select count(*) from user_ban
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

@@ -37,7 +37,7 @@ public class SysJobController extends BaseController
     /**
      * 查询定时任务列表
      */
-//    @RequiresPermissions("monitor:job:list")
+    @RequiresPermissions("monitor:job:list")
     @GetMapping("/list")
     public TableDataInfo list(SysJob sysJob)
     {
