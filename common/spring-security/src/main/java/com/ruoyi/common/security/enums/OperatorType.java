@@ -3,7 +3,7 @@ package com.ruoyi.common.security.enums;
 /**
  * 操作人类别
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public enum OperatorType
 {

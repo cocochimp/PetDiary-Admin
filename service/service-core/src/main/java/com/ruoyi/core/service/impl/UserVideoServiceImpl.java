@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 视频管理Service业务层处理
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 @Service

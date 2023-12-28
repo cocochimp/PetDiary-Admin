@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 功能模块
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 //@EnableAdminServer
 @EnableCustomConfig

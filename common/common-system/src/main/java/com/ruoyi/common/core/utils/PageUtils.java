@@ -8,7 +8,7 @@ import com.ruoyi.common.core.web.page.TableSupport;
 /**
  * 分页工具类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class PageUtils extends PageHelper
 {

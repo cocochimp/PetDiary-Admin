@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 直播Controller
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 @RestController

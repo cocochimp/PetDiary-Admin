@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * 业务表 gen_table
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class GenTable extends BaseEntity
 {

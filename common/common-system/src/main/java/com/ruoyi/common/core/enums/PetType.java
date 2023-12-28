@@ -3,7 +3,7 @@ package com.ruoyi.common.core.enums;
 /**
  * 宠物类型
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public enum PetType
 {

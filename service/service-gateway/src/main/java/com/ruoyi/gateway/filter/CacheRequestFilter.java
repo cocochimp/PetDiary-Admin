@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 /**
  * 获取body请求数据（解决流不能重复读取问题）
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Component
 public class CacheRequestFilter extends AbstractGatewayFilterFactory<CacheRequestFilter.Config>

@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * 代码生成 操作处理
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @RequestMapping("/gen")
 @RestController

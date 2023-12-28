@@ -17,7 +17,7 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
 /**
  * web层通用数据处理
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class BaseController
 {

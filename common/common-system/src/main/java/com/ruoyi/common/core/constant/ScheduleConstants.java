@@ -3,7 +3,7 @@ package com.ruoyi.common.core.constant;
 /**
  * 任务调度通用常量
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class ScheduleConstants
 {

@@ -66,7 +66,7 @@ import com.ruoyi.common.core.utils.reflect.ReflectUtils;
 /**
  * Excel相关处理
  *
- * @author ruoyi
+ * @author cocochimp
  */
 public class ExcelUtil<T>
 {

@@ -12,7 +12,7 @@ import com.ruoyi.system.api.model.LoginUser;
 /**
  * 用户服务降级处理
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Component
 public class RemoteUserFallbackFactory implements FallbackFactory<RemoteUserService>

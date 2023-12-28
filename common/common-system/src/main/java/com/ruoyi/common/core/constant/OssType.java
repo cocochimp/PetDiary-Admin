@@ -3,7 +3,7 @@ package com.ruoyi.common.core.constant;
 /**
  * oss类型信息
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class OssType
 {

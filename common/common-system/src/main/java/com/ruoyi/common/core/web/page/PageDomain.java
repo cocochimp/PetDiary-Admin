@@ -5,7 +5,7 @@ import com.ruoyi.common.core.utils.StringUtils;
 /**
  * 分页数据
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class PageDomain
 {

@@ -25,7 +25,7 @@ import com.ruoyi.system.service.ISysMenuService;
 /**
  * 菜单信息
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @RestController
 @RequestMapping("/menu")

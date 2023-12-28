@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * 本地文件存储
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Service
 public class LocalSysFileServiceImpl implements ISysFileService

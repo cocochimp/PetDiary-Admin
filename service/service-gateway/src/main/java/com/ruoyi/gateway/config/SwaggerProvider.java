@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 聚合系统接口
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Component
 public class SwaggerProvider implements SwaggerResourcesProvider, WebFluxConfigurer

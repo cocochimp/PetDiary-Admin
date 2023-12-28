@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 文件信息
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class SysFile
 {

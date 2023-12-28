@@ -7,7 +7,7 @@ import com.ruoyi.system.api.domain.SysUser;
 /**
  * 用户表 数据层
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public interface SysUserMapper
 {

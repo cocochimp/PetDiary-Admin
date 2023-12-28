@@ -3,7 +3,7 @@ package com.ruoyi.common.core.exception;
 /**
  * 权限异常
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class PreAuthorizeException extends RuntimeException
 {

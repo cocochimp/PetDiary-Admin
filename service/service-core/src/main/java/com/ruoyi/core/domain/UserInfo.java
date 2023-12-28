@@ -8,7 +8,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 /**
  * 用户列表对象 user_info
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 public class UserInfo extends BaseEntity

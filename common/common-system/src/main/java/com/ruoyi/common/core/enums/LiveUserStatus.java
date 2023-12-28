@@ -3,7 +3,7 @@ package com.ruoyi.common.core.enums;
 /**
  * 直播间用户状态
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public enum LiveUserStatus
 {

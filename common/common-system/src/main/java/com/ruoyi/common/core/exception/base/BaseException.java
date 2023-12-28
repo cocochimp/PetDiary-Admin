@@ -3,7 +3,7 @@ package com.ruoyi.common.core.exception.base;
 /**
  * 基础异常
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class BaseException extends RuntimeException
 {

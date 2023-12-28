@@ -3,7 +3,7 @@ package com.ruoyi.common.core.exception.user;
 /**
  * 验证码失效异常类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class CaptchaExpireException extends UserException
 {

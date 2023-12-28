@@ -8,7 +8,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 /**
  * 宠物类别对象 user_pet
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 public class UserPet extends BaseEntity

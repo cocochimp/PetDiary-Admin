@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * 文件请求处理
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @RestController
 public class SysFileController

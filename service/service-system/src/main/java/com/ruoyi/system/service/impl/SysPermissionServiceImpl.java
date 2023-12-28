@@ -15,7 +15,7 @@ import com.ruoyi.system.service.ISysRoleService;
 /**
  * 用户权限处理
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Service
 public class SysPermissionServiceImpl implements ISysPermissionService

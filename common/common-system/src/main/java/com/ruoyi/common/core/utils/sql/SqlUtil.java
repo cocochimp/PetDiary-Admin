@@ -6,7 +6,7 @@ import com.ruoyi.common.core.utils.StringUtils;
 /**
  * sql操作工具类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class SqlUtil
 {

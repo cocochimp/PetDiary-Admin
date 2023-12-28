@@ -3,7 +3,7 @@ package com.ruoyi.common.core.enums;
 /**
  * 性别分类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public enum GenderType
 {

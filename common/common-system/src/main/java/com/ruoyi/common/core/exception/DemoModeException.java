@@ -3,7 +3,7 @@ package com.ruoyi.common.core.exception;
 /**
  * 演示模式异常
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class DemoModeException extends RuntimeException
 {

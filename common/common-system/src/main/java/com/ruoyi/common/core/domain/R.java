@@ -6,7 +6,7 @@ import com.ruoyi.common.core.constant.Constants;
 /**
  * 响应信息主体
  *
- * @author ruoyi
+ * @author cocochimp
  */
 public class R<T> implements Serializable
 {

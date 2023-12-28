@@ -3,7 +3,7 @@ package com.ruoyi.common.core.enums;
 /**
  * 内容类型
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public enum ContentType
 {

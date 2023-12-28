@@ -11,7 +11,7 @@ import com.ruoyi.function.domain.SysJob;
 /**
  * 任务执行工具
  *
- * @author ruoyi
+ * @author cocochimp
  */
 public class JobInvokeUtil
 {

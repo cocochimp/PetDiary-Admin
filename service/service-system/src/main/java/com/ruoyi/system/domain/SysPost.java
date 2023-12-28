@@ -12,7 +12,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 /**
  * 岗位表 sys_post
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class SysPost extends BaseEntity
 {

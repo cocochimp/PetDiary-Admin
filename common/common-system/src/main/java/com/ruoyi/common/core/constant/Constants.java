@@ -3,7 +3,7 @@ package com.ruoyi.common.core.constant;
 /**
  * 通用常量信息
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class Constants
 {

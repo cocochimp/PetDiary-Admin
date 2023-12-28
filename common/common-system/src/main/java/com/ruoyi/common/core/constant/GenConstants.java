@@ -3,7 +3,7 @@ package com.ruoyi.common.core.constant;
 /**
  * 代码生成通用常量
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class GenConstants
 {

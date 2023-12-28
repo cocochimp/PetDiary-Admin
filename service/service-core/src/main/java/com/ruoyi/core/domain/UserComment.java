@@ -8,7 +8,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 /**
  * 评论管理对象 user_comment
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-05w
  */
 public class UserComment extends BaseEntity

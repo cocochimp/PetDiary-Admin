@@ -21,7 +21,7 @@ import com.ruoyi.function.util.ScheduleUtils;
 /**
  * 定时任务调度信息 服务层
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Service
 public class SysJobServiceImpl implements ISysJobService

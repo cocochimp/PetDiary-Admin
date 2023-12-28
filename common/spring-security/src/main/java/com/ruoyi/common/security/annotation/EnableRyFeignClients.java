@@ -7,7 +7,7 @@ import java.lang.annotation.*;
  * 自定义feign注解
  * 添加basePackages路径
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)

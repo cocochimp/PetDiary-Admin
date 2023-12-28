@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 直播Mapper接口
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 public interface UserLiveMapper 

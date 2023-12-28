@@ -5,7 +5,7 @@ import com.ruoyi.common.core.utils.StringUtils;
 /**
  * 字符串格式化
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class StrFormatter
 {

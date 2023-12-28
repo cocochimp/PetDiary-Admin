@@ -6,7 +6,7 @@ import com.ruoyi.system.api.domain.SysDictData;
 /**
  * 字典 业务层
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public interface ISysDictDataService
 {

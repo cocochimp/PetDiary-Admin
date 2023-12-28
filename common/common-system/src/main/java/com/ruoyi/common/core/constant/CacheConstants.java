@@ -3,7 +3,7 @@ package com.ruoyi.common.core.constant;
 /**
  * 缓存常量信息
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class CacheConstants
 {

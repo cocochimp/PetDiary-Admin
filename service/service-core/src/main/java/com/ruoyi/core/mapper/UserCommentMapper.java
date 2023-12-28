@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 评论管理Mapper接口
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-05
  */
 public interface UserCommentMapper 

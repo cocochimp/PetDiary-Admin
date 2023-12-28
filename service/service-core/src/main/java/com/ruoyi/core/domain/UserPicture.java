@@ -8,7 +8,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 /**
  * 图文管理对象 user_picture
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 public class UserPicture extends BaseEntity

@@ -7,7 +7,7 @@ import com.ruoyi.system.api.model.LoginUser;
 /**
  * Token 权限验证工具类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class AuthUtil
 {

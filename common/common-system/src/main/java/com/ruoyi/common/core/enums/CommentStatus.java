@@ -3,7 +3,7 @@ package com.ruoyi.common.core.enums;
 /**
  * 评论状态
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public enum CommentStatus
 {

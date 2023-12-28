@@ -3,7 +3,7 @@ package com.ruoyi.common.core.exception;
 /**
  * 验证码错误异常类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class CaptchaException extends RuntimeException
 {

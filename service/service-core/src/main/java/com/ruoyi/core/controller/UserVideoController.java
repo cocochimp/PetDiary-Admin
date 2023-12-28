@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 视频管理Controller
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 @RestController

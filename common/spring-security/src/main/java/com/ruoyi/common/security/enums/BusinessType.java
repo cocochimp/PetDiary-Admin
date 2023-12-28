@@ -3,7 +3,7 @@ package com.ruoyi.common.security.enums;
 /**
  * 业务操作类型
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public enum BusinessType
 {

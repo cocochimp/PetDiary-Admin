@@ -3,7 +3,7 @@ package com.ruoyi.common.core.exception.job;
 /**
  * 计划策略异常
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class TaskException extends Exception
 {

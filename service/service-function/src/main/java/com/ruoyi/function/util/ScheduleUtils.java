@@ -21,7 +21,7 @@ import com.ruoyi.function.domain.SysJob;
 /**
  * 定时任务工具类
  * 
- * @author ruoyi
+ * @author cocochimp
  *
  */
 public class ScheduleUtils

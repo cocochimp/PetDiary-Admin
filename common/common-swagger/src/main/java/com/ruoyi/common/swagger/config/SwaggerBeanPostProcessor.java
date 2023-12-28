@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * swagger 在 springboot 2.6.x 不兼容问题的处理
  *
- * @author ruoyi
+ * @author cocochimp
  */
 public class SwaggerBeanPostProcessor implements BeanPostProcessor
 {

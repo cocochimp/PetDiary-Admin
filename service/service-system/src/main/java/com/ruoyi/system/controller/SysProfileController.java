@@ -24,7 +24,7 @@ import java.util.Arrays;
 /**
  * 个人信息 业务处理
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @RestController
 @RequestMapping("/user/profile")

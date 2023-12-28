@@ -8,7 +8,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 /**
  * 直播对象 user_live
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 public class UserLive extends BaseEntity

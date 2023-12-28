@@ -23,7 +23,7 @@ import com.ruoyi.gateway.service.ValidateCodeService;
 /**
  * 验证码实现处理
  *
- * @author ruoyi
+ * @author cocochimp
  */
 @Service
 public class ValidateCodeServiceImpl implements ValidateCodeService

@@ -8,7 +8,7 @@ import com.ruoyi.common.core.utils.StringUtils;
 /**
  * 操作消息提醒
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class AjaxResult extends HashMap<String, Object>
 {

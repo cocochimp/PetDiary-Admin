@@ -10,7 +10,7 @@ import com.ruoyi.system.domain.SysMenu;
 /**
  * Treeselect树结构实体类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class TreeSelect implements Serializable
 {

@@ -20,7 +20,7 @@ import com.ruoyi.system.api.model.LoginUser;
 /**
  * 数据过滤处理
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Aspect
 @Component

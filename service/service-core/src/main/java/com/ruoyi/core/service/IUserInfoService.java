@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 用户列表Service接口
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 public interface IUserInfoService 

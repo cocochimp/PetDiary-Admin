@@ -3,7 +3,7 @@ package com.ruoyi.common.core.constant;
 /**
  * 服务名称
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class ServiceNameConstants
 {

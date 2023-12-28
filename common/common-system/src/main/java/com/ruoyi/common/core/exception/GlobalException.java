@@ -3,7 +3,7 @@ package com.ruoyi.common.core.exception;
 /**
  * 全局异常
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class GlobalException extends RuntimeException
 {

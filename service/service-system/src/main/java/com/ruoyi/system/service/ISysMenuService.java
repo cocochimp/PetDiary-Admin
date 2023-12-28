@@ -9,7 +9,7 @@ import com.ruoyi.system.domain.vo.TreeSelect;
 /**
  * 菜单 业务层
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public interface ISysMenuService
 {

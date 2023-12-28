@@ -16,7 +16,7 @@ import com.ruoyi.function.util.CronUtils;
 /**
  * 定时任务调度表 sys_job
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public class SysJob extends BaseEntity
 {

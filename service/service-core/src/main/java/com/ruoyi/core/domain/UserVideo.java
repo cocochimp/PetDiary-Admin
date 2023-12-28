@@ -8,7 +8,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 /**
  * 视频管理对象 user_video
  * 
- * @author ruoyi
+ * @author cocochimp
  * @date 2023-12-04
  */
 public class UserVideo extends BaseEntity

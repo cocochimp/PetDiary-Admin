@@ -3,7 +3,7 @@ package com.ruoyi.common.core.utils.sign;
 /**
  * Base64工具类
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 public final class Base64
 {

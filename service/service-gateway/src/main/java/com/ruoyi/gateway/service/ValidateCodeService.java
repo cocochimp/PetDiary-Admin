@@ -7,7 +7,7 @@ import com.ruoyi.common.core.web.domain.AjaxResult;
 /**
  * 验证码处理
  *
- * @author ruoyi
+ * @author cocochimp
  */
 public interface ValidateCodeService
 {

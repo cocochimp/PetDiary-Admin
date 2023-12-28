@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 全局异常处理器
  *
- * @author ruoyi
+ * @author cocochimp
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler

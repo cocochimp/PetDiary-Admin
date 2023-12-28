@@ -12,7 +12,7 @@ import com.ruoyi.system.api.domain.SysLogininfor;
 /**
  * 记录日志方法
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Component
 public class SysRecordLogService

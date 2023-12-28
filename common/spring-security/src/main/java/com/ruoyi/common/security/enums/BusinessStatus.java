@@ -3,7 +3,7 @@ package com.ruoyi.common.security.enums;
 /**
  * 操作状态
  * 
- * @author ruoyi
+ * @author cocochimp
  *
  */
 public enum BusinessStatus

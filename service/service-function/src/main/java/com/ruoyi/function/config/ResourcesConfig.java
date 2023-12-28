@@ -11,7 +11,7 @@ import java.io.File;
 /**
  * 通用映射配置
  * 
- * @author ruoyi
+ * @author cocochimp
  */
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer
