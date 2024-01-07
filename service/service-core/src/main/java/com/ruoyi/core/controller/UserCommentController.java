@@ -1,6 +1,8 @@
 package com.ruoyi.core.controller;
 
+import com.ruoyi.common.core.enums.UserInfoStatus;
 import com.ruoyi.core.domain.UserComment;
+import com.ruoyi.core.domain.UserPicture;
 import com.ruoyi.core.service.IUserCommentService;
 import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
@@ -13,11 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 评论管理Controller
- * 
+ *
  * @author cocochimp
  * @date 2023-12-05
  */
@@ -94,5 +99,19 @@ public class UserCommentController extends BaseController
     public AjaxResult remove(@PathVariable Long[] commentIds)
     {
         return toAjax(userCommentService.deleteUserCommentByCommentIds(commentIds));
+    }
+
+    /**
+     * 修改视频状态
+     */
+    @RequiresPermissions("comment:comment:ban")
+    @Log(title = "评论管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/ban")
+    public AjaxResult ban(@RequestBody UserComment userComment)
+    {
+        if (Objects.equals(userComment.getStatus(), UserInfoStatus.BAN.getCode())) {
+            userComment.setUpdateTime(new Date());
+        }
+        return toAjax(userCommentService.updateUserComment(userComment));
     }
 }
