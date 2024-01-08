@@ -108,7 +108,9 @@ public class UserVideoController extends BaseController
     @PutMapping("/ban")
     public AjaxResult ban(@RequestBody UserVideo userVideo)
     {
-        if (Objects.equals(userVideo.getStatus(), UserInfoStatus.BAN.getCode())) {
+        UserVideo userVideoInDB = userVideoService.selectUserVideoByContentId(userVideo.getContentId());
+        if (!Objects.equals(userVideoInDB.getStatus(), userVideo.getStatus())
+        || !Objects.equals(userVideoInDB.getRejectInfo(), userVideo.getRejectInfo())) {
             userVideo.setUpdateTime(new Date());
         }
         return toAjax(userVideoService.updateUserVideo(userVideo));

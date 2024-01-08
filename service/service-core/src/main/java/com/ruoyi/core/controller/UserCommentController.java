@@ -109,7 +109,9 @@ public class UserCommentController extends BaseController
     @PutMapping("/ban")
     public AjaxResult ban(@RequestBody UserComment userComment)
     {
-        if (Objects.equals(userComment.getStatus(), UserInfoStatus.BAN.getCode())) {
+        UserComment userCommentInDB = userCommentService.selectUserCommentByCommentId(userComment.getCommentId());
+        if (!Objects.equals(userComment.getStatus(), userCommentInDB.getStatus())
+        || !Objects.equals(userCommentInDB.getRejectInfo(), userComment.getRejectInfo())) {
             userComment.setUpdateTime(new Date());
         }
         return toAjax(userCommentService.updateUserComment(userComment));

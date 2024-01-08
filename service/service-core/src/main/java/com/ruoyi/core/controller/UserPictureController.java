@@ -108,7 +108,9 @@ public class UserPictureController extends BaseController
     @PutMapping("/ban")
     public AjaxResult ban(@RequestBody UserPicture userPicture)
     {
-        if (Objects.equals(userPicture.getStatus(), UserInfoStatus.BAN.getCode())) {
+        UserPicture userPictureInDB = userPictureService.selectUserPictureByContentId(userPicture.getContentId());
+        if (!Objects.equals(userPictureInDB.getStatus(), userPicture.getStatus())
+                || !Objects.equals(userPictureInDB.getRejectInfo(), userPicture.getRejectInfo())) {
             userPicture.setUpdateTime(new Date());
         }
         return toAjax(userPictureService.updateUserPicture(userPicture));

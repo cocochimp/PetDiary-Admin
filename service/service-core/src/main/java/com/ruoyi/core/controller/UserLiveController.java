@@ -108,7 +108,9 @@ public class UserLiveController extends BaseController
     @PutMapping("/ban")
     public AjaxResult ban(@RequestBody UserLive userLive)
     {
-        if (Objects.equals(userLive.getStatus(), UserInfoStatus.BAN.getCode())) {
+        UserLive userLiveInDB = userLiveService.selectUserLiveByLiveId(userLive.getLiveId());
+        if (!Objects.equals(userLive.getStatus(), userLiveInDB.getStatus())
+        || !Objects.equals(userLive.getBanInfo(), userLiveInDB.getBanInfo())) {
             userLive.setUpdateTime(new Date());
         }
         return toAjax(userLiveService.updateUserLive(userLive));
