@@ -11,7 +11,7 @@
     <artifactId>common-security</artifactId>
 
     <description>
-        ruoyi-common-security安全模块
+        common-security安全模块，依赖了（redis，api，system）
     </description>
 
     <dependencies>

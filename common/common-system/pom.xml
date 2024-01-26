@@ -12,7 +12,7 @@
     <artifactId>common-system</artifactId>
     
     <description>
-        ruoyi-common-core核心模块
+        common-core核心模块
     </description>
 
     <dependencies>
@@ -117,22 +117,14 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
         </dependency>
 
-        <!-- Dynamic DataSource -->
-<!--        <dependency>-->
-<!--            <groupId>com.baomidou</groupId>-->
-<!--            <artifactId>dynamic-datasource-spring-boot-starter</artifactId>-->
-<!--            <version>${dynamic-ds.version}</version>-->
-<!--        </dependency>-->
-
+        <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.5.7</version>
-            <scope>compile</scope>
         </dependency>
+
 <!--        <dependency>-->
 <!--            <groupId>org.apache.httpcomponents</groupId>-->
 <!--            <artifactId>httpclient</artifactId>-->

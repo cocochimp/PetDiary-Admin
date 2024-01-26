@@ -12,7 +12,7 @@
     <artifactId>common-swagger</artifactId>
 	
     <description>
-        ruoyi-common-swagger系统接口
+        common-swagger系统接口
     </description>
 
 	<dependencies>
@@ -27,7 +27,6 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.fox.version}</version>
         </dependency>
 
         <!-- knife4j -->

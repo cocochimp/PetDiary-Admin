@@ -19,7 +19,7 @@
     <packaging>pom</packaging>
 
     <description>
-        ruoyi-common通用模块
+        common通用模块
     </description>
 
 </project>

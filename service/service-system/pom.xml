@@ -45,7 +45,6 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.fox.version}</version>
         </dependency>
 		
         <!-- Mysql Connector -->
@@ -76,7 +75,6 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>${dynamic-ds.version}</version>
         </dependency>
 
     </dependencies>
