@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.ruoyi</groupId>
+        <artifactId>service-common</artifactId>
+        <version>3.6.3</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    
+    <artifactId>common-security</artifactId>
+
+    <description>
+        common-security安全模块，依赖了（redis，api，system）
+    </description>
+
+    <dependencies>
+
+        <!-- Spring Web -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <!-- RuoYi Api System -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>service-api</artifactId>
+        </dependency>
+
+        <!-- 核心模块 -->
+<!--        <dependency>-->
+<!--            <groupId>com.ruoyi</groupId>-->
+<!--            <artifactId>common-system</artifactId>-->
+<!--        </dependency>-->
+
+        <!-- RuoYi Common Redis-->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>common-redis</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

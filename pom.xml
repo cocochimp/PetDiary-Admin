@@ -13,9 +13,9 @@
     <description>PetDiary宠物日记</description>
 
     <modules>
-        <module>service</module>
+        <module>service-center</module>
+        <module>service-common</module>
         <module>service-api</module>
-        <module>common</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -193,7 +193,7 @@
             <!-- 系统接口 -->
             <dependency>
                 <groupId>com.ruoyi</groupId>
-                <artifactId>service-api-system</artifactId>
+                <artifactId>service-api</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 
