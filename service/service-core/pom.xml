@@ -71,7 +71,7 @@
         <!-- 安全模块 -->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>spring-security</artifactId>
+            <artifactId>common-security</artifactId>
         </dependency>
 
 <!--        <dependency>-->

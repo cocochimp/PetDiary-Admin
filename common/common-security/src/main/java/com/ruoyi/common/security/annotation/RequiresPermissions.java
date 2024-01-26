@@ -1,5 +1,7 @@
 package com.ruoyi.common.security.annotation;
 
+import com.ruoyi.common.security.enums.Logical;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

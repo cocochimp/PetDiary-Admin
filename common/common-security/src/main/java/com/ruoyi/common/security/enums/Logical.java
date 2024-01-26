@@ -1,4 +1,4 @@
-package com.ruoyi.common.security.annotation;
+package com.ruoyi.common.security.enums;
 
 /**
  * 权限注解的验证模式

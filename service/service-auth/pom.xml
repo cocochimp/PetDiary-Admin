@@ -49,7 +49,7 @@
         <!-- RuoYi Common Security-->
         <dependency>
             <groupId>com.ruoyi</groupId>
-            <artifactId>spring-security</artifactId>
+            <artifactId>common-security</artifactId>
         </dependency>
         
     </dependencies>

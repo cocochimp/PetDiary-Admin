@@ -32,7 +32,7 @@ PetDiary-Admin
        └── common-system                       // 核心模块
        └── common-redis                        // 缓存服务
        └── common-swagger                      // 系统接口
-       └── spring-security                     // 安全模块
+       └── common-security                     // 安全模块
 ├── service                             // 服务模块
        └── service-auth                        // 认证模块 [9200]
        └── service-core                        // 业务模块 [9501]

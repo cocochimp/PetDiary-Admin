@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     
-    <artifactId>spring-security</artifactId>
+    <artifactId>common-security</artifactId>
 
     <description>
         ruoyi-common-security安全模块
