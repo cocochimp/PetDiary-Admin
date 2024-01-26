@@ -28,6 +28,12 @@
             <artifactId>service-api-system</artifactId>
         </dependency>
 
+        <!-- 核心模块 -->
+<!--        <dependency>-->
+<!--            <groupId>com.ruoyi</groupId>-->
+<!--            <artifactId>common-system</artifactId>-->
+<!--        </dependency>-->
+
         <!-- RuoYi Common Redis-->
         <dependency>
             <groupId>com.ruoyi</groupId>

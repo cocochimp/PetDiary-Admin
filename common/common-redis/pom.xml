@@ -22,12 +22,16 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
-        
-        <!-- RuoYi Common Core-->
         <dependency>
-            <groupId>com.ruoyi</groupId>
-            <artifactId>common-system</artifactId>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
         </dependency>
+
+        <!-- RuoYi Common Core-->
+<!--        <dependency>-->
+<!--            <groupId>com.ruoyi</groupId>-->
+<!--            <artifactId>common-system</artifactId>-->
+<!--        </dependency>-->
         
     </dependencies>
 </project>
