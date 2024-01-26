@@ -1,5 +1,6 @@
 package com.ruoyi.core.controller;
 
+import com.ruoyi.common.core.enums.UserInfoStatus;
 import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -13,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 视频管理Controller
- * 
+ *
  * @author cocochimp
  * @date 2023-12-04
  */
@@ -94,5 +98,21 @@ public class UserVideoController extends BaseController
     public AjaxResult remove(@PathVariable Long[] contentIds)
     {
         return toAjax(userVideoService.deleteUserVideoByContentIds(contentIds));
+    }
+
+    /**
+     * 修改视频状态
+     */
+    @RequiresPermissions("video:video:ban")
+    @Log(title = "视频管理", businessType = BusinessType.UPDATE)
+    @PutMapping("/ban")
+    public AjaxResult ban(@RequestBody UserVideo userVideo)
+    {
+        UserVideo userVideoInDB = userVideoService.selectUserVideoByContentId(userVideo.getContentId());
+        if (!Objects.equals(userVideoInDB.getStatus(), userVideo.getStatus())
+        || !Objects.equals(userVideoInDB.getRejectInfo(), userVideo.getRejectInfo())) {
+            userVideo.setUpdateTime(new Date());
+        }
+        return toAjax(userVideoService.updateUserVideo(userVideo));
     }
 }

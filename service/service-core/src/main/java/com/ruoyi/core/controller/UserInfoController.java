@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 用户列表Controller
@@ -119,7 +120,7 @@ public class UserInfoController extends BaseController
     @PutMapping("/ban")
     public AjaxResult ban(@RequestBody UserInfo userInfo)
     {
-        if (userInfo.getStatus() == UserInfoStatus.BAN.getCode()) {
+        if (Objects.equals(userInfo.getStatus(), UserInfoStatus.BAN.getCode())) {
             UserBanExample userBanExample = new UserBanExample();
             UserBanExample.Criteria criteria = userBanExample.createCriteria();
             criteria.andOpenidEqualTo(userInfo.getOpenid());

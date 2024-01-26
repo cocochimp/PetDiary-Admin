@@ -1,5 +1,6 @@
 package com.ruoyi.core.controller;
 
+import com.ruoyi.common.core.enums.UserInfoStatus;
 import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -13,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 直播Controller
- * 
+ *
  * @author cocochimp
  * @date 2023-12-04
  */
@@ -94,5 +98,21 @@ public class UserLiveController extends BaseController
     public AjaxResult remove(@PathVariable Long[] liveIds)
     {
         return toAjax(userLiveService.deleteUserLiveByLiveIds(liveIds));
+    }
+
+    /**
+     * 修改直播状态
+     */
+    @RequiresPermissions("live:live:ban")
+    @Log(title = "直播", businessType = BusinessType.UPDATE)
+    @PutMapping("/ban")
+    public AjaxResult ban(@RequestBody UserLive userLive)
+    {
+        UserLive userLiveInDB = userLiveService.selectUserLiveByLiveId(userLive.getLiveId());
+        if (!Objects.equals(userLive.getStatus(), userLiveInDB.getStatus())
+        || !Objects.equals(userLive.getBanInfo(), userLiveInDB.getBanInfo())) {
+            userLive.setUpdateTime(new Date());
+        }
+        return toAjax(userLiveService.updateUserLive(userLive));
     }
 }

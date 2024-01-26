@@ -2,10 +2,13 @@ package com.ruoyi.core.mapper;
 
 import com.ruoyi.core.domain.UserBlock;
 import com.ruoyi.core.domain.vo.UserBlockExample;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface UserBlockMapper {
     long countByExample(UserBlockExample example);
 
