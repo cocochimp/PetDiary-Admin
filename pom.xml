@@ -55,6 +55,9 @@
         <aliyun-sdk-oss.version>3.10.2</aliyun-sdk-oss.version>
         <knife4j.version>4.3.0</knife4j.version>
         <mybatis.version>3.5.7</mybatis.version>
+        <mybatis-spring-boot-autoconfigure.version>2.1.4</mybatis-spring-boot-autoconfigure.version>
+        <shiro-core.version>1.4.0</shiro-core.version>
+        <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -233,12 +236,6 @@
                 <version>${druid.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.mybatis</groupId>
-                <artifactId>mybatis</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
-
             <!-- Swagger UI -->
             <dependency>
                 <groupId>io.springfox</groupId>
@@ -267,6 +264,17 @@
                 <version>${spring-boot-admin.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus-generator.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

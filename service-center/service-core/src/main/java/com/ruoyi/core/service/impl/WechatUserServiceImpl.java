@@ -2,12 +2,11 @@ package com.ruoyi.core.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ruoyi.common.core.domain.GlobalResult;
 import com.ruoyi.common.core.utils.wechat.WechatUtil;
 import com.ruoyi.core.domain.WechatUserInfo;
-import com.ruoyi.core.mapper.WechatUserMapper;
+import com.ruoyi.core.mapper.WechatUserInfoMapper;
 import com.ruoyi.core.service.WechatUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -29,10 +28,13 @@ import java.util.UUID;
  */
 @Slf4j
 @Service
-public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatUserInfo> implements WechatUserService {
+public class WechatUserServiceImpl implements WechatUserService {
+
+//    @Autowired
+//    private WechatUserMapper wechatUserMapper;
 
     @Autowired
-    private WechatUserMapper wechatUserMapper;
+    private WechatUserInfoMapper wechatUserInfoMapper;
 
     @Override
     public GlobalResult login(String code, String rawData, String signature) {
@@ -52,7 +54,8 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
             return GlobalResult.build(500, "签名校验失败", null);
         }
         // 5.根据返回的User实体类，判断用户是否是新用户，是的话，将用户信息存到数据库；不是的话，更新最新登录时间
-        WechatUserInfo wechatUserInfo = this.wechatUserMapper.selectById(openid);
+//        WechatUserInfo wechatUserInfo = this.wechatUserMapper.selectById(openid);
+        WechatUserInfo wechatUserInfo = wechatUserInfoMapper.getWechatUserInfoByOpenId(openid);
         // uuid生成唯一key，用于维护微信小程序用户与服务端的会话
         String skey = UUID.randomUUID().toString();
         if (wechatUserInfo == null) {
@@ -68,13 +71,13 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
             wechatUserInfo.setGender(Integer.parseInt(rawDataJson.getString("gender")));
             wechatUserInfo.setNickName(getStringRandom(16));
 
-            wechatUserMapper.insert(wechatUserInfo);
+            wechatUserInfoMapper.insertWechatUserInfo(wechatUserInfo);
         } else {
             // 已存在，更新用户登录时间
             wechatUserInfo.setLastVisitTime(new Date());
             // 重新设置会话skey
             wechatUserInfo.setSkey(skey);
-            wechatUserMapper.updateById(wechatUserInfo);
+            wechatUserInfoMapper.updateWechatUserInfo(wechatUserInfo);
         }
         //encrypteData比rowData多了appid和openid
         //6. 把新的skey返回给小程序
@@ -90,7 +93,7 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
 
     @Override
     public GlobalResult updateInfo(WechatUserInfo userInfo) {
-        WechatUserInfo user = this.wechatUserMapper.selectById(userInfo.getOpenId());
+        WechatUserInfo user = wechatUserInfoMapper.getWechatUserInfoByOpenId(userInfo.getOpenId());
         // uuid生成唯一key，用于维护微信小程序用户与服务端的会话
         String skey = UUID.randomUUID().toString();
         if (user != null) {
@@ -101,7 +104,7 @@ public class WechatUserServiceImpl extends ServiceImpl<WechatUserMapper, WechatU
             user.setSignature(userInfo.getSignature() != null ? userInfo.getSignature() : user.getSignature());
             user.setLastVisitTime(new Date());
             user.setSkey(skey);
-            wechatUserMapper.updateById(user);
+            wechatUserInfoMapper.updateWechatUserInfo(user);
         }
         // 把新的skey返回给小程序
         GlobalResult result = null;

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruoyi.core.mapper.WechatUserInfoMapper">
+    <!-- 插入数据 -->
+    <insert id="insertWechatUserInfo" parameterType="WechatUserInfo"
+            useGeneratedKeys="true" keyProperty="openId">
+        INSERT INTO wx_user_info (open_id, avatar_url, gender, nick_name, signature, session_key, skey, create_time, last_visit_time)
+        VALUES (#{openId}, #{avatarUrl}, #{gender}, #{nickName}, #{signature}, #{sessionKey}, #{skey}, #{createTime}, #{lastVisitTime})
+    </insert>
+
+    <!-- 根据 openId 更新数据 -->
+    <update id="updateWechatUserInfo" parameterType="WechatUserInfo">
+        UPDATE wx_user_info
+        SET avatar_url = #{avatarUrl}, gender = #{gender}, nick_name = #{nickName},
+        signature = #{signature}, session_key = #{sessionKey}, skey = #{skey},
+        create_time = #{createTime}, last_visit_time = #{lastVisitTime}
+        WHERE open_id = #{openId}
+    </update>
+
+    <!-- 根据 openId 删除数据 -->
+    <delete id="deleteWechatUserInfo" parameterType="String">
+        DELETE FROM wx_user_info
+        WHERE open_id = #{openId}
+    </delete>
+
+    <!-- 根据 openId 查询数据 -->
+    <select id="getWechatUserInfoByOpenId" parameterType="String" resultMap="wechatUserInfoResultMap">
+        SELECT * FROM wx_user_info
+        WHERE open_id = #{openId}
+    </select>
+
+    <!-- 查询所有数据 -->
+    <select id="getAllWechatUserInfo" resultMap="wechatUserInfoResultMap">
+        SELECT * FROM wx_user_info
+    </select>
+
+    <!-- 结果映射 -->
+    <resultMap id="wechatUserInfoResultMap" type="WechatUserInfo">
+        <id column="open_id" property="openId" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="gender" property="gender" />
+        <result column="nick_name" property="nickName" />
+        <result column="signature" property="signature" />
+        <result column="session_key" property="sessionKey" />
+        <result column="skey" property="skey" />
+        <result column="create_time" property="createTime" />
+        <result column="last_visit_time" property="lastVisitTime" />
+    </resultMap>
+
+</mapper>

@@ -9,13 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-/**
- * @author lastwhisper
- * @desc
- * @email gaojun56@163.com
- */
 @Data
-@TableName("user")
+@TableName("wx_user_info")
 public class WechatUserInfo {
     private static final long serialVersionUID = 1L;
     /**
