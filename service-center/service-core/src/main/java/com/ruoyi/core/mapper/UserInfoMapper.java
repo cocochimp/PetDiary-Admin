@@ -18,7 +18,7 @@ public interface UserInfoMapper
      * @param userId 用户列表主键
      * @return 用户列表
      */
-    public UserInfo selectUserInfoByUserId(Long userId);
+    public UserInfo selectUserInfoByUserId(String userId);
 
     /**
      * 查询用户列表列表
@@ -59,4 +59,14 @@ public interface UserInfoMapper
      * @return 结果
      */
     public int deleteUserInfoByUserIds(Long[] userIds);
+
+    void insertWechatUserInfo(UserInfo userInfo);
+
+    void updateWechatUserInfo(UserInfo userInfo);
+
+    void deleteWechatUserInfo(String openId);
+
+    UserInfo getWechatUserInfoByOpenId(String openId);
+
+    List<UserInfo> getAllWechatUserInfo();
 }

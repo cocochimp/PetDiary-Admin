@@ -74,7 +74,7 @@ public class UserInfoController extends BaseController
      */
     @RequiresPermissions("user:user:query")
     @GetMapping(value = "/{userId}")
-    public AjaxResult getInfo(@PathVariable("userId") Long userId)
+    public AjaxResult getInfo(@PathVariable("userId") String userId)
     {
         return success(userInfoService.selectUserInfoByUserId(userId));
     }
@@ -107,7 +107,7 @@ public class UserInfoController extends BaseController
     @RequiresPermissions("user:user:remove")
     @Log(title = "用户列表", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{userIds}")
-    public AjaxResult remove(@PathVariable Long[] userIds)
+    public AjaxResult remove(@PathVariable String[] userIds)
     {
         return toAjax(userInfoService.deleteUserInfoByUserIds(userIds));
     }

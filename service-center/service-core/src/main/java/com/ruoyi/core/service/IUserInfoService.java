@@ -1,5 +1,6 @@
 package com.ruoyi.core.service;
 
+import com.ruoyi.common.core.domain.GlobalResult;
 import com.ruoyi.core.domain.UserInfo;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface IUserInfoService
      * @param userId 用户列表主键
      * @return 用户列表
      */
-    public UserInfo selectUserInfoByUserId(Long userId);
+    public UserInfo selectUserInfoByUserId(String openId);
 
     /**
      * 查询用户列表列表
@@ -50,7 +51,7 @@ public interface IUserInfoService
      * @param userIds 需要删除的用户列表主键集合
      * @return 结果
      */
-    public int deleteUserInfoByUserIds(Long[] userIds);
+    public int deleteUserInfoByUserIds(String[] userIds);
 
     /**
      * 删除用户列表信息
@@ -59,4 +60,8 @@ public interface IUserInfoService
      * @return 结果
      */
     public int deleteUserInfoByUserId(Long userId);
+
+    GlobalResult login(String code, String rawData, String signature);
+
+    GlobalResult updateInfo(UserInfo userInfo);
 }

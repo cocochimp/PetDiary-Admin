@@ -5,14 +5,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ruoyi.core.mapper.UserInfoMapper">
     
     <resultMap type="UserInfo" id="UserInfoResult">
-        <result property="userId"    column="user_id"    />
-        <result property="nickname"    column="nickname"    />
         <result property="openid"    column="openid"    />
-        <result property="sessionKey"    column="session_key"    />
+        <result property="nickname"    column="nickname"    />
         <result property="avatar"    column="avatar"    />
         <result property="gender"    column="gender"    />
-        <result property="address"    column="address"    />
         <result property="brief"    column="brief"    />
+        <result property="sessionKey"    column="session_key"    />
         <result property="status"    column="status"    />
         <result property="delFlag"    column="del_flag"    />
         <result property="createTime"    column="create_time"    />
@@ -21,26 +19,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectUserInfoVo">
-        select user_id, nickname, openid, session_key, avatar, gender, address, brief, status, del_flag, create_time, update_time, remark from user_info
+        select * from user_info
     </sql>
 
     <select id="selectUserInfoList" parameterType="UserInfo" resultMap="UserInfoResult">
         <include refid="selectUserInfoVo"/>
         <where>  
             <if test="nickname != null  and nickname != ''"> and nickname like concat('%', #{nickname}, '%')</if>
-            <if test="openid != null  and openid != ''"> and openid like concat('%', #{openid}, '%')</if>
             <if test="sessionKey != null  and sessionKey != ''"> and session_key like concat('%', #{sessionKey}, '%')</if>
             <if test="gender != null  and gender != ''"> and gender = #{gender}</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>
         </where>
     </select>
     
-    <select id="selectUserInfoByUserId" parameterType="Long" resultMap="UserInfoResult">
+    <select id="selectUserInfoByUserId" parameterType="String" resultMap="UserInfoResult">
         <include refid="selectUserInfoVo"/>
-        where user_id = #{userId}
+        where openid = #{openid}
     </select>
         
-    <insert id="insertUserInfo" parameterType="UserInfo" useGeneratedKeys="true" keyProperty="userId">
+    <insert id="insertUserInfo" parameterType="UserInfo" useGeneratedKeys="true" keyProperty="openid">
         insert into user_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="nickname != null and nickname != ''">nickname,</if>
@@ -48,7 +45,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sessionKey != null and sessionKey != ''">session_key,</if>
             <if test="avatar != null and avatar != ''">avatar,</if>
             <if test="gender != null and gender != ''">gender,</if>
-            <if test="address != null">address,</if>
             <if test="brief != null">brief,</if>
             <if test="status != null and status != ''">status,</if>
             <if test="delFlag != null">del_flag,</if>
@@ -62,7 +58,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="sessionKey != null and sessionKey != ''">#{sessionKey},</if>
             <if test="avatar != null and avatar != ''">#{avatar},</if>
             <if test="gender != null and gender != ''">#{gender},</if>
-            <if test="address != null">#{address},</if>
             <if test="brief != null">#{brief},</if>
             <if test="status != null and status != ''">#{status},</if>
             <if test="delFlag != null">#{delFlag},</if>
@@ -76,11 +71,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update user_info
         <trim prefix="SET" suffixOverrides=",">
             <if test="nickname != null and nickname != ''">nickname = #{nickname},</if>
-            <if test="openid != null and openid != ''">openid = #{openid},</if>
             <if test="sessionKey != null and sessionKey != ''">session_key = #{sessionKey},</if>
             <if test="avatar != null and avatar != ''">avatar = #{avatar},</if>
             <if test="gender != null and gender != ''">gender = #{gender},</if>
-            <if test="address != null">address = #{address},</if>
             <if test="brief != null">brief = #{brief},</if>
             <if test="status != null and status != ''">status = #{status},</if>
             <if test="delFlag != null">del_flag = #{delFlag},</if>
@@ -88,17 +81,66 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="remark != null">remark = #{remark},</if>
         </trim>
-        where user_id = #{userId}
+        where openid = #{openid}
     </update>
 
     <delete id="deleteUserInfoByUserId" parameterType="Long">
-        delete from user_info where user_id = #{userId}
+        delete from user_info where openid = #{openid}
     </delete>
 
     <delete id="deleteUserInfoByUserIds" parameterType="String">
-        delete from user_info where user_id in 
-        <foreach item="userId" collection="array" open="(" separator="," close=")">
-            #{userId}
+        delete from user_info where openid in
+        <foreach item="openid" collection="array" open="(" separator="," close=")">
+            #{openid}
         </foreach>
     </delete>
+
+
+<!--  new  -->
+
+    <!-- 插入数据 -->
+    <insert id="insertWechatUserInfo" parameterType="UserInfo"
+            useGeneratedKeys="true" keyProperty="openId">
+        INSERT INTO wx_user_info (open_id, avatar_url, gender, nick_name, signature, session_key, skey, create_time, last_visit_time)
+        VALUES (#{openId}, #{avatarUrl}, #{gender}, #{nickName}, #{signature}, #{sessionKey}, #{skey}, #{createTime}, #{lastVisitTime})
+    </insert>
+
+    <!-- 根据 openId 更新数据 -->
+    <update id="updateWechatUserInfo" parameterType="UserInfo">
+        UPDATE wx_user_info
+        SET avatar_url = #{avatarUrl}, gender = #{gender}, nick_name = #{nickName},
+            signature = #{signature}, session_key = #{sessionKey}, skey = #{skey},
+            create_time = #{createTime}, last_visit_time = #{lastVisitTime}
+        WHERE open_id = #{openId}
+    </update>
+
+    <!-- 根据 openId 删除数据 -->
+    <delete id="deleteWechatUserInfo" parameterType="String">
+        DELETE FROM wx_user_info
+        WHERE open_id = #{openId}
+    </delete>
+
+    <!-- 根据 openId 查询数据 -->
+    <select id="getWechatUserInfoByOpenId" parameterType="String" resultMap="wechatUserInfoResultMap">
+        SELECT * FROM wx_user_info
+        WHERE open_id = #{openId}
+    </select>
+
+    <!-- 查询所有数据 -->
+    <select id="getAllWechatUserInfo" resultMap="wechatUserInfoResultMap">
+        SELECT * FROM wx_user_info
+    </select>
+
+    <!-- 结果映射 -->
+    <resultMap id="wechatUserInfoResultMap" type="UserInfo">
+        <id column="open_id" property="openId" />
+        <result column="avatar_url" property="avatarUrl" />
+        <result column="gender" property="gender" />
+        <result column="nick_name" property="nickName" />
+        <result column="signature" property="signature" />
+        <result column="session_key" property="sessionKey" />
+        <result column="skey" property="skey" />
+        <result column="create_time" property="createTime" />
+        <result column="last_visit_time" property="lastVisitTime" />
+    </resultMap>
 </mapper>
