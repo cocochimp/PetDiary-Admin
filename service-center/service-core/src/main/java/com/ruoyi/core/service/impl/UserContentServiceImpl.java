@@ -1,8 +1,9 @@
 package com.ruoyi.core.service.impl;
 
-import com.ruoyi.core.enums.ContentType;
 import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.core.domain.UserContent;
+import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.enums.ContentType;
 import com.ruoyi.core.mapper.UserContentMapper;
 import com.ruoyi.core.service.IUserContentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,5 +97,18 @@ public class UserContentServiceImpl implements IUserContentService
     public int deleteUserPictureByContentId(Long contentId)
     {
         return userContentMapper.deleteUserPictureByContentId(contentId);
+    }
+
+    @Override
+    public List<ContentInfo> showAllContentInfo() {
+        List<ContentInfo> contentInfo = userContentMapper.showAllContent();
+        if(contentInfo!=null && contentInfo.size()>0){
+            for(ContentInfo res:contentInfo){
+                res.setUserInfo(userContentMapper.showUserInfo(res.getUserId()));
+                res.setUserComment(userContentMapper.contentCommentInfo(res.getContentId()));
+                res.setLikeCount(userContentMapper.contentLikeCount(res.getContentId()));
+            }
+        }
+        return contentInfo;
     }
 }

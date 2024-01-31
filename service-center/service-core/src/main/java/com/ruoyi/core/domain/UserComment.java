@@ -20,7 +20,7 @@ public class UserComment extends BaseEntity
 
     /** 用户ID */
     @Excel(name = "用户ID")
-    private Long userId;
+    private String userId;
 
     /** 内容ID */
     @Excel(name = "内容ID")
@@ -53,12 +53,12 @@ public class UserComment extends BaseEntity
     {
         return commentId;
     }
-    public void setUserId(Long userId) 
+    public void setUserId(String userId)
     {
         this.userId = userId;
     }
 
-    public Long getUserId() 
+    public String getUserId()
     {
         return userId;
     }

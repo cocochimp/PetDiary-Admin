@@ -1,6 +1,7 @@
 package com.ruoyi.core.service;
 
 import com.ruoyi.core.domain.UserContent;
+import com.ruoyi.core.domain.vo.ContentInfo;
 
 import java.util.List;
 
@@ -59,4 +60,6 @@ public interface IUserContentService
      * @return 结果
      */
     public int deleteUserPictureByContentId(Long contentId);
+
+    List<ContentInfo> showAllContentInfo();
 }
