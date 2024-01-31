@@ -11,7 +11,7 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
  * @author cocochimp
  * @date 2023-12-04
  */
-public class UserPicture extends BaseEntity
+public class UserContent extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 

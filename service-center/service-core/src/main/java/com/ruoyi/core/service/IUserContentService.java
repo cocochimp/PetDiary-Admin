@@ -1,6 +1,6 @@
 package com.ruoyi.core.service;
 
-import com.ruoyi.core.domain.UserPicture;
+import com.ruoyi.core.domain.UserContent;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author cocochimp
  * @date 2023-12-04
  */
-public interface IUserPictureService 
+public interface IUserContentService
 {
     /**
      * 查询图文管理
@@ -18,31 +18,31 @@ public interface IUserPictureService
      * @param contentId 图文管理主键
      * @return 图文管理
      */
-    public UserPicture selectUserPictureByContentId(Long contentId);
+    public UserContent selectUserPictureByContentId(Long contentId);
 
     /**
      * 查询图文管理列表
      * 
-     * @param userPicture 图文管理
+     * @param userContent 图文管理
      * @return 图文管理集合
      */
-    public List<UserPicture> selectUserPictureList(UserPicture userPicture);
+    public List<UserContent> selectUserPictureList(UserContent userContent);
 
     /**
      * 新增图文管理
      * 
-     * @param userPicture 图文管理
+     * @param userContent 图文管理
      * @return 结果
      */
-    public int insertUserPicture(UserPicture userPicture);
+    public int insertUserPicture(UserContent userContent);
 
     /**
      * 修改图文管理
      * 
-     * @param userPicture 图文管理
+     * @param userContent 图文管理
      * @return 结果
      */
-    public int updateUserPicture(UserPicture userPicture);
+    public int updateUserPicture(UserContent userContent);
 
     /**
      * 批量删除图文管理
