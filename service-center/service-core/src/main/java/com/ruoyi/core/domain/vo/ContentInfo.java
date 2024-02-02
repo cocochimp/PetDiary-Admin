@@ -55,5 +55,7 @@ public class ContentInfo
     private List<UserComment> userComment;
     /** 更新时间 */
     private Integer likeCount;
+    /** 用户粉丝 */
+    private Integer fanCount;
 
 }

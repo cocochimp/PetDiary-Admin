@@ -1,9 +1,10 @@
 package com.ruoyi.core.domain;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.web.domain.BaseEntity;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 图文管理对象 user_picture
@@ -11,6 +12,9 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
  * @author cocochimp
  * @date 2023-12-04
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserContent extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
@@ -42,7 +46,7 @@ public class UserContent extends BaseEntity
 
     /** 内容发布人ID */
     @Excel(name = "内容发布人ID")
-    private Long userId;
+    private String userId;
 
     /** 内容状态（0待审批 1通过 2驳回） */
     @Excel(name = "内容状态", readConverterExp = "0=待审批,1=通过,2=驳回")
@@ -51,112 +55,4 @@ public class UserContent extends BaseEntity
     /** 驳回内容 */
     private String rejectInfo;
 
-    public void setContentId(Long contentId) 
-    {
-        this.contentId = contentId;
-    }
-
-    public Long getContentId() 
-    {
-        return contentId;
-    }
-    public void setTitle(String title) 
-    {
-        this.title = title;
-    }
-
-    public String getTitle() 
-    {
-        return title;
-    }
-    public void setDescription(String description) 
-    {
-        this.description = description;
-    }
-
-    public String getDescription() 
-    {
-        return description;
-    }
-    public void setContentType(String contentType) 
-    {
-        this.contentType = contentType;
-    }
-
-    public String getContentType() 
-    {
-        return contentType;
-    }
-    public void setCoverPath(String coverPath) 
-    {
-        this.coverPath = coverPath;
-    }
-
-    public String getCoverPath() 
-    {
-        return coverPath;
-    }
-    public void setVideoPath(String videoPath) 
-    {
-        this.videoPath = videoPath;
-    }
-
-    public String getVideoPath() 
-    {
-        return videoPath;
-    }
-    public void setCategoryId(Long categoryId) 
-    {
-        this.categoryId = categoryId;
-    }
-
-    public Long getCategoryId() 
-    {
-        return categoryId;
-    }
-    public void setUserId(Long userId) 
-    {
-        this.userId = userId;
-    }
-
-    public Long getUserId() 
-    {
-        return userId;
-    }
-    public void setStatus(String status) 
-    {
-        this.status = status;
-    }
-
-    public String getStatus() 
-    {
-        return status;
-    }
-    public void setRejectInfo(String rejectInfo) 
-    {
-        this.rejectInfo = rejectInfo;
-    }
-
-    public String getRejectInfo() 
-    {
-        return rejectInfo;
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("contentId", getContentId())
-            .append("title", getTitle())
-            .append("description", getDescription())
-            .append("contentType", getContentType())
-            .append("coverPath", getCoverPath())
-            .append("videoPath", getVideoPath())
-            .append("categoryId", getCategoryId())
-            .append("userId", getUserId())
-            .append("status", getStatus())
-            .append("rejectInfo", getRejectInfo())
-            .append("createTime", getCreateTime())
-            .append("updateTime", getUpdateTime())
-            .toString();
-    }
 }

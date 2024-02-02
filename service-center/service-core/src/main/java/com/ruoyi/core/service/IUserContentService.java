@@ -61,5 +61,18 @@ public interface IUserContentService
      */
     public int deleteUserPictureByContentId(Long contentId);
 
+    /**
+     * 展示所有content的内容
+     */
     List<ContentInfo> showAllContentInfo();
+
+    /**
+     * 展示所有content的内容（最新updateTime）
+     */
+    List<ContentInfo> showAllContentInfoOrderByUpdateTime();
+
+    /**
+     * 展示所有content的内容（热榜like）
+     */
+    List<ContentInfo> showAllContentInfoOrderByLikeCount();
 }

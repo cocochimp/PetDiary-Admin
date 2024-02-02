@@ -6,7 +6,7 @@ import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.web.domain.BaseEntity;
 
 /**
- * 评论管理对象 user_comment
+ * 评论管理对象 user_content_comment
  * 
  * @author cocochimp
  * @date 2023-12-05w

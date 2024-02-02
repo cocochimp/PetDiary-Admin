@@ -107,6 +107,36 @@ public class UserContentServiceImpl implements IUserContentService
                 res.setUserInfo(userContentMapper.showUserInfo(res.getUserId()));
                 res.setUserComment(userContentMapper.contentCommentInfo(res.getContentId()));
                 res.setLikeCount(userContentMapper.contentLikeCount(res.getContentId()));
+                res.setFanCount((userContentMapper.contentFansInfo(res.getUserId())).size());
+            }
+        }
+        return contentInfo;
+    }
+
+    @Override
+    public List<ContentInfo> showAllContentInfoOrderByUpdateTime() {
+        showAllContentInfo();
+        List<ContentInfo> contentInfo = userContentMapper.showAllContent();
+        if(contentInfo!=null && contentInfo.size()>0){
+            for(ContentInfo res:contentInfo){
+                res.setUserInfo(userContentMapper.showUserInfo(res.getUserId()));
+                res.setUserComment(userContentMapper.contentCommentInfo(res.getContentId()));
+                res.setLikeCount(userContentMapper.contentLikeCount(res.getContentId()));
+                res.setFanCount((userContentMapper.contentFansInfo(res.getUserId())).size());
+            }
+        }
+        return contentInfo;
+    }
+
+    @Override
+    public List<ContentInfo> showAllContentInfoOrderByLikeCount() {
+        List<ContentInfo> contentInfo = userContentMapper.showAllContent();
+        if(contentInfo!=null && contentInfo.size()>0){
+            for(ContentInfo res:contentInfo){
+                res.setUserInfo(userContentMapper.showUserInfo(res.getUserId()));
+                res.setUserComment(userContentMapper.contentCommentInfo(res.getContentId()));
+                res.setLikeCount(userContentMapper.contentLikeCount(res.getContentId()));
+                res.setFanCount((userContentMapper.contentFansInfo(res.getUserId())).size());
             }
         }
         return contentInfo;

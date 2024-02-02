@@ -4,19 +4,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SessionInfo {
+public class SessionConstant {
 
     private static String appid;
     private static String secret;
 
     @Value("${weixin.appid}")
     public void setAppid(String appid) {
-        SessionInfo.appid = appid;
+        SessionConstant.appid = appid;
     }
 
     @Value("${weixin.secret}")
     public void setSecret(String secret) {
-        SessionInfo.secret = secret;
+        SessionConstant.secret = secret;
     }
 
     public static String getAppid() {

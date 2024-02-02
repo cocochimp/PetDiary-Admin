@@ -5,7 +5,7 @@ package com.ruoyi.common.core.utils.wechat; /**
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.ruoyi.common.core.utils.sign.Base64;
-import com.ruoyi.core.constant.SessionInfo;
+import com.ruoyi.core.constant.SessionConstant;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
@@ -31,9 +31,9 @@ public class WechatUtil {
         Map<String, String> requestUrlParam = new HashMap<>();
         // https://mp.weixin.qq.com/wxopen/devprofile?action=get_profile&token=164113089&lang=zh_CN
         //小程序appId
-        requestUrlParam.put("appid", SessionInfo.getAppid());
+        requestUrlParam.put("appid", SessionConstant.getAppid());
         //小程序secret
-        requestUrlParam.put("secret", SessionInfo.getSecret());
+        requestUrlParam.put("secret", SessionConstant.getSecret());
         //小程序端返回的code
         requestUrlParam.put("js_code", code);
         //默认参数

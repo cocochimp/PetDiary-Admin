@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectUserCommentVo">
-        select comment_id, user_id, content_id, comment_info, parent_comment_id, status, reject_info, del_flag, create_time, update_time, remark from user_comment
+        select comment_id, user_id, content_id, comment_info, parent_comment_id, status, reject_info, del_flag, create_time, update_time, remark from user_content_comment
     </sql>
 
     <select id="selectUserCommentList" parameterType="UserComment" resultMap="UserCommentResult">
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
         
     <insert id="insertUserComment" parameterType="UserComment" useGeneratedKeys="true" keyProperty="commentId">
-        insert into user_comment
+        insert into user_content_comment
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="userId != null">user_id,</if>
             <if test="contentId != null">content_id,</if>
@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
 
     <update id="updateUserComment" parameterType="UserComment">
-        update user_comment
+        update user_content_comment
         <trim prefix="SET" suffixOverrides=",">
             <if test="userId != null">user_id = #{userId},</if>
             <if test="contentId != null">content_id = #{contentId},</if>
@@ -84,11 +84,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteUserCommentByCommentId" parameterType="Long">
-        delete from user_comment where comment_id = #{commentId}
+        delete from user_content_comment where comment_id = #{commentId}
     </delete>
 
     <delete id="deleteUserCommentByCommentIds" parameterType="String">
-        delete from user_comment where comment_id in 
+        delete from user_content_comment where comment_id in
         <foreach item="commentId" collection="array" open="(" separator="," close=")">
             #{commentId}
         </foreach>

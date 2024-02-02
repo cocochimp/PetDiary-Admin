@@ -5,7 +5,7 @@ package com.ruoyi.core.constant;
  * 
  * @author cocochimp
  */
-public class OssType
+public class OssConstant
 {
     /**
      * 视频

@@ -1,5 +1,7 @@
 package com.ruoyi.core.mapper;
 
+import com.ruoyi.core.constant.MapperConstant;
+import com.ruoyi.core.domain.UserAttention;
 import com.ruoyi.core.domain.UserComment;
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.UserInfo;
@@ -19,6 +21,8 @@ import java.util.List;
  */
 public interface UserContentMapper
 {
+
+
     /**
      * 查询图文管理
      * 
@@ -83,14 +87,13 @@ public interface UserContentMapper
     @Select("select * from user_info where openid=#{openid}")
     UserInfo showUserInfo(@Param("openid") String openid);
 
-    String del_flag=" and del_flag=0 ";
 
     /*点赞数*/
-    @Select("select count(*) from user_content_like where content_id=#{content_id}" + del_flag)
+    @Select("select count(*) from user_content_like where content_id=#{content_id}" + MapperConstant.del_flag)
     Integer contentLikeCount(@Param("content_id") Long content_id);
 
     /*评论信息*/
-    @Select("select * from user_content_comment where content_id=#{content_id}" + del_flag)
+    @Select("select * from user_content_comment where content_id=#{content_id}" + MapperConstant.del_flag)
     @Results({
             @Result(column = "comment_id", property = "commentId"),
             @Result(column = "user_id", property = "userId"),
@@ -102,4 +105,20 @@ public interface UserContentMapper
             @Result(column = "del_flag", property = "delFlag")
     })
     List<UserComment> contentCommentInfo(@Param("content_id") Long content_id);
+
+
+    /*粉丝信息*/
+    @Select("select attention_user_id from user_attention where user_id=#{userId} " + MapperConstant.del_flag)
+    @Results({
+            @Result(column = "attention_user_id", property = "attentionUserId")
+    })
+    List<UserAttention> contentFansInfo(@Param("userId") String userId);
+
+
+    /*关注信息*/
+    @Select("select user_id from user_attention where attention_user_id=#{attention_user_id} " + MapperConstant.del_flag)
+    @Results({
+            @Result(column = "user_id", property = "userId")
+    })
+    List<String> contentAttentionInfo(@Param("attention_user_id") String userId);
 }
