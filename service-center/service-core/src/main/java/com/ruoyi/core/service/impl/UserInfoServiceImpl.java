@@ -4,15 +4,27 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ruoyi.common.core.domain.GlobalResult;
+import com.ruoyi.common.core.domain.R;
 import com.ruoyi.core.enums.DelFlag;
 import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.core.domain.UserInfo;
 import com.ruoyi.core.mapper.UserInfoMapper;
 import com.ruoyi.core.service.IUserInfoService;
+import com.ruoyi.system.api.RemoteFileService;
+import com.ruoyi.system.api.domain.SysFile;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.mock.web.MockMultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.*;
 
 /**
@@ -26,6 +38,9 @@ public class UserInfoServiceImpl implements IUserInfoService
 {
     @Autowired
     private UserInfoMapper userInfoMapper;
+
+    @Autowired
+    private RemoteFileService remoteFileService;
 
     /**
      * 查询用户列表
@@ -136,6 +151,10 @@ public class UserInfoServiceImpl implements IUserInfoService
         // uuid生成唯一key，用于维护微信小程序用户与服务端的会话
         String skey = UUID.randomUUID().toString();
         if (userInfo == null) {
+            //将头像上传到oss
+            String avatarUrl = rawDataJson.getString("avatarUrl");
+            SysFile fileResult = uploadAvatarUrl(avatarUrl);
+
             // 用户信息入库
             userInfo = new UserInfo();
             userInfo.setOpenid(openid);
@@ -144,7 +163,7 @@ public class UserInfoServiceImpl implements IUserInfoService
             userInfo.setUpdateTime(new Date());
             userInfo.setSessionKey(sessionKey);
             userInfo.setBrief("hello world!");
-            userInfo.setAvatar(rawDataJson.getString("avatarUrl"));
+            userInfo.setAvatar(fileResult.getUrl());
             userInfo.setGender(Integer.parseInt(rawDataJson.getString("gender")));
             userInfo.setNickname(getStringRandom(8));
 
@@ -174,6 +193,8 @@ public class UserInfoServiceImpl implements IUserInfoService
         // uuid生成唯一key，用于维护微信小程序用户与服务端的会话
         String skey = UUID.randomUUID().toString();
         if (user != null) {
+//            SysFile fileResult = uploadAvatarUrl(userInfo.getAvatar());
+
             //不为null的话则修改，否则不做操作
             user.setAvatar(userInfo.getAvatar() != null ? userInfo.getAvatar() : user.getAvatar());
             user.setNickname(userInfo.getNickname() != null ? userInfo.getNickname() : user.getNickname());
@@ -214,6 +235,41 @@ public class UserInfoServiceImpl implements IUserInfoService
             }
         }
         return val.toString();
+    }
+
+    public SysFile uploadAvatarUrl(String avatarUrl){
+        R<SysFile> fileResult = null;
+        try {
+            // 打开图像文件链接的输入流
+            InputStream inputStream = new URL(avatarUrl).openStream();
+            // 创建临时文件
+            File tempFile = File.createTempFile("avatar", ".jpg");
+
+            // 将输入流的数据保存到临时文件
+            FileOutputStream outputStream = new FileOutputStream(tempFile);
+            byte[] buffer = new byte[8192];
+            int length;
+            while ((length = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, length);
+            }
+
+            // 关闭输入流和输出流
+            inputStream.close();
+            outputStream.close();
+
+            // 将临时文件转换为MultipartFile类型文件
+            MultipartFile multipartFile = new MockMultipartFile("file", tempFile.getName(), MediaType.IMAGE_JPEG_VALUE, new FileInputStream(tempFile));
+
+            // 上传MultipartFile类型文件到OSS中
+            fileResult = remoteFileService.upload(multipartFile);
+
+            // 删除临时文件
+            tempFile.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assert fileResult != null;
+        return fileResult.getData();
     }
 
 }

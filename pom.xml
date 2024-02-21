@@ -58,6 +58,7 @@
         <mybatis-spring-boot-autoconfigure.version>2.1.4</mybatis-spring-boot-autoconfigure.version>
         <shiro-core.version>1.4.0</shiro-core.version>
         <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
+        <spring-test.version>5.3.21</spring-test.version>
     </properties>
 
     <!-- 依赖声明 -->
@@ -274,6 +275,12 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
                 <version>${mybatis-plus-generator.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring-test.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
