@@ -1,0 +1,23 @@
+<form-cascader-picker label="城市" arrow options="{{ cityList }}" name="city" tooltip="选择城市" placeholder="请输入城市" bind:ref="handleRef" />
+
+<ant-container title="上传图片">
+    <form-textarea  name="description" placeholder="请输入说明" allowClear autoHeight bind:ref="handleRef" />
+</ant-container>
+
+<ant-container title="上传图片">
+  <ant-uploader
+    fileList="{{ fileList }}"
+    bind:change="onChange"
+    onUpload="{{ onUpload ? onUpload : 'onUpload' }}" />
+</ant-container>
+
+<view class="buttons">
+    <ant-button type="primary" bind:tap="submit" style="margin-bottom: 12px">
+        提交
+    </ant-button>
+    <ant-button bind:tap="reset">重置</ant-button>
+</view>
+<ant-toast
+  content="密码的自定义 tooltip"
+  visible="{{ toastShow }}"
+  onClose="handleCloseToast" />

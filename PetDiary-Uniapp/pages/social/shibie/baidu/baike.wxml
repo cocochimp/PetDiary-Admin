@@ -1,0 +1,5 @@
+<!--pages/social/shibie/baidu/baike.wxml-->
+<!-- <text>pages/social/shibie/baidu/baike.wxml</text> -->
+<view>
+  <web-view src="{{url}}"></web-view>
+</view>

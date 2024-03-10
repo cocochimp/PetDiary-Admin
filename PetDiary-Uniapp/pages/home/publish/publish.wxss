@@ -1,0 +1,49 @@
+.container {
+    padding: 20rpx;
+    background-color: #f8f8f8;
+}
+
+.editor {
+    background-color: white;
+    border-radius: 5rpx;
+    padding: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.button {
+    background-color: #ff7f50;
+    color: white;
+    padding: 10rpx 20rpx;
+    border-radius: 5rpx;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #ff6347;
+}
+
+.image {
+    width: 100%;
+    margin-top: 20rpx;
+}
+
+.picker {
+    background-color: white;
+    border: 1rpx solid #eee;
+    border-radius: 5rpx;
+    padding: 10rpx;
+    color: #333;
+}
+
+.picker-text {
+    color: #333;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+.buttons {
+    background: #ffffff;
+    padding: 12px 12px 48px 12px;
+}

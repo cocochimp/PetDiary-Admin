@@ -1,0 +1,27 @@
+<!--pages/login/login.wxml-->
+<view>
+    <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{avatarUrl}}"></image>
+    </button>
+    <form catchsubmit="formSubmit">
+        <view class="row">
+            <view class="text1">昵称:</view>
+            <input type="nickname" class="weui-input" name="nickname" value="{{ nickName }}" placeholder="请输入昵称" />
+        </view>
+        <view class="row">
+            <view class="dt">性别:</view>
+            <view class="twoViewSex">
+                <picker value="{{ gender }}" bindchange="pickSex" class="sex" range="{{ columns }}">
+                    <view class="picker">
+                        {{ columns[gender] == "" ? "请输入性别" : "" }}{{ columns[gender] }}
+                    </view>
+                </picker>
+            </view>
+        </view>
+        <view class="row">
+            <view class="text1">个性签名:</view>
+            <input bindinput='bindEquipmentId' type="signature" class="weui-input" value="{{ signature }}" placeholder="请输入个性签名" />
+        </view>
+        <button type="primary" style="margin-top: 40rpx;margin-bottom: 20rpx;" form-type="submit">提交</button>
+    </form>
+</view>

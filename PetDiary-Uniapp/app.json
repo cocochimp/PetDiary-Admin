@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/home/index/index",
+    "pages/home/publish/publish",
+
+    "pages/shop/goods/goods",
+    "pages/shop/index/index",
+
+    "pages/user/index/index",
+    "pages/user/cart/cart",
+
+    "pages/search/search",
+    "pages/social/index/index",
+    "pages/social/shibie/shibie",
+
+    "pages/user/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "宠物手册",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/index/index"
+      },
+      {
+        "text": "商城",
+        "pagePath": "pages/shop/index/index"
+      },
+      {
+        "text": "购物车",
+        "pagePath": "pages/social/index/index"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/user/index/index"
+      }
+    ]
+  },
+  "usingComponents": {
+    "iconfont": "components/iconfont/iconfont"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

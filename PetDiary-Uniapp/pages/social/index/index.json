@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "custom-swiper": "../components/lunbo/lunbo"
+  }
+}

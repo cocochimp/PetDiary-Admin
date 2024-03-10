@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ant-uploader": "antd-mini/ImageUpload/index",
+    "ant-container": "antd-mini/Container/index",
+    "form-textarea": "antd-mini/Form/FormTextarea/index",
+    "form-cascader-picker": "antd-mini/Form/FormCascaderPicker/index",
+    "form-upload-image": "antd-mini/Form/FormImageUpload/index",
+    "ant-button": "antd-mini/Button/index",
+    "ant-icon": "antd-mini/Icon/index",
+    "ant-toast": "antd-mini/Toast/index"
+  }
+}

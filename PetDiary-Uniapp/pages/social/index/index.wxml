@@ -1,0 +1,24 @@
+<!--pages/user/test01/test01.wxml-->
+<view>
+  <custom-swiper imgUrls="{{carouselImgUrls}}" />  
+  <view class="label">🐱修猫区</view>
+  <view class="bar3">
+    <view class="item" bindtap="gotoShibie">
+      <image class="ico" src="/images/2.png"></image>
+      <view>逗宠神器</view>
+    </view>
+    <view class="item">
+      <image class="ico" src="/images/1.png"></image>
+      <view>图像识别</view>
+    </view>
+    <view class="item">
+      <image class="ico" src="/images/3.png"></image>
+      <view>todo</view>
+    </view>
+    <view class="item">
+      <image class="ico" src="/images/4.png"></image>
+      <view>todo</view>
+    </view>
+  </view>
+  <view class="page-tabbar page-ipx-safe-area" />
+</view>

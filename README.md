@@ -1,39 +1,88 @@
-# PetDiary-Admin（开发中）
-🎉基于SpringCloud Alibaba（gateway/nacos）、MyBatis-Plus、Redis、Druid、Knife4j、Vue、ElementUI、Uniapp微服务架构的宠物短视频社区小程序🐱🐶
+# PetDiary-Admin宠物社区（开发中）
 
-> 项目地址：（基于ruoyi项目改造）
+🎉基于SpringCloud Alibaba（gateway/nacos）、MyBatis-Plus、Redis、Druid、Knife4j、Vue、ElementUI、Uniapp微服务架构的宠物短视频社区小程序（ruoyi）🐱🐶
 
-- SpringCloud管理系统后端：[https://github.com/cocochimp/PetDiary-Admin](https://github.com/cocochimp/PetDiary-Admin)
-- vue管理系统前端：[https://github.com/cocochimp/PetDiary-UI](https://github.com/cocochimp/PetDiary-UI)
-- uniapp小程序端：[https://github.com/cocochimp/PetDiary-uniapp](https://github.com/cocochimp/PetDiary-uniapp)
+github地址：[https://github.com/cocochimp/PetDiary-Admin](https://github.com/cocochimp/PetDiary-Admin)
 
-# 运行环境
 
-> 注：以下的启动命令是mac端的，window/linux自行查阅
+
+# 启动命令
+
+> 运行方式
+
+1. 后端项目：
+
+* redis：启动redis-server.exe
+
+* nacos：启动nacos文件夹下的bin下的startup.cmd（记得配置mysql数据源，并且设置单机部署standalone）
+
+~~~bash
+./startup.sh -m standalone
+~~~
+
+* sentinel：（非必要，流量控制/熔断降级）
+
+~~~bash
+java -jar sentinel-dashboard-1.8.0.jar --server.port=8718
+~~~
+
+2. 前端项目：
+
+~~~bash
+# 安装依赖
+npm install
+npm install --registry=https://registry.npmmirror.com # npm 高速下载
+
+# 启动服务
+npm run dev
+
+# 发布
+npm run build:stage # 构建测试环境
+npm run build:prod # 构建生产环境
+~~~
+
+
+
+> 运行环境
+
+注：以下的启动命令是mac端的，window/linux自行查阅
 
 - Java8+
 - mysql8.0+
 - redis6.0+（低版本适配）
-- nacos2.0+（记得配置mysql数据源，并且设置单机部署standalone）
-
-```json
-./startup.sh -m standalone
-```
-
+- nacos2.0+
 - sentinel1.8+（非必需）
 
-# 项目架构
 
-```properties
+
+# 项目结构
+
+> 分布式服务
+
+![image-20240310134331199](https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-02/e6686e5f23662e2c18d8751debf3a8e.png)
+
+| 服务名称 | 英文名           | 端口号 |
+| -------- | ---------------- | ------ |
+| 网关服务 | service-gateway  | 8080   |
+| 认证服务 | service-auth     | 9200   |
+| 系统服务 | service-system   | 9201   |
+| 业务服务 | service-core     | 9501   |
+| 功能服务 | service-function | 9202   |
+| 监控服务 | service-monitor  | 9100   |
+
+
+
+> 项目框架
+
+```xml
 PetDiary-Admin
 ├── service-api                         // API接口模块
-       └── service-api-system                  // 系统接口
-├── common                              // 通用模块
+├── service-common                      // 通用模块
        └── common-system                       // 核心模块
        └── common-redis                        // 缓存服务
        └── common-swagger                      // 系统接口
        └── common-security                     // 安全模块
-├── service                             // 服务模块
+├── service-center                      // 服务模块
        └── service-auth                        // 认证模块 [9200]
        └── service-core                        // 业务模块 [9501]
        └── service-function                    // 功能模块 [9202]
@@ -45,7 +94,9 @@ PetDiary-Admin
 
 - 注：前端的端口为80
 
-# 后端核心技术栈
+
+
+## 后端技术栈
 
 | 依赖                | 作用             | 版本     |
 | ------------------- | ---------------- | -------- |
@@ -67,7 +118,9 @@ PetDiary-Admin
 | JJWT                | 登录校验/验证    | 0.9.x    |
 | FastJson            | Json解析器       | 2.0.x    |
 
-# 前端技术栈
+
+
+## 前端技术栈
 
 | 依赖    | 作用                                    | 版本   |
 | ------- | --------------------------------------- | ------ |
@@ -80,21 +133,19 @@ PetDiary-Admin
 - vue-router： Vue提供的前端路由工具，利用其我们实现页面的路由控制，局部刷新及按需加载，构建单页应用，实现前后端分离。
 - vuex：Vue提供的状态管理工具，用于统一管理我们项目中各种数据的交互和重用，存储我们需要用到数据对象。
 
-# 服务部署表格
-
-| 服务名称 | 英文名           | 端口号 | 版本号 |
-| -------- | ---------------- | ------ | ------ |
-| 数据库   | mysql            | 3306   | 8.0+   |
-| 缓存     | redis            | 6379   | 6.0+   |
-| 注册中心 | nacos            | 8848   | 2.2.0  |
-| 限流     | sentinel         | 8718   | 1.8.0  |
-| 网关服务 | service-gateway  | 8080   | Java8+ |
-| 认证服务 | service-auth     | 9200   | Java8+ |
-| 系统服务 | service-system   | 9201   | Java8+ |
-| 业务服务 | service-core     | 9501   | Java8+ |
-| 功能服务 | service-function | 9202   | Java8+ |
-| 监控服务 | service-monitor  | 9100   | Java8+ |
 
 
-# 页面展示（todo）🌟
+## 服务部署表格
 
+| 服务名称 | 英文名   | 端口号 | 版本号 |
+| -------- | -------- | ------ | ------ |
+| 数据库   | mysql    | 3306   | 8.0+   |
+| 缓存     | redis    | 6379   | 6.0+   |
+| 注册中心 | nacos    | 8848   | 2.2.0  |
+| 限流     | sentinel | 8718   | 1.8.0  |
+
+
+
+
+
+# 📚页面展示📚（todo）
