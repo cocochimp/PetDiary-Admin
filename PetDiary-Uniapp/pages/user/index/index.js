@@ -19,8 +19,8 @@ Page({
     console.log("1",app.globalData.userInfo);
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+        userInfo: app.globalData.userInfo
+        // hasUserInfo: true
       })
     }
   },

@@ -43,7 +43,6 @@ Page({
                 success(res) {
                     if (res.confirm) {
                         console.log('用户点击确认')
-
                         wx.login({
                             success: function (login_res) {
                                 console.log('code:', login_res.code);

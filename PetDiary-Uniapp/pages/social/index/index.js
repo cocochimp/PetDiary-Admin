@@ -4,7 +4,7 @@ Page({
      * 页面的初始数据
      */
     properties: {
-        imgUrls: Array,
+        // imgUrls: Array,
     },
 
     data: {
