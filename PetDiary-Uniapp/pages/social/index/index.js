@@ -8,6 +8,8 @@ Page({
     },
 
     data: {
+        active1:0,
+        active2:0,
         currentIndex: 0,
         carouselImgUrls: [
             "http://img.boqiicdn.com/Data/BK/P/img50961416195246.jpg",
@@ -16,12 +18,13 @@ Page({
             "http://img.boqiicdn.com/Data/BK/P/img45811406628222.jpg",
             "http://img.boqiicdn.com/Data/BK/P/img60371407461398.jpg"
         ],
+        List:[]
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {console.log('onLoad')},
+    onLoad(options) {this.getList()},
 
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -84,70 +87,39 @@ Page({
             url: '/pages/social/shibie/shibie',    //要跳转到的页面路径
         })  
     },
+    // 获取表单数据
+    getList:function () {
+        wx.request({
+            url: 'https://example.com/ajax?dataType=member',
+            dataType: 'json',
+            success: (res) => {
+              const {data} = res;
+              this.setData({
+                list: data.list
+              });
+              console.log(data.list[0].nations[0].breeds);
+            }
+          });
+    },
+    // 控制激活1
+    switchTab1: function(e) {
+        console.log("switchTab1 called");
+        const index = e.currentTarget.dataset.index;
+        console.log("index:", index);
+        if (index != this.data.active1) {
+            this.setData({
+                active1: index,
+                active2:0,
+            });
+        }
+    },
+    // 控制激活2
+    switchTab2: function(e) {
+        const index = e.currentTarget.dataset.index;
+        if (index != this.data.active2) {
+            this.setData({
+                active2: index
+            });
+        }
+    }
 })
-
-// components/theSwiper.js
-// Component({
-//     /**
-//      * 组件的属性列表
-//      */
-//     properties: {
-//         imgUrls: Array,
-//     },
-
-//     /**
-//      * 组件的初始数据
-//      */
-//     data: {
-//         currentIndex: 0,
-//         carouselImgUrls: [
-//             "http://img.boqiicdn.com/Data/BK/P/img50961416195246.jpg",
-//             "http://img.boqiicdn.com/Data/BK/P/imagick22281435572067.png",
-//             "http://img.boqiicdn.com/Data/BK/P/imagick12541435573782.png",
-//             "http://img.boqiicdn.com/Data/BK/P/img45811406628222.jpg",
-//             "http://img.boqiicdn.com/Data/BK/P/img60371407461398.jpg"
-//         ],
-//     },
-//     /**
-//      * 组件的方法列表
-//      */
-//     methods: {
-//         swiperChange(e) {
-//             this.setData({
-//                 currentIndex: e.detail.current
-//             });
-//         },
-//         // 在 methods 对象中定义按钮点击事件处理函数
-//         onLoginButtonClick: function () {
-//             // 触发登录接口
-//             wx.login({
-//                 success: function (res) {
-//                     // 登录成功，获取到用户临时登录凭证 code
-//                     var code = res.code;
-//                     console.log(code);
-//                     // 将 code 发送给后台服务器
-//                     // 具体的发送逻辑请根据自己的需求实现
-//                 },
-//                 fail: function (res) {
-//                     // 登录失败，进行错误处理
-//                     console.error('登录失败：', res);
-//                 }
-//             });
-//         },
-//         shouquanClick: function () {
-//             // 微信授权
-//             wx.getUserInfo({
-//                 success: function (res) {
-//                     console.log(res.encryptedData);
-//                     console.log(res.iv);
-//                 }
-//             })
-//         }
-//     }
-// });
-/*
-
-<view class="dots-box own-class">
-  <view class="dots {{currentIndex == index ? 'bg-333' : ''}}" wx: for="{{ imgUrls }}" wx:key="{{ index }}"></view>
-</view >
-*/

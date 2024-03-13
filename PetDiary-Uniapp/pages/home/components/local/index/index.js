@@ -119,7 +119,7 @@ Component({
       const that = this;
       console.log("进入formSubmit,active:", this.data.active);
       wx.request({
-        url: getApp().globalData.baseUrl + '/picture/showContentInfo',
+        url: getApp().globalData.baseUrl + '/wx/home/showContentInfo',
         method: 'GET',
         data: {
           operationType: 3,

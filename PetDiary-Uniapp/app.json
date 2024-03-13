@@ -5,6 +5,8 @@
 
     "pages/shop/goods/goods",
     "pages/shop/index/index",
+    "pages/shop/goods_detail/goods_detail",
+    "pages/shop/cart/cart",
 
     "pages/user/index/index",
     "pages/user/cart/cart",
@@ -12,6 +14,7 @@
     "pages/search/search",
     "pages/social/index/index",
     "pages/social/shibie/shibie",
+    "pages/social/animal/animal",
 
     "pages/user/login/login"
   ],
@@ -46,5 +49,8 @@
     "iconfont": "components/iconfont/iconfont"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "requiredPrivateInfos": [
+    "chooseAddress"
+  ]
 }

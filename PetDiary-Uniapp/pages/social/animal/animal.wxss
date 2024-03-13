@@ -1,0 +1,7 @@
+.pic {
+    width: 750rpx;
+}
+.pic image {
+    width: 100%;
+    height: 500rpx;
+}
