@@ -1,5 +1,6 @@
 package com.ruoyi.core.service;
 
+import com.ruoyi.common.core.domain.GlobalResult;
 import com.ruoyi.core.domain.UserInfo;
 
 import java.util.List;
@@ -59,4 +60,8 @@ public interface IUserInfoService
      * @return 结果
      */
     public int deleteUserInfoByUserId(Long userId);
+
+    GlobalResult login(String code, String rawData, String signature);
+
+    GlobalResult updateInfo(UserInfo userInfo);
 }
