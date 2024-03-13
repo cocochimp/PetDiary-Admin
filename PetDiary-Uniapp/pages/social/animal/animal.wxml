@@ -1,0 +1,6 @@
+<view>
+    <view class="pic">
+    <image src="../../../images/testData/英国雪达犬.jpg" mode=""/></view>
+    <view class="animal">
+    <view class="name"></view></view>
+</view>

@@ -53,7 +53,7 @@ Page({
         console.log('UserInfo:', UserInfo)
         const that = this;
         wx.request({
-            url: getApp().globalData.baseUrl + '/updateInfo',
+            url: getApp().globalData.baseUrl + '/wx/updateInfo/user/updateInfo',
             method: 'POST',
             data: UserInfo,
             header: {

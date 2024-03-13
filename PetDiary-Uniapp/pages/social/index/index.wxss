@@ -119,15 +119,68 @@ border-radius: 15px;
 }
 
 .list {
-margin: 20px;
+background-color: #F4F5F7;
+width: 750rpx;
+height: 900rpx;
+
+}
+.list .list-top {
+display: flex;
+justify-content: space-around;
+height: 100rpx;
+padding: 10rpx 100rpx ;
+border-bottom: 16rpx solid white;
+}
+.list .list-top .list-sort {
+  background-color: #fff;
+  color: #FE697C;
+  line-height: 100rpx;
+  text-align: center;
+  width: 170rpx;
+  border-radius: 50%;
+  border: 1px solid #FE697C;
 }
 
-.list .item {
-padding: 15px 0;
-border-bottom: solid 1px rgba(220, 220, 220, 0.3);
-line-height: 20px;
+.list .list-top .active1 {
+  background-color: #FE697C;
+  border: 0;
+  color: white;
 }
-
-.list .item .ico {
-margin-right: 15px;
+.list  .list-left {
+  float: left;
+  width: 15%;
+  height: 800rpx;
+  border-right: 4rpx solid #fff;
+  padding-right: 8rpx;
+}
+.list .list-left .list-nation {
+  width: 100%;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 4rpx;
+  background-color: #f5bdc5;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.list .list-left .active2 {
+  background-color: #f5a5b1;
+  border: 4rpx dashed rgb(238, 78, 78);
+}
+.list .list-right {
+  float: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  height: 800rpx;
+  margin: 0 10rpx;
+}
+.list-animal {
+  width: 290rpx;
+  height: 400rpx;
+  background-color: white;
+}
+.list-animal image {
+  width: 100%;
+  height: 250rpx;
 }

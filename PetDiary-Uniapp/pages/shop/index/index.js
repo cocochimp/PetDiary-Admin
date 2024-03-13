@@ -7,8 +7,7 @@ Page({
   data: {
     active: 0,
     scrollPos: 0,
-    navList: [
-      {
+    navList: [{
         id: 12580,
         title: "主食"
       },
@@ -32,7 +31,59 @@ Page({
         id: 12580,
         title: "服饰"
       },
-    ]
+    ],
+    sort: [{
+        id: 1,
+        children: [{
+          img: '../../../images/1.png',
+          title: '小熊猫',
+          sub: '很可爱',
+          bgRed: true,
+          current: '11',
+          original: '111'
+        }, {
+          img: '../../../images/2.png',
+          title: '中熊猫',
+          sub: '很可爱',
+          bgRed: true,
+          current: '211',
+          original: '2111'
+        }, {
+          img: '../../../images/3.png',
+          title: '小熊猫',
+          sub: '很可爱',
+          bgRed: true,
+          current: '11',
+          original: '111'
+        }]
+      },
+      {
+        id: 2,
+        children: [{
+          img: '../../../images/5.png',
+          title: '小熊猫',
+          sub: '很可爱',
+          bgRed: true,
+          current: '11',
+          original: '111'
+        }, {
+          img: '../../../images/2.png',
+          title: '中熊猫',
+          sub: '很可爱',
+          bgRed: true,
+          current: '211',
+          original: '2111'
+        }, {
+          img: '../../../images/3.png',
+          title: '小熊猫',
+          sub: '很可爱',
+          bgRed: true,
+          current: '11',
+          original: '111'
+        }]
+      },
+    ],
+
   },
 
   /**
@@ -55,7 +106,9 @@ Page({
   onShow: function () {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
-      this.getTabBar().setData({ active: 1 })
+      this.getTabBar().setData({
+        active: 1
+      })
     }
   },
 
@@ -91,15 +144,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+
   },
   switchTab: function (e) {
     const index = e.currentTarget.dataset.index
-      if (index != this.data.active) {
-        this.setData({
-          active: index
-        })
-      }
+    if (index != this.data.active) {
+      this.setData({
+        active: index
+      })
+    }
   },
   backTop() {
     this.setData({

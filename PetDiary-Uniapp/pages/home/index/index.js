@@ -51,7 +51,7 @@ Page({
                                     success: function (info_res) {
                                         // 2. 小程序通过wx.request()发送code到开发者服务器
                                         wx.request({
-                                            url: getApp().globalData.baseUrl + '/wx/login',
+                                            url: getApp().globalData.baseUrl + '/wx/user/login',
                                             method: 'POST',
                                             header: {
                                                 'content-type': 'application/x-www-form-urlencoded'

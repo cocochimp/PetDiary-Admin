@@ -1,22 +1,22 @@
 <!--pages/shop/index/index.wxml-->
 
 <wxs module="tools">
-var display = false
+  var display = false
 
-function onScroll(event, ownerInstance) {
-  var instance = ownerInstance.selectComponent('.back-top')
-  if (event.detail.scrollTop > 1000 && !display) {
-    instance.removeClass('none')
-    display = true
-  } else if (event.detail.scrollTop <= 1000 && display) {
-    display = false
-    instance.addClass('none')
+  function onScroll(event, ownerInstance) {
+    var instance = ownerInstance.selectComponent('.back-top')
+    if (event.detail.scrollTop > 1000 && !display) {
+      instance.removeClass('none')
+      display = true
+    } else if (event.detail.scrollTop <= 1000 && display) {
+      display = false
+      instance.addClass('none')
+    }
   }
-}
 
-module.exports = {
-  onScroll: onScroll
-}
+  module.exports = {
+    onScroll: onScroll
+  }
 </wxs>
 
 <view class="search bg-white">
@@ -25,13 +25,7 @@ module.exports = {
     <view class="input">复活节画奖大赛</view>
   </navigator>
 </view>
-<scroll-view 
-scroll-y 
-refresher-enabled 
-scroll-with-animation
-scroll-top="{{scrollPos}}"
-bindscroll="{{tools.onScroll}}"
-class="page-content bg-white">
+<scroll-view scroll-y refresher-enabled scroll-with-animation scroll-top="{{scrollPos}}" bindscroll="{{tools.onScroll}}" class="page-content bg-white">
   <!-- <swiper circular autoplay class="banner">
     <swiper-item class="item bg-red">
     </swiper-item>
@@ -39,13 +33,21 @@ class="page-content bg-white">
     </swiper-item>
   </swiper> -->
   <view class="about-bar">
-    <view class="tab"><iconfont type="jiagebaohu" size="18px" /> 全球直采</view>
+    <view class="tab">
+      <iconfont type="jiagebaohu" size="18px" /> 全球直采
+    </view>
     <view class="line"></view>
-    <view class="tab"><iconfont type="youpinlianmeng" size="18px" /> 正品保证</view>
+    <view class="tab">
+      <iconfont type="youpinlianmeng" size="18px" /> 正品保证
+    </view>
     <view class="line"></view>
-    <view class="tab"><iconfont type="15tianwuliyoutuihuo" size="18px"  /> 售后无忧</view>
+    <view class="tab">
+      <iconfont type="15tianwuliyoutuihuo" size="18px" /> 售后无忧
+    </view>
     <view class="line"></view>
-    <view class="tab"><iconfont type="zhengpinbaozhang" size="18px" /> 假一赔三</view>
+    <view class="tab">
+      <iconfont type="zhengpinbaozhang" size="18px" /> 假一赔三
+    </view>
   </view>
   <!-- <view class="vip-bar mrtop">
     <view class="item"></view>
@@ -73,30 +75,35 @@ class="page-content bg-white">
       </view>
     </view>
     <view class="content">
-      <view class="list">
+      <!-- <view class="list">
         <view class="item" wx:for="{{'1111111111'}}">
           <view class="pic"></view>
         </view>
-      </view>
+      </view> -->
       <view class="list">
-        <view class="item" wx:for="{{'1111111111'}}">
-          <view class="pic"></view>
+        <navigator  url="../goods_detail/goods_detail" class="item" wx:for="{{sort[active].children}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+          <view class="pic">
+            <image src="{{item.img}}" mode="" />
+          </view>
           <view class="info">
-            <view class="title">演示商品演示商品演示商品演示商品演示商品演示商品演示商品演示商品演示商品</view>
-            <view class="sub">演示商品演示商品演示商品演示商品演示商品演示商品演示商品演示商品演示商品演示商品演示商品</view>
+            <view class="title">{{item.title}}</view>
+            <view class="sub">{{item.sub}}</view>
             <view class="tags">
-              <view class="tag bg-red">新品</view>
+              <view class="{{item.bgRed===true?'tag bg-red':'tag'}}">新品</view>
             </view>
             <view class="price">
-              <view class="current">99</view>
-              <view class="original">169</view>
+              <view class="current">{{item.current}}</view>
+              <view class="original">{{item.original}}</view>
             </view>
           </view>
-        </view>
+        </navigator>
+
       </view>
     </view>
   </view>
 </scroll-view>
-<view class="back-top none" bindtap="backTop"><iconfont type="up" size="25px" /></view>
+<view class="back-top none" bindtap="backTop">
+  <iconfont type="up" size="25px" />
+</view>
 
 <view class="page-tabbar page-ipx-safe-area"></view>
