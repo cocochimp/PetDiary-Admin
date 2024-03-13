@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @date 2024-03-12
  */
 @RestController
-@RequestMapping("/wx/user")
+@RequestMapping("/wx/home")
 public class WxHomeController extends BaseController {
 
     @Autowired
