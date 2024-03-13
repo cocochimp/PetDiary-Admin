@@ -8,18 +8,15 @@ import com.ruoyi.common.security.annotation.Log;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
 import com.ruoyi.common.security.enums.BusinessType;
 import com.ruoyi.core.domain.UserContent;
-import com.ruoyi.core.domain.vo.ContentInfo;
 import com.ruoyi.core.mapper.UserContentMapper;
 import com.ruoyi.core.service.IUserContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * 图文管理Controller
@@ -111,28 +108,5 @@ public class UserContentController extends BaseController {
             userContent.setUpdateTime(new Date());
         }
         return toAjax(userPictureService.updateUserPicture(userContent));
-    }
-
-    /**
-     * 查看所有content内容
-     */
-    @GetMapping("/showContentInfo")
-    public TableDataInfo showContentInfo(@RequestParam Integer operationType,
-                                         @RequestParam(value = "openId", required = false) String openId) {
-        startPage();
-        List<ContentInfo> contentInfos = userPictureService.showAllContentInfo();
-        if(operationType==1){ //OrderByUpdateTime（最新）
-            contentInfos.sort((ci1, ci2) -> ci2.getUpdateTime().compareTo(ci1.getUpdateTime()));
-        }else if(operationType==2){ //OrderByLikeCount（热榜）
-            contentInfos.sort((ci1, ci2) -> ci2.getLikeCount().compareTo(ci1.getLikeCount()));
-        }else if(operationType==3){ //关注
-            if(openId!=null){
-                List<String> userAttentions = userContentMapper.contentAttentionInfo(openId); //关注的列表id
-                contentInfos = contentInfos.stream()
-                        .filter(contentInfo -> userAttentions.contains(contentInfo.getUserId()))
-                        .collect(Collectors.toList());
-            }else return getDataTable(new ArrayList<>());
-        }
-        return getDataTable(contentInfos);
     }
 }
