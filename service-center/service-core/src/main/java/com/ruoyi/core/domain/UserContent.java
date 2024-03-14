@@ -40,10 +40,6 @@ public class UserContent extends BaseEntity
     /** 视频链接 */
     private String videoPath;
 
-    /** 分类ID */
-    @Excel(name = "分类ID")
-    private Long categoryId;
-
     /** 内容发布人ID */
     @Excel(name = "内容发布人ID")
     private String userId;

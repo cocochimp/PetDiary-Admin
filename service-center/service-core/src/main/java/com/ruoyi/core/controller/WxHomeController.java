@@ -4,13 +4,13 @@ import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.core.constant.ContentTypeConstant;
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.WxPetListInfo;
 import com.ruoyi.core.mapper.WxHomeMapper;
 import com.ruoyi.core.service.WxHomeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +68,17 @@ public class WxHomeController extends BaseController {
                 // Handle default case if needed
         }
         return getDataTable(contentInfos);
+    }
+
+    /**
+     * 通过type种类查询宠物名称
+     */
+    @PostMapping("/showPetNameByPetType")
+    @ResponseBody
+    @Operation(summary = "通过type种类查询宠物名称", security = {@SecurityRequirement(name = "Authorization")})
+    public TableDataInfo showPetNameByPetType(@RequestParam int type){
+        List<WxPetListInfo> wxPetListInfo = wxHomeService.showPetNameByPetType(type);
+        return getDataTable(wxPetListInfo);
     }
 }
 

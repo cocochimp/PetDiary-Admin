@@ -80,4 +80,12 @@ public interface WxHomeMapper
             @Result(column = "pet_id", property = "petId")
     })
     WxPetListInfo showPetDetailByPetId(@Param("petId") int petId);
+
+    @Select("select `pet_id`,`name` " +
+            "from user_pet " +
+            "where `type`=#{type}")
+    @Results({
+            @Result(column = "pet_id", property = "petId")
+    })
+    List<WxPetListInfo> showPetNameByPetType(@Param("type") int type);
 }

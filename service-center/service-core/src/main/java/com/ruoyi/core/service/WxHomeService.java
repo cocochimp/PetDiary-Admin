@@ -1,6 +1,7 @@
 package com.ruoyi.core.service;
 
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.WxPetListInfo;
 
 import java.util.List;
 
@@ -28,4 +29,8 @@ public interface WxHomeService
      */
     List<ContentInfo> showAllContentInfoOrderByLikeCount();
 
+    /**
+     * 通过type种类查询宠物名称
+     */
+    List<WxPetListInfo> showPetNameByPetType(int type);
 }

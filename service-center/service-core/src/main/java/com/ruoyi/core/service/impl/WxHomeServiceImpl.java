@@ -1,6 +1,7 @@
 package com.ruoyi.core.service.impl;
 
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.WxPetListInfo;
 import com.ruoyi.core.mapper.WxHomeMapper;
 import com.ruoyi.core.service.WxHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,12 @@ public class WxHomeServiceImpl implements WxHomeService
             }
         }
         return contentInfo;
+    }
+
+    @Override
+    public List<WxPetListInfo> showPetNameByPetType(int type) {
+        List<WxPetListInfo> wxPetListInfo = wxHomeMapper.showPetNameByPetType(type);
+        return wxPetListInfo;
     }
 
 }
