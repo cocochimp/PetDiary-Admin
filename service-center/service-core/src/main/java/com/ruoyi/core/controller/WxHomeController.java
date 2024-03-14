@@ -37,6 +37,7 @@ public class WxHomeController extends BaseController {
      */
     @GetMapping("/showContentInfo")
     public TableDataInfo showContentInfo(@RequestParam Integer operationType,
+                                         @RequestParam(value = "petId", required = false) String petId, //社区宠物id
                                          @RequestParam(value = "openId", required = false) String openId) {
         startPage();
         List<ContentInfo> contentInfos = wxHomeService.showAllContentInfo();
@@ -56,6 +57,12 @@ public class WxHomeController extends BaseController {
                 } else {
                     return getDataTable(new ArrayList<>());
                 }
+                break;
+            case ContentTypeConstant.petCategoryContent:  // 社区内容
+                if(petId==null) break;
+                contentInfos = contentInfos.stream()
+                        .filter(contentInfo -> petId.equals(contentInfo.getUserPet().getPetId()))
+                        .collect(Collectors.toList());
                 break;
             default:
                 // Handle default case if needed

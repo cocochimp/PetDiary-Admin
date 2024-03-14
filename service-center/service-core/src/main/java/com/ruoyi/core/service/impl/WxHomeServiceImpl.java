@@ -30,6 +30,9 @@ public class WxHomeServiceImpl implements WxHomeService
                 res.setUserComment(wxHomeMapper.contentCommentInfo(res.getContentId()));
                 res.setLikeCount(wxHomeMapper.contentLikeCount(res.getContentId()));
                 res.setFanCount((wxHomeMapper.contentFansInfo(res.getUserId())).size());
+
+                int petId = wxHomeMapper.showPetIdByContentId(res.getContentId());
+                res.setUserPet(wxHomeMapper.showPetDetailByPetId(petId));
             }
         }
         return contentInfo;

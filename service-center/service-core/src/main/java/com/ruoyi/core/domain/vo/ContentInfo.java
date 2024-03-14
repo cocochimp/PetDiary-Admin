@@ -1,8 +1,6 @@
 package com.ruoyi.core.domain.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ruoyi.core.domain.UserComment;
-import com.ruoyi.core.domain.UserInfo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -50,12 +48,14 @@ public class ContentInfo
 
 
     /** 发布的用户信息 */
-    private UserInfo userInfo;
+    private ContentUserInfo userInfo;
     /** 评论 */
-    private List<UserComment> userComment;
+    private List<ContentCommentInfo> userComment;
     /** 更新时间 */
     private Integer likeCount;
     /** 用户粉丝 */
     private Integer fanCount;
+    /** 用户粉丝 */
+    private WxPetListInfo userPet;
 
 }

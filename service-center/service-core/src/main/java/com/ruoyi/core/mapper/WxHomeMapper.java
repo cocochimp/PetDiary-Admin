@@ -2,9 +2,10 @@ package com.ruoyi.core.mapper;
 
 import com.ruoyi.core.constant.MapperConstant;
 import com.ruoyi.core.domain.UserAttention;
-import com.ruoyi.core.domain.UserComment;
-import com.ruoyi.core.domain.UserInfo;
+import com.ruoyi.core.domain.vo.ContentCommentInfo;
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.ContentUserInfo;
+import com.ruoyi.core.domain.vo.WxPetListInfo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -32,9 +33,13 @@ public interface WxHomeMapper
     })
     List<ContentInfo> showAllContent();
 
+    /*内容展示*/
+    @Select("select pet_id from user_content where content_id=#{contentId} and status=2")
+    int showPetIdByContentId(@Param("contentId") Long content_id);
+
     /*用户信息*/
     @Select("select * from user_info where openid=#{openid}")
-    UserInfo showUserInfo(@Param("openid") String openid);
+    ContentUserInfo showUserInfo(@Param("openid") String openid);
 
 
     /*点赞数*/
@@ -48,12 +53,9 @@ public interface WxHomeMapper
             @Result(column = "user_id", property = "userId"),
             @Result(column = "content_id", property = "contentId"),
             @Result(column = "comment_info", property = "commentInfo"),
-            @Result(column = "parent_comment_id", property = "parentCommentId"),
-            @Result(column = "status", property = "status"),
-            @Result(column = "reject_info", property = "rejectInfo"),
-            @Result(column = "del_flag", property = "delFlag")
+            @Result(column = "parent_comment_id", property = "parentCommentId")
     })
-    List<UserComment> contentCommentInfo(@Param("content_id") Long content_id);
+    List<ContentCommentInfo> contentCommentInfo(@Param("content_id") Long content_id);
 
 
     /*粉丝信息*/
@@ -70,4 +72,12 @@ public interface WxHomeMapper
             @Result(column = "user_id", property = "userId")
     })
     List<String> contentAttentionInfo(@Param("attention_user_id") String userId);
+
+    @Select("select * " +
+            "from user_pet " +
+            "where pet_id=#{petId}")
+    @Results({
+            @Result(column = "pet_id", property = "petId")
+    })
+    WxPetListInfo showPetDetailByPetId(@Param("petId") int petId);
 }

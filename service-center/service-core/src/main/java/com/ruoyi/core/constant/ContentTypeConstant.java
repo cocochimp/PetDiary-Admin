@@ -9,4 +9,5 @@ public class ContentTypeConstant {
     public static final int newContent=1;   //最新内容
     public static final int hotContent=2;   //热榜内容
     public static final int followContent=3;    //关注内容
+    public static final int petCategoryContent=4;   //宠物社区内容
 }
