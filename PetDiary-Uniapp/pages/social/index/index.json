@@ -1,5 +1,10 @@
 {
+  "component": true,
   "usingComponents": {
-    "custom-swiper": "../components/lunbo/lunbo"
+    "custom-swiper": "../components/lunbo/lunbo",
+    "ant-tabs": "antd-mini/Tabs/index",
+    "container": "antd-mini/Container/index",
+    "tabs": "antd-mini/Tabs/index"
+ 
   }
 }

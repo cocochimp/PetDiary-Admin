@@ -13,15 +13,15 @@
         <cover-view class="list">
             <cover-view class="btn" bindtap="goToPublish">
                 <cover-view class="ico1">
-                    <cover-image src="/images/5.png" />
+                    <cover-image src="/images/6.png" />
                 </cover-view>
-                <cover-view>发表话题</cover-view>
+                <cover-view>发表图片</cover-view>
             </cover-view>
             <cover-view class="btn">
                 <cover-view class="ico2">
-                    <cover-image src="/images/6.png" />
+                    <cover-image src="/images/5.png" />
                 </cover-view>
-                <cover-view>聊聊日常</cover-view>
+                <cover-view>发表视频</cover-view>
             </cover-view>
         </cover-view>
         <cover-view class="close">

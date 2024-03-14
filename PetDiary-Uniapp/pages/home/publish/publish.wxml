@@ -1,6 +1,6 @@
-<form-cascader-picker label="城市" arrow options="{{ cityList }}" name="city" tooltip="选择城市" placeholder="请输入城市" bind:ref="handleRef" />
+<form-cascader-picker label="标签" arrow options="{{ animalList }}" name="city" tooltip="选择名字" placeholder="请选择" bind:ref="handleRef" />
 
-<ant-container title="上传图片">
+<ant-container title="填写内容">
     <form-textarea  name="description" placeholder="请输入说明" allowClear autoHeight bind:ref="handleRef" />
 </ant-container>
 

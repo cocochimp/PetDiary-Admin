@@ -1,6 +1,22 @@
-<view>
-    <view class="pic">
-    <image src="../../../images/testData/英国雪达犬.jpg" mode=""/></view>
-    <view class="animal">
-    <view class="name"></view></view>
-</view>
+
+<ant-container>
+<!-- pages/index/index.wxml -->
+<view class="content container">
+  <!-- 左侧显示头像 -->
+  <view class="avatar">
+    <image src="{{ petInfo.img }}" mode="aspectFill"></image>
+  </view>
+  <!-- 右侧显示相关信息 -->
+  <view class="info">
+    <view class="name">{{ petInfo.name }}</view>
+    <!-- <view class="type">英文名：{{petInfo.engName}}</view> -->
+      <!-- <view class="type">国籍：{{petInfo.nation}}</view> -->
+      <view class="type">性格：{{petInfo.character}}</view>
+      <!-- <view class="type">易患疾病：{{petInfo.easyOfDisease}}</view> -->
+      <view class="type">寿命：{{petInfo.life}}</view>
+      <view class="type">价格：{{petInfo.price}}</view>
+      <!-- <view class="type">描述：{{petInfo.des}}</view> -->
+      <view class="type">特征：{{petInfo.feature}}</view>
+    <!-- 其他相关信息根据需求添加 -->
+  </view>
+</view></ant-container>

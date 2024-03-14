@@ -1,7 +1,7 @@
 <!--pages/user/test01/test01.wxml-->
 <view>
+{{namename}}
   <custom-swiper imgUrls="{{carouselImgUrls}}" />  
-  <view class="label">🐱修猫区</view>
   <view class="bar3">
     <view class="item" bindtap="gotoShibie">
       <image class="ico" src="/images/2.png"></image>
@@ -20,22 +20,34 @@
       <view>todo</view>
     </view>
   </view>
-  <view class="list">
-    <view class="list-top">
-      <view class="list-sort {{index === active1 ? 'active1': ''}}" wx:for="{{list}}" data-index="{{index}}" bindtap="switchTab1">
-        {{item.name}}
-      </view>
-    </view>
-    <view class="list-left">
-    <view class="list-nation {{index === active2 ? 'active2': ''}}" wx:for="{{list[active1].nations}}" wx:key="index" data-index="{{index}}" bindtap="switchTab2">
-      {{item.name}}
-    </view>
-    </view>
-    <view class="list-right">
-    <navigator url="../animal/animal?id={{active2}}" class="list-animal" wx:for="{{list[active1].nations[active2].breeds}}">
-    <image src="{{item.img}}" alt=""/>
-    {{item.name}}</navigator>
-    </view>
-  </view>
-  <view class="page-tabbar page-ipx-safe-area" />
+  
+  <container class="cdContainer">
+  <tabs
+    items="{{ catDog }}"
+    current="{{ current2 }}"
+    bind:change="handleChange" />
+  <view class="content">{{ catDog[current2].name }}</view>
+  </container>
+  <ant-tabs
+  items="{{ items }}"
+  current="{{ current }}"
+  bind:change="onChange"
+  className="tabs"
+  data-index="index"
+  direction="vertical">
+  <scroll-view
+    scroll-top="{{ scrollTop }}"
+    scroll-y="{{ true }}"
+    bind:scroll="onScroll"
+    scroll-with-animation="{{ true }}"
+    scroll-animation-duration="{{ 300 }}"
+    class="content">
+    <navigator class="pet" wx:for="{{items[current].content}}" url="../animal/animal?id={{item.petId}}">
+    <image src="{{item.img}}"/>
+     <view class="word"> <text>{{item.name}}\n</text>
+      <text class="character">{{item.character}}</text></view>
+    </navigator>
+  </scroll-view>
+  </ant-tabs>
+<view class="footer"></view>
 </view>

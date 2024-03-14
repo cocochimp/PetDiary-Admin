@@ -8,7 +8,6 @@ Page({
     },
 
     data: {
-        active1:0,
         active2:0,
         currentIndex: 0,
         carouselImgUrls: [
@@ -18,77 +17,60 @@ Page({
             "http://img.boqiicdn.com/Data/BK/P/img45811406628222.jpg",
             "http://img.boqiicdn.com/Data/BK/P/img60371407461398.jpg"
         ],
-        List:[]
+        List:[],
+        current: 0,//控制国家切换
+        scrollTop: 0,
+        items: [],
+        nations:[],
+        total:0,
+        catDog:[
+            {
+                title: '猫',
+            },
+            {
+                title: '狗',
+            }],
+        current2:0,//控制猫狗切换
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad(options) {this.getList()},
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady() {
-        console.log('onReady')
+    onLoad() {
+        this.getList(() => {
+            this.getNations(() => {
+                this.getPets();
+            });
+        });
     },
-
+    onChange(current,e) {
+       
+        console.log('current',current.detail);
+        current = current.detail;
+        this.setData({
+            current,
+            scrollTop: Math.random(),
+        });
+        this.getPets()
+    },
     /**
      * 生命周期函数--监听页面显示
      */
     onShow() {
-        console.log('3')
         if (typeof this.getTabBar === 'function' &&
             this.getTabBar()) {
-            console.log('onshow0')
             this.getTabBar().setData({
                 active: 3
             })
         };
     },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide() {
-        console.log('onHide')
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload() {
-        console.log('onUnload')
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh() {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom() {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
-    },
-
     gotoShibie: function (params) {   
         wx.navigateTo({      
             url: '/pages/social/shibie/shibie',    //要跳转到的页面路径
         })  
     },
     // 获取表单数据
-    getList:function () {
+    getList:function (callback) {
         wx.request({
             url: 'https://example.com/ajax?dataType=member',
             dataType: 'json',
@@ -97,29 +79,63 @@ Page({
               this.setData({
                 list: data.list
               });
+              callback();
               console.log(data.list[0].nations[0].breeds);
             }
           });
     },
-    // 控制激活1
-    switchTab1: function(e) {
-        console.log("switchTab1 called");
-        const index = e.currentTarget.dataset.index;
-        console.log("index:", index);
-        if (index != this.data.active1) {
-            this.setData({
-                active1: index,
-                active2:0,
-            });
-        }
-    },
-    // 控制激活2
-    switchTab2: function(e) {
-        const index = e.currentTarget.dataset.index;
-        if (index != this.data.active2) {
-            this.setData({
-                active2: index
-            });
-        }
+    
+// 获取国家数据
+    getNations:function(callback) {
+wx.request({
+    url: `http://localhost:9501/wx/social/queryNationByType?type=${this.data.current2}`,
+    method: "POST",
+    success: (res) => {
+        console.log(res.data);
+        
+       
+        this.setData({
+            total:res.data.total,
+            nations:res.data.rows
+        });
+        console.log(this.data.nations);
+        callback()
     }
+})
+    },
+        // 获取宠物列表
+        getPets: function(e) {
+           
+            console.log(this.data.nations[this.data.current].nationName);
+            wx.request({
+                url: `http://localhost:9501/wx/social/queryListByNation?type=${this.data.current2}&nation=${this.data.nations[this.data.current].nationName}`,
+                method: "POST",
+                success: (res) => {
+                    const { rows } = res.data;
+                    console.log('国家', rows);
+                    const items = [];
+                    for (let i = 0; i < this.data.total; i++) {
+                        items.push({
+                            title: this.data.nations[i].nationName+'('+this.data.nations[i].number+')',
+                            content: rows,
+                        });
+                    }
+                    this.setData({
+                        items,
+                    })
+                }
+            })
+        },
+        handleChange(current) {
+            let current2 = current.detail;
+            this.setData({
+                current2:current2,
+            });
+            this.getList(() => {
+                this.getNations(() => {
+                    this.getPets();
+                });
+            });
+        },
+      
 })
