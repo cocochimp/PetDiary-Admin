@@ -87,7 +87,7 @@
           <image-preview :src="scope.row.coverPath" :width="50" :height="50"/>
         </template>
       </el-table-column>
-      <el-table-column label="分类ID" align="center" prop="categoryId" />
+      <!-- <el-table-column label="分类ID" align="center" prop="categoryId" /> -->
       <el-table-column label="内容发布人ID" align="center" prop="userId" />
       <el-table-column label="内容状态" align="center" prop="status">
         <template slot-scope="scope">
