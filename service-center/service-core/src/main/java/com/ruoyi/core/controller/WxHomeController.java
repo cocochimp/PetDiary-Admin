@@ -1,8 +1,10 @@
 package com.ruoyi.core.controller;
 
 import com.ruoyi.common.core.web.controller.BaseController;
+import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.core.constant.ContentTypeConstant;
+import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 import com.ruoyi.core.mapper.WxHomeMapper;
@@ -64,14 +66,12 @@ public class WxHomeController extends BaseController {
                         .filter(contentInfo -> petId.equals(contentInfo.getUserPet().getPetId()))
                         .collect(Collectors.toList());
                 break;
-            default:
-                // Handle default case if needed
         }
         return getDataTable(contentInfos);
     }
 
     /**
-     * 通过type种类查询宠物名称
+     * 发布：通过type种类查询宠物名称
      */
     @PostMapping("/showPetNameByPetType")
     @ResponseBody
@@ -79,6 +79,17 @@ public class WxHomeController extends BaseController {
     public TableDataInfo showPetNameByPetType(@RequestParam int type){
         List<WxPetListInfo> wxPetListInfo = wxHomeService.showPetNameByPetType(type);
         return getDataTable(wxPetListInfo);
+    }
+
+    /**
+     * 发布新内容
+     */
+    @PostMapping("/insertContentInfo")
+    @ResponseBody
+    @Operation(summary = "发布新内容", security = {@SecurityRequirement(name = "Authorization")})
+    public AjaxResult insertContentInfo(@RequestBody UserContent userContent){
+        wxHomeService.insertContentInfo(userContent);
+        return success();
     }
 }
 

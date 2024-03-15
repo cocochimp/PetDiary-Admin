@@ -44,6 +44,9 @@ public class UserContent extends BaseEntity
     @Excel(name = "内容发布人ID")
     private String userId;
 
+    /** 宠物id */
+    private String petId;
+
     /** 内容状态（0待审批 1通过 2驳回） */
     @Excel(name = "内容状态", readConverterExp = "0=待审批,1=通过,2=驳回")
     private String status;

@@ -2,14 +2,12 @@ package com.ruoyi.core.mapper;
 
 import com.ruoyi.core.constant.MapperConstant;
 import com.ruoyi.core.domain.UserAttention;
+import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentCommentInfo;
 import com.ruoyi.core.domain.vo.ContentInfo;
 import com.ruoyi.core.domain.vo.ContentUserInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -88,4 +86,9 @@ public interface WxHomeMapper
             @Result(column = "pet_id", property = "petId")
     })
     List<WxPetListInfo> showPetNameByPetType(@Param("type") int type);
+
+    @Insert("insert into `user_content` (`title`, `description`, `user_id`, `content_type`, `cover_path`, `video_path`, `pet_id`, `status`, `reject_info`) " +
+            "values " +
+            "(#{title}, #{description}, #{userId}, #{contentType}, #{coverPath}, #{videoPath}, #{petId}, #{status} , #{rejectInfo});")
+    void insertContentInfo(UserContent userContent);
 }

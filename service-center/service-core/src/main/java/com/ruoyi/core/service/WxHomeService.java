@@ -1,5 +1,6 @@
 package com.ruoyi.core.service;
 
+import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 
@@ -33,4 +34,9 @@ public interface WxHomeService
      * 通过type种类查询宠物名称
      */
     List<WxPetListInfo> showPetNameByPetType(int type);
+
+    /**
+     * 发布新内容
+     */
+    void insertContentInfo(UserContent userContent);
 }
