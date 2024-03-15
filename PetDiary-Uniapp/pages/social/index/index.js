@@ -6,9 +6,7 @@ Page({
     properties: {
         // imgUrls: Array,
     },
-
     data: {
-        active2:0,
         currentIndex: 0,
         carouselImgUrls: [
             "http://img.boqiicdn.com/Data/BK/P/img50961416195246.jpg",
@@ -17,7 +15,6 @@ Page({
             "http://img.boqiicdn.com/Data/BK/P/img45811406628222.jpg",
             "http://img.boqiicdn.com/Data/BK/P/img60371407461398.jpg"
         ],
-        List:[],
         current: 0,//控制国家切换
         scrollTop: 0,
         items: [],
@@ -37,11 +34,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad() {
-        this.getList(() => {
             this.getNations(() => {
                 this.getPets();
             });
-        });
     },
     onChange(current,e) {
        
@@ -69,43 +64,31 @@ Page({
             url: '/pages/social/shibie/shibie',    //要跳转到的页面路径
         })  
     },
-    // 获取表单数据
-    getList:function (callback) {
-        wx.request({
-            url: 'https://example.com/ajax?dataType=member',
-            dataType: 'json',
-            success: (res) => {
-              const {data} = res;
-              this.setData({
-                list: data.list
-              });
-              callback();
-              console.log(data.list[0].nations[0].breeds);
-            }
-          });
-    },
+    
     
 // 获取国家数据
     getNations:function(callback) {
+      console.log(12);
 wx.request({
     url: `http://localhost:9501/wx/social/queryNationByType?type=${this.data.current2}`,
     method: "POST",
     success: (res) => {
         console.log(res.data);
-        
-       
         this.setData({
             total:res.data.total,
             nations:res.data.rows
         });
         console.log(this.data.nations);
         callback()
+    },
+    fail:(err)=>{
+      console.log(err);
     }
+
 })
     },
         // 获取宠物列表
         getPets: function(e) {
-           
             console.log(this.data.nations[this.data.current].nationName);
             wx.request({
                 url: `http://localhost:9501/wx/social/queryListByNation?type=${this.data.current2}&nation=${this.data.nations[this.data.current].nationName}`,
@@ -131,11 +114,9 @@ wx.request({
             this.setData({
                 current2:current2,
             });
-            this.getList(() => {
                 this.getNations(() => {
                     this.getPets();
                 });
-            });
         },
       
 })

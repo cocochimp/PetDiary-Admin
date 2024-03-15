@@ -17,7 +17,7 @@ Page({
           success: function (res) {
             var userJson = JSON.parse(res.data);
             console.log("上传成功：", userJson.data.url); //发送成功回调
-            // that.setData({
+            // this.setData({
             //     imageUrl: userJson.data.url
             // })
           },
@@ -30,7 +30,6 @@ Page({
         }, 2000);
       });
     },
-    cityList,
     toastShow: false,
     catList: [],
     dogList: [],
