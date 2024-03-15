@@ -6,7 +6,6 @@
 
 <ant-container title="上传图片">
   <ant-uploader
-    fileList="{{ fileList }}"
     bind:change="onChange"
     onUpload="{{ onUpload ? onUpload : 'onUpload' }}" />
 </ant-container>
