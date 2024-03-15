@@ -11,16 +11,47 @@ Component({
     active: 0,
     refreshState: false,
     loadState: "finish",
-    navBarList: [
-      {title: "推荐"},
-      {title: "最新"},
-      {title: "热榜"}
+    navBarList: [{
+        title: "推荐"
+      },
+      {
+        title: "最新"
+      },
+      {
+        title: "热榜"
+      }
     ],
     videoId: null,
     contentArray: [],
     contentArrayLength: 0,
     res: [],
-    list: []
+    list: [],
+    goodList: [{
+      id: '1',
+      name: '#小猫',
+      pic: '../../../../../images/testData/比熊.png',
+      minPrice: '小了',
+	  originalPrice: '111',
+	  type:0,
+    },
+    {
+      id: '2',
+      name: '#小狗',
+      pic: '../../../../../images/testData/比熊.png',
+      minPrice: '小白',
+	  originalPrice: '222',
+	  type:1,
+	  
+    },
+    {
+      id: '3',
+      name: '#小🐖',
+      pic: '../../../../../images/testData/比熊.png',
+      minPrice: '小明',
+	  originalPrice: '333',
+	  type:0,
+    }]
+    
   },
   attached: function () {
     console.log("进入:attached")
@@ -41,8 +72,8 @@ Component({
     // 切换标签
     switchTab(e) {
       const index = e.currentTarget.dataset.index
-      console.log("index",index)
-      console.log("active",this.data.active)
+      console.log("index", index)
+      console.log("active", this.data.active)
       if (index != this.data.active) {
         console.log("center change tab")
         this.setData({
@@ -104,7 +135,7 @@ Component({
       }
     },
     _loadList(data) {
-      console.log("center loadlist",data)
+      console.log("center loadlist", data)
       // if (loadPages > 3 || data.length == 0) {
       //   console.log("center finishloading")
       //   canLoading = false
@@ -127,8 +158,9 @@ Component({
         header: {
           "content-Type": "application/json"
         },
-        success: function(res) {
+        success: function (res) {
           if (res.data.code == 200) {
+            console.log(11);
             var contentArray = res.data.rows;
             console.log('contentArray:', contentArray);
             that.setData({
@@ -136,17 +168,19 @@ Component({
               contentArrayLength: res.data.rows.length
             })
             that._getDemoData();
+
           } else {
             console.log('服务器异常');
           }
         },
-        fail: function(error) {
+        fail: function (error) {
           //调用服务端登录接口失败
           console.log(error);
         }
       })
     },
     _getDemoData() {
+      console.log('getdemo');
       let data = []
       for (let i = 0; i < this.data.contentArrayLength; i++) {
         console.log(this.data.contentArray[i]);
@@ -175,11 +209,15 @@ Component({
           };
         }
         data.push(tmp);
+        console.log('data', data);
       }
+      console.log(222);
+      console.log('data', data);
+
       this.setData({
         list: data
       });
-      console.log("activeData",this.data.list)
+      console.log("activeData", this.data.list)
     }
   }
 })

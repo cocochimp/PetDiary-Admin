@@ -118,5 +118,4 @@ wx.request({
                     this.getPets();
                 });
         },
-      
 })
