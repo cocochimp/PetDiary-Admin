@@ -55,7 +55,7 @@ public class ContentInfo
     private Integer likeCount;
     /** 用户粉丝 */
     private Integer fanCount;
-    /** 用户粉丝 */
+    /** 宠物标签 */
     private WxPetListInfo userPet;
 
 }

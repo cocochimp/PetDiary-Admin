@@ -28,4 +28,7 @@ public class WxPetListInfo
 
     /** 性格 */
     private String character;
+
+    /** 种类type */
+    private int type;
 }

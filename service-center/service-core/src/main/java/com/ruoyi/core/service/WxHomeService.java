@@ -21,14 +21,14 @@ public interface WxHomeService
     List<ContentInfo> showAllContentInfo();
 
     /**
-     * 展示所有content的内容（最新updateTime）
+     * 展示所有content的内容(分类)
      */
-    List<ContentInfo> showAllContentInfoOrderByUpdateTime();
-
-    /**
-     * 展示所有content的内容（热榜like）
-     */
-    List<ContentInfo> showAllContentInfoOrderByLikeCount();
+    List<ContentInfo> petCategoryContentInfo(List<ContentInfo> contentInfos,String petId);
+    List<ContentInfo> followContentInfo(List<ContentInfo> contentInfos,String openId);
+    List<ContentInfo> picContentInfo(List<ContentInfo> contentInfos);
+    List<ContentInfo> videoContentInfo(List<ContentInfo> contentInfos);
+    List<ContentInfo> catContentInfo(List<ContentInfo> contentInfos);
+    List<ContentInfo> dogContentInfo(List<ContentInfo> contentInfos);
 
     /**
      * 通过type种类查询宠物名称

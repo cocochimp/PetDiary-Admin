@@ -7,7 +7,6 @@ import com.ruoyi.core.constant.ContentTypeConstant;
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
-import com.ruoyi.core.mapper.WxHomeMapper;
 import com.ruoyi.core.service.WxHomeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -15,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 小程序——用户
@@ -31,9 +30,6 @@ public class WxHomeController extends BaseController {
     @Autowired
     private WxHomeService wxHomeService;
 
-    @Autowired
-    private WxHomeMapper wxHomeMapper;
-
     /**
      * 查看所有content内容
      */
@@ -43,29 +39,28 @@ public class WxHomeController extends BaseController {
                                          @RequestParam(value = "openId", required = false) String openId) {
         startPage();
         List<ContentInfo> contentInfos = wxHomeService.showAllContentInfo();
+        // 分类: ContentTypeConstant
         switch (operationType) {
-            case ContentTypeConstant.newContent: // 最新内容
-                contentInfos.sort((ci1, ci2) -> ci2.getUpdateTime().compareTo(ci1.getUpdateTime()));
-                break;
-            case ContentTypeConstant.hotContent: // 热榜内容
-                contentInfos.sort((ci1, ci2) -> ci2.getLikeCount().compareTo(ci1.getLikeCount()));
-                break;
-            case ContentTypeConstant.followContent: // 关注内容
-                if (openId != null) {
-                    List<String> userAttentions = wxHomeMapper.contentAttentionInfo(openId); // 关注的列表id
-                    contentInfos = contentInfos.stream()
-                            .filter(contentInfo -> userAttentions.contains(contentInfo.getUserId()))
-                            .collect(Collectors.toList());
-                } else {
-                    return getDataTable(new ArrayList<>());
-                }
-                break;
-            case ContentTypeConstant.petCategoryContent:  // 社区内容
-                if(petId==null) break;
-                contentInfos = contentInfos.stream()
-                        .filter(contentInfo -> petId.equals(contentInfo.getUserPet().getPetId()))
-                        .collect(Collectors.toList());
-                break;
+            case ContentTypeConstant.recommendContent: //推荐（先乱序）
+                Collections.shuffle(contentInfos); break;
+            case ContentTypeConstant.hotContent: // 热榜
+                contentInfos.sort((ci1, ci2) -> ci2.getLikeCount().compareTo(ci1.getLikeCount())); break;
+            case ContentTypeConstant.newContent: // 最新
+                contentInfos.sort((ci1, ci2) -> ci2.getUpdateTime().compareTo(ci1.getUpdateTime())); break;
+            case ContentTypeConstant.petCategoryContent:  // 宠物社区
+                if(petId!=null){ contentInfos=wxHomeService.petCategoryContentInfo(contentInfos,petId);
+                }else return getDataTable(new ArrayList<>()); break;
+            case ContentTypeConstant.followContent: // 关注
+                if (openId != null) { contentInfos=wxHomeService.followContentInfo(contentInfos,openId);
+                } else return getDataTable(new ArrayList<>()); break;
+            case ContentTypeConstant.picContent: //图文
+                contentInfos=wxHomeService.picContentInfo(contentInfos); break;
+            case ContentTypeConstant.videoContent: //视频
+                contentInfos=wxHomeService.videoContentInfo(contentInfos); break;
+            case ContentTypeConstant.catContent: //猫咪
+                contentInfos=wxHomeService.catContentInfo(contentInfos); break;
+            case ContentTypeConstant.dogContent: //修狗
+                contentInfos=wxHomeService.dogContentInfo(contentInfos); break;
         }
         return getDataTable(contentInfos);
     }
