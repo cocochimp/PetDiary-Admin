@@ -112,7 +112,7 @@ Page({
     this.form.reset();
   },
   async submit() {
-    if (!this.data.title || !this.data.description || this.data.coverPath || this.data.petId ) {
+    if (!this.data.title || !this.data.description || !this.data.coverPath || !this.data.petId ) {
       wx.showToast({
         title: '存在内容未填写',
         duration: 1000,
