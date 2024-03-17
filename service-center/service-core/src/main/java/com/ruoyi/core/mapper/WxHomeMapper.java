@@ -52,9 +52,13 @@ public interface WxHomeMapper
     ContentUserInfo showUserInfo(@Param("openid") String openid);
 
 
-    /*点赞数*/
+    /*点赞数（作品）*/
     @Select("select count(*) from user_content_like where content_id=#{content_id}" + MapperConstant.del_flag)
     Integer contentLikeCount(@Param("content_id") Long content_id);
+
+    /*点赞数（个人）*/
+    @Select("select count(*) from user_content_like where user_id=#{userId}" + MapperConstant.del_flag)
+    Integer contentLikeCountByUserId(@Param("userId") String userId);
 
     /*评论信息*/
     @Select("select * from user_content_comment where content_id=#{content_id}" + MapperConstant.del_flag)

@@ -2,6 +2,7 @@ package com.ruoyi.core.service;
 
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.UserDetailInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 
 import java.util.List;
@@ -41,4 +42,9 @@ public interface WxHomeService
      * 发布新内容
      */
     void insertContentInfo(UserContent userContent);
+
+    /**
+     * 通过id查询个人信息
+     */
+    UserDetailInfo showUserDetailInfo(String userId);
 }

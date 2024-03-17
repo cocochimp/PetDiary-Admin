@@ -1,5 +1,6 @@
 package com.ruoyi.core.controller;
 
+import com.ruoyi.common.core.domain.GlobalResult;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
@@ -69,12 +70,24 @@ public class WxHomeController extends BaseController {
     }
 
     /**
-     * 查看所有content内容
+     * 查看content详情
      */
     @GetMapping("/showContentInfoById")
     public TableDataInfo showContentInfoById(@RequestParam String contentId) {
         startPage();
         return getDataTable(wxHomeService.showAllContentById(contentId));
+    }
+
+    /**
+     * 查看user详细信息
+     */
+    @GetMapping("/showUserDetailInfo")
+    public GlobalResult showUserDetailInfo(@RequestParam String userId) {
+        GlobalResult globalResult = new GlobalResult();
+        globalResult.setData(wxHomeService.showUserDetailInfo(userId));
+        globalResult.setMsg("查询成功");
+        globalResult.setStatus(200);
+        return globalResult;
     }
 
     /**

@@ -2,6 +2,7 @@ package com.ruoyi.core.service.impl;
 
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.UserDetailInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 import com.ruoyi.core.enums.ContentStatus;
 import com.ruoyi.core.mapper.WxHomeMapper;
@@ -63,6 +64,17 @@ public class WxHomeServiceImpl implements WxHomeService
         userContent.setStatus(ContentStatus.EXAMINE.getCode());
         userContent.setRejectInfo(null);
         wxHomeMapper.insertContentInfo(userContent);
+    }
+
+    @Override
+    public UserDetailInfo showUserDetailInfo(String userId) {
+        UserDetailInfo userDetailInfo = new UserDetailInfo();
+        userDetailInfo.setUserId(userId);
+        userDetailInfo.setUserInfo(wxHomeMapper.showUserInfo(userId));
+        userDetailInfo.setLikeCount(wxHomeMapper.contentLikeCountByUserId(userId));
+        userDetailInfo.setFanCount(wxHomeMapper.contentFansInfo(userId).size());
+        userDetailInfo.setAttentionCount(wxHomeMapper.contentAttentionInfo(userId).size());
+        return userDetailInfo;
     }
 
     @Override
