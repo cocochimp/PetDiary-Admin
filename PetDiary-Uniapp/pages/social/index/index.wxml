@@ -4,19 +4,19 @@
   <custom-swiper imgUrls="{{carouselImgUrls}}" />  
   <view class="bar3">
     <view class="item" bindtap="gotoShibie">
-      <image class="ico" src="/images/2.png"></image>
-      <view>逗宠神器</view>
+      <text class="iconfont icon-renlianshibie"></text>
+      <view>宠物识别</view>
     </view>
     <view class="item">
-      <image class="ico" src="/images/1.png"></image>
-      <view>图像识别</view>
-    </view>
-    <view class="item">
-      <image class="ico" src="/images/3.png"></image>
+      <text class="iconfont icon-todo_list"></text>
       <view>todo</view>
     </view>
     <view class="item">
-      <image class="ico" src="/images/4.png"></image>
+      <text class="iconfont icon-xietodo"></text>
+      <view>todo</view>
+    </view>
+    <view class="item">
+      <text class="iconfont icon-todo"></text>
       <view>todo</view>
     </view>
   </view>

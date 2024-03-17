@@ -17,7 +17,7 @@
                 </cover-view>
                 <cover-view>发表图片</cover-view>
             </cover-view>
-            <cover-view class="btn">
+            <cover-view class="btn" bindtap="goToVideoPublish">
                 <cover-view class="ico2">
                     <cover-image src="/images/5.png" />
                 </cover-view>

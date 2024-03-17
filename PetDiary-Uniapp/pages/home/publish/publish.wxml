@@ -1,8 +1,15 @@
-<form-cascader-picker label="标签" arrow options="{{ animalList }}" name="city" tooltip="选择名字" placeholder="请选择" bind:ref="handleRef" />
-
-<ant-container title="填写内容">
-    <form-textarea  name="description" placeholder="请输入说明" allowClear autoHeight bind:ref="handleRef" />
-</ant-container>
+<form-cascader-picker label="标签" arrow options="{{ animalList }}" name="city" tooltip="选择名字" placeholder="请选择" bind:ref="handleRef"  bind:ok="handleOk"/>
+<container title="标题">
+  <ant-input
+    placeholder="请输入标题"
+    bind:blur="onTitleBlur" />
+</container>
+<container title="填写内容">
+  <ant-textarea
+    className="custom"
+    placeholder="请输入内容"
+    bind:blur="onContentBlur" />
+</container>
 
 <ant-container title="上传图片">
   <ant-uploader
