@@ -1,0 +1,96 @@
+.container {
+  padding: 20rpx;
+  background-color: #f8f8f8;
+}
+
+.editor {
+  background-color: white;
+  border-radius: 5rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.button {
+  background-color: #ff7f50;
+  color: white;
+  padding: 10rpx 20rpx;
+  border-radius: 5rpx;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #ff6347;
+}
+
+.image {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.picker {
+  background-color: white;
+  border: 1rpx solid #eee;
+  border-radius: 5rpx;
+  padding: 10rpx;
+  color: #333;
+}
+
+.picker-text {
+  color: #333;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+.buttons {
+  background: #ffffff;
+  padding: 12px 12px 48px 12px;
+}
+/* pages/index/index.wxss */
+.container2 {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding-left: 12px;
+}
+
+.upload-title {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.upload-wrapper {
+  width: 80px;
+  height: 80px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-icon {
+  font-size: 36px;
+  color: #ccc;
+}
+.container2 .video {
+  width: 80px;
+  height: 80px;
+}
+.container2 button {
+background-color: #ccc;
+color: white;
+width: 22px;
+height: 22px;
+line-height: 22px;
+border-radius: 50%;
+text-align: center;
+padding: 0;
+margin: 0;
+position: absolute;
+top: 30px;
+left: 80px;
+font-weight: 100;
+}

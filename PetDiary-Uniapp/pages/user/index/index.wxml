@@ -34,7 +34,6 @@
         关注
       </view>
     </view>
-    <view class="label">我的订单</view>
     <view class="bar3">
       <view class="item" bindtap="gotoCart">
           <image class="ico" src="/images/2.png"></image>
@@ -53,16 +52,7 @@
         <view>待评价</view>
       </view>
     </view>
-    <view class="label">我的爱宠</view>
-    <view class="bar4">
-      <view class="item"></view>
-      <view class="item"></view>
-    </view>
-    <view class="list">
-      <view class="item"><iconfont type="favorite" class="ico" size="20px" />我的收藏</view>
-      <view class="item"><iconfont type="comment" class="ico" size="20px" />我的评论</view>
-      <view class="item"><iconfont type="share" class="ico" size="20px" />我的分享</view>
-    </view>
+
   </view>
 </scroll-view>
 <view class="page-tabbar page-ipx-safe-area"></view>

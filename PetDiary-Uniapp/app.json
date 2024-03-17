@@ -2,6 +2,7 @@
   "pages": [
     "pages/home/index/index",
     "pages/home/publish/publish",
+    "pages/home/publishVideo/publishVideo",
 
     "pages/shop/goods/goods",
     "pages/shop/index/index",

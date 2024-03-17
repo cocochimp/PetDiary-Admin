@@ -1,0 +1,28 @@
+<form-cascader-picker label="标签" arrow options="{{ animalList }}" name="city" tooltip="选择名字" placeholder="请选择" bind:ref="handleRef" bind:ok="handleOk" />
+<container title="标题">
+  <ant-input placeholder="请输入标题" bind:blur="onTitleBlur" />
+</container>
+<container title="填写内容">
+  <ant-textarea className="custom" placeholder="请输入内容" bind:blur="onContentBlur" />
+</container>
+
+<ant-container title="上传图片">
+  <ant-uploader maxCount="1" bind:change="onChange" onUpload="{{ onUpload ? onUpload : 'onUpload' }}" />
+</ant-container>
+<!-- pages/index/index.wxml -->
+<view class="container2">
+  <view class="upload-title">上传视频</view>
+  <view class="upload-wrapper" wx:if="{{!videoSrc}}" bindtap="chooseVideo">
+    <text class="upload-icon">+</text>
+  </view>
+  <video class="video" src="{{videoSrc}}" controls wx:if="{{videoSrc}}"></video>
+  <button bindtap="deleteVideo" wx:if="{{videoSrc}}">x</button>
+</view>
+
+<view class="buttons">
+  <ant-button type="primary" bind:tap="submit" style="margin-bottom: 12px">
+    提交
+  </ant-button>
+  <ant-button bind:tap="reset">重置</ant-button>
+</view>
+<ant-toast content="密码的自定义 tooltip" visible="{{ toastShow }}" onClose="handleCloseToast" />

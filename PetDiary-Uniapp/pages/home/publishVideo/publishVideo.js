@@ -36,10 +36,10 @@ Page({
     title: null,
     description: null,
     userId: '',
-    contentType: 0,
+    contentType: 1,
     coverPath: null,
-    videoPath: null,
     petId: null,
+    videoSrc: null, // 用于绑定选择的视频文件路径
   },
 
   onInput(event) {
@@ -65,11 +65,9 @@ Page({
   onChange(fileList) {
     // 这里的数据包括上传失败和成功的图片列表，如果需要筛选出上传成功的图片需要在此处理
     console.log('图片列表：', fileList);
-    console.log(fileList.detail[0].url);
     const {
       detail
     } = fileList
-    console.log(detail);
     var paths = detail.map((item) => {
       return item.path
     })
@@ -112,7 +110,7 @@ Page({
     this.form.reset();
   },
   async submit() {
-    if (!this.data.title || !this.data.description || this.data.coverPath || this.data.petId ) {
+    if (!this.data.title || !this.data.description || this.data.coverPath || this.data.petId || this.data.videoSrc) {
       wx.showToast({
         title: '存在内容未填写',
         duration: 1000,
@@ -135,10 +133,11 @@ Page({
           userId: this.data.userId,
           contentType: this.data.contentType,
           coverPath: this.data.coverPath,
-          videoPath: this.data.videoPath,
+          videoSrc: this.data.videoSrc,
           petId: this.data.petId,
         }
       });
+      console.log(response);
       // 隐藏提交中提示
       wx.hideLoading();
       // 提示提交成功
@@ -259,5 +258,39 @@ Page({
     this.setData({
       description: e.detail
     })
+  },
+  // 视频部分
+  chooseVideo: function () {
+    var that = this;
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 60,
+      camera: 'back',
+      success: function (res) {
+        console.log(res.tempFilePath); // 选择的视频文件路径
+        wx.uploadFile({
+          filePath: res.tempFilePath,
+          name: 'file',
+          url: getApp().globalData.functionUrl + '/upload', //服务器端接收图片的路径
+          success: (res) => { // 使用箭头函数确保回调中的 this 指向正确的对象
+            var userJson = JSON.parse(res.data);
+            console.log("上传成功：", userJson.data.url); //发送成功回调
+            that.setData({
+              videoSrc: userJson.data.url
+            });
+            console.log(that.data.videoSrc);
+          },
+          fail: (res) => { // 使用箭头函数确保回调中的 this 指向正确的对象
+            console.log("上传失败：", res); //发送失败回调，可以在这里了解失败原因
+          }
+        })
+      }
+    });
+  },
+  deleteVideo: function () {
+    // 删除已上传的视频
+    this.setData({
+      videoSrc: ''
+    });
   }
 });
