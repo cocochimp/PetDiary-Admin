@@ -31,7 +31,7 @@ public interface WxHomeService
     List<ContentInfo> videoContentInfo(List<ContentInfo> contentInfos);
     List<ContentInfo> catContentInfo(List<ContentInfo> contentInfos);
     List<ContentInfo> dogContentInfo(List<ContentInfo> contentInfos);
-    List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos,String openId);
+    List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos,String openId,String contentType);
 
     /**
      * 通过type种类查询宠物名称

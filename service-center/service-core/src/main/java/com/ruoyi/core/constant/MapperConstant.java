@@ -14,5 +14,5 @@ public class MapperConstant {
     /**
      * 正常状态
      */
-    public static final String status=" status=2 ";
+    public static final String status=" status=0 ";
 }

@@ -37,8 +37,8 @@ public class WxHomeController extends BaseController {
     @GetMapping("/showContentInfo")
     public TableDataInfo showContentInfo(@RequestParam Integer operationType,
                                          @RequestParam(value = "petId", required = false) String petId, //社区宠物id
-                                         @RequestParam(value = "openId", required = false) String openId) {
-        startPage();
+                                         @RequestParam(value = "openId", required = false) String openId, //用户id
+                                         @RequestParam(value = "contentType", required = false) String contentType) {
         List<ContentInfo> contentInfos = wxHomeService.showAllContentInfo();
         // 分类: ContentTypeConstant
         switch (operationType) {
@@ -62,8 +62,8 @@ public class WxHomeController extends BaseController {
                 contentInfos=wxHomeService.catContentInfo(contentInfos); break;
             case ContentTypeConstant.dogContent: //修狗
                 contentInfos=wxHomeService.dogContentInfo(contentInfos); break;
-            case ContentTypeConstant.userContent: //用户
-                if(openId!=null) contentInfos=wxHomeService.userContentInfo(contentInfos,openId);
+            case ContentTypeConstant.userContent: //用户(0图文/1视频)
+                if(openId!=null && contentType!=null) contentInfos=wxHomeService.userContentInfo(contentInfos,openId,contentType);
                 else return getDataTable(new ArrayList<>()); break;
         }
         return getDataTable(contentInfos);

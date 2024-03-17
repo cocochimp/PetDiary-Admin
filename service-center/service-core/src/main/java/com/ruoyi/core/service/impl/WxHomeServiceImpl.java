@@ -127,9 +127,10 @@ public class WxHomeServiceImpl implements WxHomeService
     }
 
     @Override
-    public List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos, String openId) {
-        return contentInfos.stream().
-                filter(contentInfo -> openId.equals(contentInfo.getUserId()))
+    public List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos, String openId ,String contentType) {
+        return  contentInfos.stream().
+                filter(contentInfo -> openId.equals(contentInfo.getUserId())
+                        && contentType.equals(contentInfo.getContentType()))
                 .collect(Collectors.toList());
     }
 }
