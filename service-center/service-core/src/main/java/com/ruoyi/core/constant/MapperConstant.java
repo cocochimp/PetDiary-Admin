@@ -7,7 +7,12 @@ package com.ruoyi.core.constant;
  */
 public class MapperConstant {
     /**
-     * 视频
+     * 逻辑删除
      */
     public static final String del_flag=" and del_flag=0 ";
+
+    /**
+     * 正常状态
+     */
+    public static final String status=" status=2 ";
 }

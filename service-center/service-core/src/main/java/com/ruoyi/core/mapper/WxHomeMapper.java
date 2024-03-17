@@ -20,7 +20,7 @@ import java.util.List;
 public interface WxHomeMapper
 {
     /*内容展示*/
-    @Select("select content_id,title,description,user_id,content_type,cover_path,video_path,update_time from user_content where status=2")
+    @Select("select content_id,title,description,user_id,content_type,cover_path,video_path,update_time from user_content where "+ MapperConstant.status)
     @Results({
             @Result(column = "content_id", property = "contentId"),
             @Result(column = "user_id", property = "userId"),
@@ -32,7 +32,19 @@ public interface WxHomeMapper
     List<ContentInfo> showAllContent();
 
     /*内容展示*/
-    @Select("select pet_id from user_content where content_id=#{contentId} and status=2")
+    @Select("select content_id,title,description,user_id,content_type,cover_path,video_path,update_time from user_content where "+ MapperConstant.status + " and content_id=#{contentId} ")
+    @Results({
+            @Result(column = "content_id", property = "contentId"),
+            @Result(column = "user_id", property = "userId"),
+            @Result(column = "content_type", property = "contentType"),
+            @Result(column = "cover_path", property = "coverPath"),
+            @Result(column = "video_path", property = "videoPath"),
+            @Result(column = "update_time", property = "updateTime")
+    })
+    List<ContentInfo> showAllContentById(@Param("contentId") String contentId);
+
+    /*内容展示*/
+    @Select("select pet_id from user_content where content_id=#{contentId} and " + MapperConstant.status)
     int showPetIdByContentId(@Param("contentId") Long content_id);
 
     /*用户信息*/

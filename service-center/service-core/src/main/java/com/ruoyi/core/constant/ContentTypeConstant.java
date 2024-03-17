@@ -16,4 +16,5 @@ public class ContentTypeConstant {
 
     public static final int catContent=8;   //猫咪
     public static final int dogContent=9;   //修狗
+    public static final int userContent=10;     //用户发布
 }

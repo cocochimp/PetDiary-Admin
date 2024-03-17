@@ -19,6 +19,7 @@ public interface WxHomeService
      * 展示所有content的内容
      */
     List<ContentInfo> showAllContentInfo();
+    List<ContentInfo> showAllContentById(String contentId);
 
     /**
      * 展示所有content的内容(分类)
@@ -29,6 +30,7 @@ public interface WxHomeService
     List<ContentInfo> videoContentInfo(List<ContentInfo> contentInfos);
     List<ContentInfo> catContentInfo(List<ContentInfo> contentInfos);
     List<ContentInfo> dogContentInfo(List<ContentInfo> contentInfos);
+    List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos,String openId);
 
     /**
      * 通过type种类查询宠物名称

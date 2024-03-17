@@ -61,8 +61,20 @@ public class WxHomeController extends BaseController {
                 contentInfos=wxHomeService.catContentInfo(contentInfos); break;
             case ContentTypeConstant.dogContent: //修狗
                 contentInfos=wxHomeService.dogContentInfo(contentInfos); break;
+            case ContentTypeConstant.userContent: //用户
+                if(openId!=null) contentInfos=wxHomeService.userContentInfo(contentInfos,openId);
+                else return getDataTable(new ArrayList<>()); break;
         }
         return getDataTable(contentInfos);
+    }
+
+    /**
+     * 查看所有content内容
+     */
+    @GetMapping("/showContentInfoById")
+    public TableDataInfo showContentInfoById(@RequestParam String contentId) {
+        startPage();
+        return getDataTable(wxHomeService.showAllContentById(contentId));
     }
 
     /**

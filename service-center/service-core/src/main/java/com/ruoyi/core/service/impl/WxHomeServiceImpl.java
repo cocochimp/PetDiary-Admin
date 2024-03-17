@@ -28,6 +28,16 @@ public class WxHomeServiceImpl implements WxHomeService
     @Override
     public List<ContentInfo> showAllContentInfo() {
         List<ContentInfo> contentInfo = wxHomeMapper.showAllContent();
+        return getContentInfos(contentInfo);
+    }
+
+    @Override
+    public List<ContentInfo> showAllContentById(String contentId) {
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContentById(contentId);
+        return getContentInfos(contentInfo);
+    }
+
+    private List<ContentInfo> getContentInfos(List<ContentInfo> contentInfo) {
         if(contentInfo!=null && contentInfo.size()>0){
             for(ContentInfo res:contentInfo){
                 res.setUserInfo(wxHomeMapper.showUserInfo(res.getUserId()));
@@ -101,6 +111,13 @@ public class WxHomeServiceImpl implements WxHomeService
                     WxPetListInfo wxPetListInfo = wxHomeMapper.showPetDetailByPetId(Integer.parseInt(contentInfo.getUserPet().getPetId()));
                     return wxPetListInfo.getType()==1;
                 })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos, String openId) {
+        return contentInfos.stream().
+                filter(contentInfo -> openId.equals(contentInfo.getUserId()))
                 .collect(Collectors.toList());
     }
 }
