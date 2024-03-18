@@ -42,6 +42,15 @@ public class WxGoodsController extends BaseController {
 
         return getDataTable(goodsListInfos);
     }
+
+    /**
+     * 获得Category列表所有种类
+     */
+    @GetMapping("/showCategoryInfo")
+    @Operation(summary = "获得Category列表所有种类", security = {@SecurityRequirement(name = "Authorization")})
+    public TableDataInfo showCategoryInfo(){
+        return getDataTable(wxGoodsService.showCategoryInfo());
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package com.ruoyi.core.service;
 
+import com.ruoyi.core.domain.GoodsCategory;
 import com.ruoyi.core.domain.vo.GoodsListInfo;
 
 import java.util.List;
@@ -18,6 +19,6 @@ public interface WxGoodsService
     List<GoodsListInfo> showGoodsList(String OperateType, int categoryId);
 
 
-
+    List<GoodsCategory> showCategoryInfo();
 
 }

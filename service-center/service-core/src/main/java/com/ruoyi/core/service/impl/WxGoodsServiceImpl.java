@@ -50,7 +50,10 @@ public class WxGoodsServiceImpl implements WxGoodsService
         return goodsDTO;
     }
 
-
+    @Override
+    public List<GoodsCategory> showCategoryInfo() {
+        return wxGoodsMapper.showCategoryInfo();
+    }
 
 
 }
