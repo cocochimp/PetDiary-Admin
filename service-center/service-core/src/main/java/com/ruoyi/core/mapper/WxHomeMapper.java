@@ -1,7 +1,6 @@
 package com.ruoyi.core.mapper;
 
 import com.ruoyi.core.constant.MapperConstant;
-import com.ruoyi.core.domain.UserAttention;
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentCommentInfo;
 import com.ruoyi.core.domain.vo.ContentInfo;
@@ -53,15 +52,15 @@ public interface WxHomeMapper
 
 
     /*点赞数（作品）*/
-    @Select("select count(*) from user_content_like where content_id=#{content_id}" + MapperConstant.del_flag)
+    @Select("select count(*) from user_content_like where content_id=#{content_id} and " + MapperConstant.del_flag)
     Integer contentLikeCount(@Param("content_id") Long content_id);
 
     /*点赞数（个人）*/
-    @Select("select count(*) from user_content_like where user_id=#{userId}" + MapperConstant.del_flag)
+    @Select("select count(*) from user_content_like where user_id=#{userId} and " + MapperConstant.del_flag)
     Integer contentLikeCountByUserId(@Param("userId") String userId);
 
     /*评论信息*/
-    @Select("select * from user_content_comment where content_id=#{content_id}" + MapperConstant.del_flag)
+    @Select("select * from user_content_comment where content_id=#{content_id} and " + MapperConstant.del_flag)
     @Results({
             @Result(column = "comment_id", property = "commentId"),
             @Result(column = "user_id", property = "userId"),
@@ -73,15 +72,15 @@ public interface WxHomeMapper
 
 
     /*粉丝信息*/
-    @Select("select attention_user_id from user_attention where user_id=#{userId} " + MapperConstant.del_flag)
+    @Select("select attention_user_id from user_attention where user_id=#{userId} and " + MapperConstant.del_flag)
     @Results({
             @Result(column = "attention_user_id", property = "attentionUserId")
     })
-    List<UserAttention> contentFansInfo(@Param("userId") String userId);
+    List<String> contentFansInfo(@Param("userId") String userId);
 
 
     /*关注信息*/
-    @Select("select user_id from user_attention where attention_user_id=#{attention_user_id} " + MapperConstant.del_flag)
+    @Select("select user_id from user_attention where attention_user_id=#{attention_user_id} and " + MapperConstant.del_flag)
     @Results({
             @Result(column = "user_id", property = "userId")
     })
@@ -107,4 +106,9 @@ public interface WxHomeMapper
             "values " +
             "(#{title}, #{description}, #{userId}, #{contentType}, #{coverPath}, #{videoPath}, #{petId}, #{status} , #{rejectInfo});")
     void insertContentInfo(UserContent userContent);
+
+    @Select("select *  " +
+            "from user_info " +
+            "where openid=#{openid} and " + MapperConstant.status + "and" + MapperConstant.del_flag)
+    ContentUserInfo showUserInfoByUserId(@Param("openid") String openid);
 }

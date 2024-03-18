@@ -7,6 +7,7 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.core.constant.ContentTypeConstant;
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.ContentUserInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 import com.ruoyi.core.service.WxHomeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -111,6 +112,18 @@ public class WxHomeController extends BaseController {
         wxHomeService.insertContentInfo(userContent);
         return success();
     }
+
+    /**
+     * 通过UserId查询（关注/粉丝）列表
+     */
+    @GetMapping("/showUserInfoByUserId")
+    @Operation(summary = "通过UserId查询（关注/粉丝）列表", security = {@SecurityRequirement(name = "Authorization")})
+    public TableDataInfo showUserInfoByUserId(@RequestParam String listType,
+                                              @RequestParam String userId){
+        List<ContentUserInfo> contentUserInfos = wxHomeService.showUserInfoByUserId(listType, userId);
+        return getDataTable(contentUserInfos);
+    }
+
 }
 
 

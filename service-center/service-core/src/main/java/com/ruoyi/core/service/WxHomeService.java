@@ -2,6 +2,7 @@ package com.ruoyi.core.service;
 
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.ContentUserInfo;
 import com.ruoyi.core.domain.vo.UserDetailInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 
@@ -47,4 +48,9 @@ public interface WxHomeService
      * 通过id查询个人信息
      */
     UserDetailInfo showUserDetailInfo(String userId);
+
+    /**
+     * 通过UserId查询（关注/粉丝）列表
+     */
+    List<ContentUserInfo> showUserInfoByUserId(String listType,String userId);
 }

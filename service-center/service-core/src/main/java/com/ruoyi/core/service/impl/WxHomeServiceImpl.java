@@ -1,7 +1,9 @@
 package com.ruoyi.core.service.impl;
 
+import com.ruoyi.core.constant.ListTypeConstant;
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
+import com.ruoyi.core.domain.vo.ContentUserInfo;
 import com.ruoyi.core.domain.vo.UserDetailInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 import com.ruoyi.core.enums.ContentStatus;
@@ -10,7 +12,9 @@ import com.ruoyi.core.service.WxHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -75,6 +79,25 @@ public class WxHomeServiceImpl implements WxHomeService
         userDetailInfo.setFanCount(wxHomeMapper.contentFansInfo(userId).size());
         userDetailInfo.setAttentionCount(wxHomeMapper.contentAttentionInfo(userId).size());
         return userDetailInfo;
+    }
+
+    @Override
+    public List<ContentUserInfo> showUserInfoByUserId(String listType, String userId) {
+        List<ContentUserInfo> res = new ArrayList<>();
+        if (ListTypeConstant.attentionList.equals(listType)) {
+            List<String> attentionInfos = wxHomeMapper.contentAttentionInfo(userId);
+            attentionInfos.stream()
+                    .map(wxHomeMapper::showUserInfoByUserId)
+                    .filter(Objects::nonNull)
+                    .forEach(res::add);
+        } else if (ListTypeConstant.fanList.equals(listType)) {
+            List<String> userAttentions = wxHomeMapper.contentFansInfo(userId);
+            userAttentions.stream()
+                    .map(wxHomeMapper::showUserInfoByUserId)
+                    .filter(Objects::nonNull)
+                    .forEach(res::add);
+        }
+        return res;
     }
 
     @Override
