@@ -25,4 +25,11 @@ public class MapperConstant {
      * 返回list数量
      */
     public static final int pageSize=10; //数据返回默认大小
+
+    /**
+     * 返回list数量
+     */
+    public static final int pageHotSize=5; //返回宠物热榜数据
+    public static final int StartPage=1; //初始页面
+
 }

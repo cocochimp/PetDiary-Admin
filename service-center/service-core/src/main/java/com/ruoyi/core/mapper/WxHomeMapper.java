@@ -134,4 +134,16 @@ public interface WxHomeMapper
             "from user_info " +
             "where openid=#{openid} and " + MapperConstant.status + "and" + MapperConstant.del_flag)
     ContentUserInfo showUserInfoByUserId(@Param("openid") String openid);
+
+    @Select("select up.pet_id petId, name,img,type,sum\n" +
+            "from user_pet up\n" +
+            "inner join (\n" +
+            "    select uc.pet_id, COUNT(uc.pet_id) sum\n" +
+            "    from user_content uc\n" +
+            "\t\twhere uc.status=0\n" +
+            "    group by uc.pet_id\n" +
+            ") uc\n" +
+            "on up.pet_id = uc.pet_id\n" +
+            "order by uc.sum desc ")
+    List<HotPetListInfo> showHotList();
 }

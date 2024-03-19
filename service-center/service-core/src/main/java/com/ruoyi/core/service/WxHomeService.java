@@ -52,4 +52,9 @@ public interface WxHomeService
      * 通过UserId查询（关注/粉丝）列表
      */
     List<ContentUserInfo> showUserInfoByUserId(String listType,String userId);
+
+    /**
+     * 展示宠物热榜
+     */
+    List<HotPetListInfo> showHotList();
 }

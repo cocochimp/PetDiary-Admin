@@ -179,6 +179,12 @@ public class WxHomeServiceImpl implements WxHomeService
         return res;
     }
 
+    @Override
+    public List<HotPetListInfo> showHotList() {
+        PageHelper.startPage(MapperConstant.StartPage, MapperConstant.pageHotSize);
+        return wxHomeMapper.showHotList();
+    }
+
     /*封装content返回信息*/
     private List<ContentInfo> getContentInfos(List<ContentInfo> contentInfo) {
         if(contentInfo!=null && contentInfo.size()>0){

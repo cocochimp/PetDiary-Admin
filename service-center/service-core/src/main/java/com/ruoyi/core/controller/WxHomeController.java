@@ -9,6 +9,7 @@ import com.ruoyi.core.constant.MapperConstant;
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
 import com.ruoyi.core.domain.vo.ContentUserInfo;
+import com.ruoyi.core.domain.vo.HotPetListInfo;
 import com.ruoyi.core.domain.vo.WxPetListInfo;
 import com.ruoyi.core.service.WxHomeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -126,6 +127,14 @@ public class WxHomeController extends BaseController {
         return getDataTable(contentUserInfos);
     }
 
+    /**
+     * 查看content详情
+     */
+    @GetMapping("/showHotList")
+    public TableDataInfo showHotList() {
+        List<HotPetListInfo> hotPetListInfo = wxHomeService.showHotList();
+        return getDataTable(hotPetListInfo);
+    }
 }
 
 
