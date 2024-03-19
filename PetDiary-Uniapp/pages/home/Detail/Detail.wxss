@@ -1,0 +1,192 @@
+.container {
+  padding: 20 0rpx;
+}
+
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  /* 确保 .top 在最上层 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background-color: #fff;
+  /* 设置背景色 */
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+  /* 添加阴影效果 */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.nickname {
+  font-size: 28rpx;
+}
+.button {
+  display: flex;
+  align-items: center;
+}
+.top .follow-btn,
+.top .share-btn {
+  width: 40px;
+  padding: 0;
+  border-radius: 5rpx;
+  background-color: #fff;
+  font-size: 16px;
+  margin-right: 4px;
+}
+.top .follow-btn {
+  border: 1px solid rgb(226, 134, 134);
+  border-radius: 32rpx;
+  height: 30px;
+  line-height: 30px;
+  width: 60px;
+  color: rgb(226, 134, 134);
+
+}
+.title {
+  font-size: 20px;
+  padding:5rpx 18rpx;
+}
+
+.content {
+  margin-bottom: 20rpx;
+  margin-top: 50px;
+  height: 400px;
+}
+.content .video {
+  height: 400px;
+}
+.description {
+  padding:10rpx 18rpx;
+}
+.updateTime {
+  color: rgb(145, 143, 143);
+  font-size: 12px;
+  padding-bottom: 30rpx;
+  margin:12rpx 18rpx;
+  border-bottom: 1px solid #cccccc;
+
+
+}
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.content .swiper {
+  height: 400px;
+}
+.image-item {
+  width: 100%;
+  height: 400px;
+}
+
+.video {
+  width: 100%;
+  height: 300rpx;
+  margin-bottom: 20rpx;
+}
+
+.pet-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.pet-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.pet-name {
+  font-size: 16rpx;
+  margin-right: 10rpx;
+}
+
+.pet-character {
+  font-size: 14rpx;
+  color: #666;
+}
+
+.interact-info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  /* 确保 .top 在最上层 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background-color: #fff;
+  /* 设置背景色 */
+  box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.1);
+  /* 添加阴影效果 */
+  height: 40px;
+  border-top: 1px solid #ccc;
+}
+
+.like-count,
+.comment-count {
+  margin-right: 28rpx;
+  font-size: 20px;
+  font-weight: 300;
+}
+.list button {
+  margin-bottom: 18px;
+}
+.ant-button1 {
+  background-color: rgb(238, 237, 237);
+  height: 68rpx;
+  line-height: 68rpx;
+  width: 120px;
+  padding-left: 16px;
+  border-radius: 20px;
+  color: #666;
+}
+.right {
+  width: 120px;
+  display: flex;
+  font-size: 28px;
+}
+.right .iconfont {
+  font-size: 20px;
+}
+.bottom-box {
+  height: 80rpx;
+}
+/* 评论样式 */
+.comment-section {
+  margin-top: 20px;
+}
+
+.comment-item, .reply-item {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-content, .reply-content {
+  font-size: 14px;
+  color: #333;
+}
+
+.comment-user, .reply-user {
+  font-size: 12px;
+  color: #999;
+}

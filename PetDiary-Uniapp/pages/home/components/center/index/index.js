@@ -1,6 +1,3 @@
-// pages/social/components/center/index/index.js
-var canLoading = true
-var loadPages = 1
 Component({
   /* 组件的属性列表 */
   properties: {
@@ -10,59 +7,43 @@ Component({
   data: {
     active: 0,
     refreshState: false,
-    loadState: "finish",
     navBarList: [{
-        title: "推荐"
+        title: "推荐",
+        value: 1
       },
       {
-        title: "最新"
+        title: "最新",
+        value: 3
       },
       {
-        title: "热榜"
-      }
+        title: "图文",
+        value: 6
+      },
+      {
+        title: "视频",
+        value: 7
+      },
+      {
+        title: "养猫",
+        value: 8
+      },
+      {
+        title: "养狗",
+        value: 9
+      },
     ],
-    videoId: null,
-    contentArray: [],
-    contentArrayLength: 0,
-    res: [],
-    list: [],
-    goodList: [{
-      id: '1',
-      name: '#小猫',
-      pic: '../../../../../images/testData/比熊.png',
-      minPrice: '小了',
-	  originalPrice: '111',
-	  type:0,
-    },
-    {
-      id: '2',
-      name: '#小狗',
-      pic: '../../../../../images/testData/比熊.png',
-      minPrice: '小白',
-	  originalPrice: '222',
-	  type:1,
-	  
-    },
-    {
-      id: '3',
-      name: '#小🐖',
-      pic: '../../../../../images/testData/比熊.png',
-      minPrice: '小明',
-	  originalPrice: '333',
-	  type:0,
-    }]
-    
+    postsList: [],
+    operationType: 1, //控制哪个类型数据获取
+    skipId: '', //
+    loadState: 'finish',
+    pageNum: 1,
+    noMore: false,
+
+
+
   },
   attached: function () {
-    console.log("进入:attached")
-    this.showContentInfo();
-    this.setData({
-      refreshState: true,
-    })
-    setTimeout(() => {
-      let data = this._getDemoData()
-      this._loadList(data)
-    }, 1000)
+    this.getPosts();
   },
 
   /**
@@ -72,8 +53,16 @@ Component({
     // 切换标签
     switchTab(e) {
       const index = e.currentTarget.dataset.index
+      const value = e.currentTarget.dataset.value
       console.log("index", index)
       console.log("active", this.data.active)
+      this.setData({
+        operationType: value,
+        postsList: [],
+        pageNum: 1,
+        noMore:false
+      })
+      this.getPosts()
       if (index != this.data.active) {
         console.log("center change tab")
         this.setData({
@@ -82,142 +71,78 @@ Component({
         })
       }
     },
-    // 播放视频
-    onVideoPlay(e) {
-      const index = e.currentTarget.dataset.index
-      if (index != this.data.videoId) {
-        console.log("center change video play")
+    // 获取数据
+    getPosts() {
+      return new Promise((resolve, reject) => {
         this.setData({
-          videoId: index
+          loadState: 'loading'
         })
-      }
+        wx.request({
+          url: getApp().globalData.baseUrl + `/wx/home/showContentInfo?operationType=${this.data.operationType}&pageNum=${this.data.pageNum}`,
+          method: "GET",
+          success: (res) => {
+            const {
+              data
+            } = res
+          
+            if (!data.rows[0]) {
+              this.setData({
+                noMore: true,
+                loadState: 'finish'
+              })
+              resolve();
+            } else {
+              console.log('data.rows', data.rows);
+              if (data.rows.coverPath) {
+                data.rows.forEach(item => {
+                  item.coverPath = item.coverPath.split(',')[0];
+                });
+              }
+              
+              const originData = this.data.postsList
+              this.setData({
+                postsList: [...originData, ...data.rows]
+              });
+              console.log('postsList', this.data.postsList);
+              resolve();
+            }
+          },
+          fail: function (res) {
+            console.log(res);
+            reject(res);
+          }
+        });
+      });
     },
+
     /* 刷新开始处理 */
     onRefresh() {
-      this.showContentInfo();
+      console.log('开始刷新');
       this.setData({
-        refreshState: true,
-        videoId: null
+        postsList: []
       })
-      console.log("center onRefresh")
-      setTimeout(() => {
-        if (this.data.refreshState) {
-          console.log("center refreshing")
-          this.data.list = []
-          canLoading = true
-          loadPages = 1
-          let data = this._getDemoData()
-          this._loadList(data)
-        }
-      }, 1000)
-    },
-    /* 刷新停止处理 */
-    abortRefresh() {
-      console.log("center abortRefresh")
-      if (this.data.refreshState) {
-        this.setData({
-          refreshState: false,
-        })
-      }
-    },
-    /* 加载更多处理 */
-    onLoadMore() {
-      console.log("center loadmore")
-      if (canLoading) {
-        this.setData({
-          loadState: "loading",
-        })
+      // 返回一个 Promise 对象
+      this.getPosts().then(() => {
         setTimeout(() => {
-          let data = this._getDemoData()
-          loadPages++
-          this._loadList(data)
-        }, 1000)
-      }
-    },
-    _loadList(data) {
-      console.log("center loadlist", data)
-      // if (loadPages > 3 || data.length == 0) {
-      //   console.log("center finishloading")
-      //   canLoading = false
-      // }
-      this.setData({
-        list: this.data.list.concat(data),
-        refreshState: false,
-        loadState: "finish"
-      })
-    },
-    showContentInfo() {
-      const that = this;
-      console.log("进入formSubmit,active:", this.data.active);
-      wx.request({
-        url: getApp().globalData.baseUrl + '/wx/home/showContentInfo',
-        method: 'GET',
-        data: {
-          operationType: this.data.active
-        },
-        header: {
-          "content-Type": "application/json"
-        },
-        success: function (res) {
-          if (res.data.code == 200) {
-            console.log(11);
-            var contentArray = res.data.rows;
-            console.log('contentArray:', contentArray);
-            that.setData({
-              contentArray: contentArray,
-              contentArrayLength: res.data.rows.length
-            })
-            that._getDemoData();
-
-          } else {
-            console.log('服务器异常');
-          }
-        },
-        fail: function (error) {
-          //调用服务端登录接口失败
-          console.log(error);
-        }
-      })
-    },
-    _getDemoData() {
-      console.log('getdemo');
-      let data = []
-      for (let i = 0; i < this.data.contentArrayLength; i++) {
-        console.log(this.data.contentArray[i]);
-        const contentInfo = this.data.contentArray[i];
-        const userInfo = contentInfo.userInfo;
-        let tmp = {
-          id: contentInfo.contentId,
-          avatar: userInfo.avatar,
-          username: userInfo.nickname,
-          intro: contentInfo.description,
-          commentTotal: contentInfo.userComment.length,
-          likeTotal: contentInfo.likeCount,
-          fanTotal: contentInfo.fanCount,
-          publishTime: contentInfo.updateTime,
-          contentType: contentInfo.contentType,
-        };
-        if (contentInfo.contentType == "0") {
-          tmp.pic = {
-            type: "long",
-            url: contentInfo.coverPath.split(",")
-          };
-        } else if (contentInfo.contentType == "1") {
-          tmp.video = {
-            thumb: contentInfo.coverPath,
-            url: contentInfo.videoPath
-          };
-        }
-        data.push(tmp);
-        console.log('data', data);
-      }
-      console.log(222);
-      console.log('data', data);
-
-      this.setData({
-        list: data
+          this.setData({
+            refreshState: false
+          });
+          console.log('刷新完成');
+        }, 1000);
       });
-      console.log("activeData", this.data.list)
+    },
+
+    /* 下拉到底处理 */
+    onLoadMore() {
+      this.data.pageNum += 1
+      this.getPosts()
+    },
+
+    goDetail(e) {
+
+      wx.navigateTo({
+        url: `/pages/home/Detail/Detail?contentId=${e.currentTarget.dataset.index}`,
+      })
     }
   }
 })

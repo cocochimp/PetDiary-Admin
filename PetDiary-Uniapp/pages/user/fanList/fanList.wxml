@@ -1,0 +1,13 @@
+<ant-list header="{{listType==1?'关注列表':'粉丝列表'}}" radius="{{ radius }}">
+  <block wx:for="{{fanList}}">
+    <ant-list-item>
+      <view class="list">
+        <image src="{{item.avatar}}" mode="" />
+        <view class="nameBox">
+        <view class="name">{{item.nickname}}</view>
+        <view class="brief">{{item.brief}}</view>
+        </view>
+      </view>
+    </ant-list-item>
+  </block>
+</ant-list>

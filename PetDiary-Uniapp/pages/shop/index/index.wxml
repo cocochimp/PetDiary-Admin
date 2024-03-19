@@ -49,51 +49,31 @@
       <iconfont type="zhengpinbaozhang" size="18px" /> 假一赔三
     </view>
   </view>
-  <!-- <view class="vip-bar mrtop">
-    <view class="item"></view>
-  </view> -->
+
   <flash-sale-bar />
-  <!-- <view class="hot-bar mrtop">
-    <view class="label">精选好物</view>
-    <view class="list">
-      <view class="item first"></view>
-      <view class="item"></view>
-      <view class="item"></view>
-    </view>
-  </view> -->
-  <!-- <view class="brand-bar mrtop">
-    <view class="label">国际品牌</view>
-    <view class="list">
-      <view class="item" wx:for="{{'111111111'}}"></view>
-    </view>
-  </view> -->
+
   <view class="container bg-xhs mrtop">
     <view class="nav-bar">
-      <view class="item {{index === active ?'active' : ''}}" wx:for="{{navList}}" bindtap="switchTab" data-index="{{index}}">
-        {{item.title}}
+      <view class="item {{index === active ?'active' : ''}}" wx:for="{{navList}}" bindtap="switchTab" data-index="{{index}}" data-id="{{item.id}}">
+        {{item.name}}
         <view class="line" wx:if="{{index === active}}"></view>
       </view>
     </view>
     <view class="content">
-      <!-- <view class="list">
-        <view class="item" wx:for="{{'1111111111'}}">
-          <view class="pic"></view>
-        </view>
-      </view> -->
       <view class="list">
-        <navigator  url="../goods_detail/goods_detail" class="item" wx:for="{{sort[active].children}}" wx:key="index" wx:for-index="index" wx:for-item="item">
+        <navigator url="../goods_detail/goods_detail" class="item" wx:for="{{sort}}" wx:key="index" wx:for-index="index">
           <view class="pic">
-            <image src="{{item.img}}" mode="" />
+            <image src="{{item.coverPhoto}}" mode="" />
           </view>
           <view class="info">
-            <view class="title">{{item.title}}</view>
+            <view class="title">{{item.name}}</view>
             <view class="sub">{{item.sub}}</view>
             <view class="tags">
-              <view class="{{item.bgRed===true?'tag bg-red':'tag'}}">新品</view>
+              <view class="{{item.isSale===0?'tag bg-red':'tag'}}">热销</view>
             </view>
             <view class="price">
-              <view class="current">{{item.current}}</view>
-              <view class="original">{{item.original}}</view>
+              <view class="current">{{item.amount}}</view>
+              <view class="original">{{item.price}}</view>
             </view>
           </view>
         </navigator>

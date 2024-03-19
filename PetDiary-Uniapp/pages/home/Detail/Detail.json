@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "ant-popup": "antd-mini/Popup/index",
+    "container": "antd-mini/Container/index",
+    "ant-button": "antd-mini/Button/index",
+    "list": "antd-mini/List/index",
+    "list-item": "antd-mini/List/ListItem/index",
+    "switch": "antd-mini/Switch/index",
+    "ant-icon": "antd-mini//Icon/index"
+  }
+}
