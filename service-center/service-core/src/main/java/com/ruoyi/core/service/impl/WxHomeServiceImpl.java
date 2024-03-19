@@ -1,18 +1,22 @@
 package com.ruoyi.core.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.ruoyi.core.constant.ContentTypeConstant;
 import com.ruoyi.core.constant.ListTypeConstant;
+import com.ruoyi.core.constant.MapperConstant;
 import com.ruoyi.core.domain.UserContent;
-import com.ruoyi.core.domain.vo.ContentInfo;
-import com.ruoyi.core.domain.vo.ContentUserInfo;
-import com.ruoyi.core.domain.vo.UserDetailInfo;
-import com.ruoyi.core.domain.vo.WxPetListInfo;
+import com.ruoyi.core.domain.vo.*;
 import com.ruoyi.core.enums.ContentStatus;
+import com.ruoyi.core.enums.PetType;
 import com.ruoyi.core.mapper.WxHomeMapper;
 import com.ruoyi.core.service.WxHomeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -27,34 +31,109 @@ import java.util.stream.Collectors;
 public class WxHomeServiceImpl implements WxHomeService
 {
 
+    private static final Logger logger = LoggerFactory.getLogger(WxHomeServiceImpl.class);
+
     @Autowired
     private WxHomeMapper wxHomeMapper;
 
     @Override
-    public List<ContentInfo> showAllContentInfo() {
-        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent();
+    public List<ContentInfo> showAllContentInfo(Integer pageNum,String OrderByInfo) {
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(null,null);
+        return getContentInfos(contentInfo);
+    }
+
+    /*content详情*/
+    @Override
+    public List<ContentDetailInfo> showAllContentById(String contentId) {
+        ContentDetailInfo contentInfo = wxHomeMapper.showAllContentById(contentId);
+        if(contentInfo!=null){
+            contentInfo.setUserInfo(wxHomeMapper.showUserInfo(contentInfo.getUserId()));
+            contentInfo.setUserComment(wxHomeMapper.contentCommentInfo(contentInfo.getContentId()));
+            contentInfo.setLikeCount(wxHomeMapper.contentLikeCount(contentInfo.getContentId()));
+            contentInfo.setFanCount((wxHomeMapper.contentFansInfo(contentInfo.getUserId())).size());
+
+            int petId = wxHomeMapper.showPetIdByContentId(contentInfo.getContentId());
+            contentInfo.setUserPet(wxHomeMapper.showPetDetailByPetId(petId));
+        }
+        return Collections.singletonList(contentInfo);
+    }
+
+    @Override
+    public List<ContentInfo> showHotContentInfo(Integer pageNum, String OrderByInfo) {
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfos = wxHomeMapper.showHotContent();
+        return getContentInfos(contentInfos);
+    }
+
+    @Override
+    public List<ContentInfo> petCategoryContentInfo(String petId,Integer pageNum,String OrderByInfo) {
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(ContentTypeConstant.petCategoryContent,petId);
         return getContentInfos(contentInfo);
     }
 
     @Override
-    public List<ContentInfo> showAllContentById(String contentId) {
-        List<ContentInfo> contentInfo = wxHomeMapper.showAllContentById(contentId);
+    public List<ContentInfo> followContentInfo(String openId,Integer pageNum,String OrderByInfo) {
+        List<String> userAttentions = wxHomeMapper.contentAttentionInfo(openId); // 关注的列表id
+        String userIdList;
+        if(userAttentions.size()==0) userIdList=null;
+            //封装入参数据
+        else userIdList = userAttentions.stream()
+                .map(s -> "'" + s + "'").collect(Collectors.joining(","));
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(ContentTypeConstant.followContent,userIdList);
         return getContentInfos(contentInfo);
     }
 
-    private List<ContentInfo> getContentInfos(List<ContentInfo> contentInfo) {
-        if(contentInfo!=null && contentInfo.size()>0){
-            for(ContentInfo res:contentInfo){
-                res.setUserInfo(wxHomeMapper.showUserInfo(res.getUserId()));
-                res.setUserComment(wxHomeMapper.contentCommentInfo(res.getContentId()));
-                res.setLikeCount(wxHomeMapper.contentLikeCount(res.getContentId()));
-                res.setFanCount((wxHomeMapper.contentFansInfo(res.getUserId())).size());
+    @Override
+    public List<ContentInfo> picContentInfo(Integer pageNum,String OrderByInfo) {
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(ContentTypeConstant.picContent,null);
+        return getContentInfos(contentInfo);
+    }
 
-                int petId = wxHomeMapper.showPetIdByContentId(res.getContentId());
-                res.setUserPet(wxHomeMapper.showPetDetailByPetId(petId));
-            }
-        }
-        return contentInfo;
+    @Override
+    public List<ContentInfo> videoContentInfo(Integer pageNum,String OrderByInfo) {
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(ContentTypeConstant.videoContent,null);
+        return getContentInfos(contentInfo);
+    }
+
+    @Override
+    public List<ContentInfo> catContentInfo(Integer pageNum,String OrderByInfo) {
+        List<WxPetListInfo> wxPetListInfos = wxHomeMapper.showPetNameByPetType(Integer.parseInt(PetType.CAT.getCode()));
+        String userIdList;
+        if(wxPetListInfos.size()==0) userIdList=null;
+            //封装入参数据
+        else userIdList = wxPetListInfos.stream()
+                .map(WxPetListInfo::getPetId)
+                .collect(Collectors.joining(","));
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(ContentTypeConstant.catContent,userIdList);
+        return getContentInfos(contentInfo);
+    }
+
+    @Override
+    public List<ContentInfo> dogContentInfo(Integer pageNum,String OrderByInfo) {
+        List<WxPetListInfo> wxPetListInfos = wxHomeMapper.showPetNameByPetType(Integer.parseInt(PetType.DOG.getCode()));
+        String userIdList;
+        if(wxPetListInfos.size()==0) userIdList=null;
+            //封装入参数据
+        else userIdList = wxPetListInfos.stream()
+                .map(WxPetListInfo::getPetId)
+                .collect(Collectors.joining(","));
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(ContentTypeConstant.dogContent,userIdList);
+        return getContentInfos(contentInfo);
+    }
+
+    @Override
+    public List<ContentInfo> userContentInfo(String openId,String contentType,Integer pageNum,String OrderByInfo) {
+        PageHelper.startPage(pageNum, MapperConstant.pageSize,OrderByInfo);
+        String res="'"+openId+"',"+contentType;
+        List<ContentInfo> contentInfo = wxHomeMapper.showAllContent(ContentTypeConstant.userContent,res);
+        return getContentInfos(contentInfo);
     }
 
     @Override
@@ -100,60 +179,17 @@ public class WxHomeServiceImpl implements WxHomeService
         return res;
     }
 
-    @Override
-    public List<ContentInfo> petCategoryContentInfo(List<ContentInfo> contentInfos, String petId) {
-        return contentInfos.stream()
-                .filter(contentInfo -> petId.equals(contentInfo.getUserPet().getPetId()))
-                .collect(Collectors.toList());
-    }
+    /*封装content返回信息*/
+    private List<ContentInfo> getContentInfos(List<ContentInfo> contentInfo) {
+        if(contentInfo!=null && contentInfo.size()>0){
+            for(ContentInfo res:contentInfo){
+                res.setUserInfo(wxHomeMapper.showUserInfo(res.getUserId()));
+                res.setLikeCount(wxHomeMapper.contentLikeCount(res.getContentId()));
 
-    @Override
-    public List<ContentInfo> followContentInfo(List<ContentInfo> contentInfos, String openId) {
-        List<String> userAttentions = wxHomeMapper.contentAttentionInfo(openId); // 关注的列表id
-        return contentInfos.stream()
-                .filter(contentInfo -> userAttentions.contains(contentInfo.getUserId()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<ContentInfo> picContentInfo(List<ContentInfo> contentInfos) {
-        return contentInfos.stream()
-                .filter(contentInfo -> "0".equals(contentInfo.getContentType()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<ContentInfo> videoContentInfo(List<ContentInfo> contentInfos) {
-        return contentInfos.stream()
-                .filter(contentInfo -> "1".equals(contentInfo.getContentType()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<ContentInfo> catContentInfo(List<ContentInfo> contentInfos) {
-        return contentInfos.stream()
-                .filter(contentInfo -> {
-                    WxPetListInfo wxPetListInfo = wxHomeMapper.showPetDetailByPetId(Integer.parseInt(contentInfo.getUserPet().getPetId()));
-                    return wxPetListInfo.getType()==0;
-                })
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<ContentInfo> dogContentInfo(List<ContentInfo> contentInfos) {
-        return contentInfos.stream()
-                .filter(contentInfo -> {
-                    WxPetListInfo wxPetListInfo = wxHomeMapper.showPetDetailByPetId(Integer.parseInt(contentInfo.getUserPet().getPetId()));
-                    return wxPetListInfo.getType()==1;
-                })
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos, String openId ,String contentType) {
-        return  contentInfos.stream().
-                filter(contentInfo -> openId.equals(contentInfo.getUserId())
-                        && contentType.equals(contentInfo.getContentType()))
-                .collect(Collectors.toList());
+                int petId = wxHomeMapper.showPetIdByContentId(res.getContentId());
+                res.setUserPet(wxHomeMapper.showPetDetailByPetId(petId));
+            }
+        }
+        return contentInfo;
     }
 }

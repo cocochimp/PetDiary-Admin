@@ -5,6 +5,7 @@ import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.core.constant.ContentTypeConstant;
+import com.ruoyi.core.constant.MapperConstant;
 import com.ruoyi.core.domain.UserContent;
 import com.ruoyi.core.domain.vo.ContentInfo;
 import com.ruoyi.core.domain.vo.ContentUserInfo;
@@ -36,35 +37,36 @@ public class WxHomeController extends BaseController {
      * 查看所有content内容
      */
     @GetMapping("/showContentInfo")
-    public TableDataInfo showContentInfo(@RequestParam Integer operationType,
+    public TableDataInfo showContentInfo(@RequestParam Integer operationType, @RequestParam Integer pageNum,
                                          @RequestParam(value = "petId", required = false) String petId, //社区宠物id
                                          @RequestParam(value = "openId", required = false) String openId, //用户id
                                          @RequestParam(value = "contentType", required = false) String contentType) {
-        List<ContentInfo> contentInfos = wxHomeService.showAllContentInfo();
+        List<ContentInfo> contentInfos=null;
         // 分类: ContentTypeConstant
         switch (operationType) {
             case ContentTypeConstant.recommendContent: //推荐（先乱序）
+                contentInfos = wxHomeService.showAllContentInfo(pageNum,null);
                 Collections.shuffle(contentInfos); break;
             case ContentTypeConstant.hotContent: // 热榜
-                contentInfos.sort((ci1, ci2) -> ci2.getLikeCount().compareTo(ci1.getLikeCount())); break;
+                contentInfos = wxHomeService.showHotContentInfo(pageNum, " like_count desc"); break;
             case ContentTypeConstant.newContent: // 最新
-                contentInfos.sort((ci1, ci2) -> ci2.getUpdateTime().compareTo(ci1.getUpdateTime())); break;
+                contentInfos = wxHomeService.showAllContentInfo(pageNum, MapperConstant.orderByUpdateTime); break;
             case ContentTypeConstant.petCategoryContent:  // 宠物社区
-                if(petId!=null){ contentInfos=wxHomeService.petCategoryContentInfo(contentInfos,petId);
+                if(petId!=null){ contentInfos=wxHomeService.petCategoryContentInfo(petId,pageNum,MapperConstant.orderByUpdateTime);
                 }else return getDataTable(new ArrayList<>()); break;
             case ContentTypeConstant.followContent: // 关注
-                if (openId != null) { contentInfos=wxHomeService.followContentInfo(contentInfos,openId);
+                if (openId != null) { contentInfos=wxHomeService.followContentInfo(openId,pageNum,MapperConstant.orderByUpdateTime);
                 } else return getDataTable(new ArrayList<>()); break;
             case ContentTypeConstant.picContent: //图文
-                contentInfos=wxHomeService.picContentInfo(contentInfos); break;
+                contentInfos=wxHomeService.picContentInfo(pageNum,MapperConstant.orderByUpdateTime); break;
             case ContentTypeConstant.videoContent: //视频
-                contentInfos=wxHomeService.videoContentInfo(contentInfos); break;
+                contentInfos=wxHomeService.videoContentInfo(pageNum,MapperConstant.orderByUpdateTime); break;
             case ContentTypeConstant.catContent: //猫咪
-                contentInfos=wxHomeService.catContentInfo(contentInfos); break;
+                contentInfos=wxHomeService.catContentInfo(pageNum,MapperConstant.orderByUpdateTime); break;
             case ContentTypeConstant.dogContent: //修狗
-                contentInfos=wxHomeService.dogContentInfo(contentInfos); break;
+                contentInfos=wxHomeService.dogContentInfo(pageNum,MapperConstant.orderByUpdateTime); break;
             case ContentTypeConstant.userContent: //用户(0图文/1视频)
-                if(openId!=null && contentType!=null) contentInfos=wxHomeService.userContentInfo(contentInfos,openId,contentType);
+                if(openId!=null && contentType!=null) contentInfos=wxHomeService.userContentInfo(openId,contentType,pageNum,null);
                 else return getDataTable(new ArrayList<>()); break;
         }
         return getDataTable(contentInfos);

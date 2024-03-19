@@ -1,10 +1,7 @@
 package com.ruoyi.core.service;
 
 import com.ruoyi.core.domain.UserContent;
-import com.ruoyi.core.domain.vo.ContentInfo;
-import com.ruoyi.core.domain.vo.ContentUserInfo;
-import com.ruoyi.core.domain.vo.UserDetailInfo;
-import com.ruoyi.core.domain.vo.WxPetListInfo;
+import com.ruoyi.core.domain.vo.*;
 
 import java.util.List;
 
@@ -20,19 +17,21 @@ public interface WxHomeService
     /**
      * 展示所有content的内容
      */
-    List<ContentInfo> showAllContentInfo();
-    List<ContentInfo> showAllContentById(String contentId);
+    List<ContentInfo> showAllContentInfo(Integer pageNum,String OrderByInfo);
+    List<ContentDetailInfo> showAllContentById(String contentId);
+    List<ContentInfo> showHotContentInfo(Integer pageNum,String OrderByInfo);
 
     /**
      * 展示所有content的内容(分类)
      */
-    List<ContentInfo> petCategoryContentInfo(List<ContentInfo> contentInfos,String petId);
-    List<ContentInfo> followContentInfo(List<ContentInfo> contentInfos,String openId);
-    List<ContentInfo> picContentInfo(List<ContentInfo> contentInfos);
-    List<ContentInfo> videoContentInfo(List<ContentInfo> contentInfos);
-    List<ContentInfo> catContentInfo(List<ContentInfo> contentInfos);
-    List<ContentInfo> dogContentInfo(List<ContentInfo> contentInfos);
-    List<ContentInfo> userContentInfo(List<ContentInfo> contentInfos,String openId,String contentType);
+    List<ContentInfo> petCategoryContentInfo(String petId,Integer pageNum,String OrderByInfo);
+    List<ContentInfo> followContentInfo(String openId,Integer pageNum,String OrderByInfo);
+    List<ContentInfo> picContentInfo(Integer pageNum,String OrderByInfo);
+    List<ContentInfo> videoContentInfo(Integer pageNum,String OrderByInfo);
+
+    List<ContentInfo> catContentInfo(Integer pageNum,String OrderByInfo);
+    List<ContentInfo> dogContentInfo(Integer pageNum,String OrderByInfo);
+    List<ContentInfo> userContentInfo(String openId,String contentType,Integer pageNum,String OrderByInfo);
 
     /**
      * 通过type种类查询宠物名称

@@ -15,4 +15,14 @@ public class MapperConstant {
      * 正常状态
      */
     public static final String status=" status=0 ";
+
+    /**
+     * 按照时间排序
+     */
+    public static final String orderByUpdateTime=" update_time desc";
+
+    /**
+     * 返回list数量
+     */
+    public static final int pageSize=10; //数据返回默认大小
 }
