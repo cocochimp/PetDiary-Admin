@@ -6,11 +6,11 @@
   <view class="container">
     <view class="bar1">
       <view>
-        <image src="{{userInfo.avatarUrl}}" class="avatar" wx:if="{{hasUserInfo}}" bindtap="gotoPage"/>
+        <image src="{{userInfo.avatarUrl}}" class="avatar" wx:if="{{hasUserInfo}}" bindtap="gotoPage" />
         <image src="{{userInfo.avatarUrl}}" class="avatar" wx:else open-type="getUserInfo" bindtap="onGetUserInfo" />
       </view>
       <view class="user">
-        <view class="name" >
+        <view class="name">
           <text wx:if="{{hasUserInfo}}">{{userInfo.nickName}}</text>
           <text wx:else>点击头像登录</text>
         </view>
@@ -18,7 +18,9 @@
           <text wx:if="{{hasUserInfo}}">{{userInfo.signature}}</text>
         </view>
       </view>
-      <view class="card"><iconfont type="saoyisao" size="25px" color="white" /></view>
+      <view class="card">
+        <iconfont type="saoyisao" size="25px" color="white" />
+      </view>
     </view>
     <view class="bar2">
       <navigator url="../fanList/fanList?type=2" class="item">
@@ -36,8 +38,8 @@
     </view>
     <view class="bar3">
       <view class="item" bindtap="gotoCart">
-          <image class="ico" src="/images/2.png"></image>
-          <view>待付款</view>
+        <image class="ico" src="/images/2.png"></image>
+        <view>待付款</view>
       </view>
       <view class="item">
         <image class="ico" src="/images/1.png"></image>
@@ -52,33 +54,44 @@
         <view>待评价</view>
       </view>
     </view>
-    <container title="基础用法">
-  <tabs items="{{ items }}" />
-  
-</container>
+    <tabs items="{{ items }}" current="{{index}}" bind:change="handleChange" />
     <scroll-view scroll-y refresher-enabled scroll-with-animation enable-back-to-top="{{isActive}}" refresher-triggered="{{refreshState}}" bindrefresherrefresh="onRefresh" bindrefresherrestore="abortRefresh" bindrefresherabort="abortRefresh" bindscrolltolower="onLoadMore" scroll-top="{{pos}}" class="container">
-  <view class="goods-container">
-    <view class="goods-box" bindtap="goDetail" data-index="{{item.contentId}}" wx:for="{{postsList}}">
-      <view class="img-box">
-        <image src="{{item.coverPath}}" class="image" mode="aspectFill" lazy-load="true" />
-		<view class="label" >
-			{{item.contentType ==='0'?'图片':'视频'}}
-		</view>
-      </view>
-      <view class="goods-title">{{item.title}}</view>
-      <view style='display:flex;'>
-        <view class="goods-price" style='color:#aaa;'><image src="{{item.userInfo.avatar}}" mode=""/><text>{{item.userInfo.nickname}}</text></view>
-        <view class="goods-price like" >❤️{{item.likeCount}}</view>
-      </view>
-    </view>
+      <view class="goods-container">
+        <view bindtap="goDetail" data-index="{{item.contentId}}" class="goods-box" wx:for="{{postsList}}">
+          <view class="img-box">
+            <image src="{{item.coverPath}}" class="image" mode="aspectFill" lazy-load="true" />
+            <view class="label">
+              <block wx:if="{{item.contentType==0}}">
+                {{item.imgNum}} </block>
+              <block wx:else>
+                ▶
+              </block>
+            </view>
+          </view>
+          <view class="titleBox">
+            <view class="goods-title">{{item.title}}</view>
+            <view catchtap="goAnimal" class="petLabel" data-id="{{item.userPet.petId}}">
+              <text>{{item.userPet.name}}</text>
+            </view>
+          </view>
 
+          <view style='display:flex;'>
+            <view catchtap="goUser" data-id="{{item.userInfo.openid}}" class="goods-price" style='color:rgb(31, 30, 30);'>
+              <image src="{{item.userInfo.avatar}}" mode="" /><text>{{item.userInfo.nickname}}</text>
+            </view>
+            <view class="goods-price like">❤️{{item.likeCount}}</view>
+          </view>
+          <view class="time">{{item.updateTime}}</view>
+        </view>
+
+      </view>
+      <view class="load-more">
+        <view class="{{loadState}}"></view>
+        <text wx:if="{{noMore}}">没有更多了</text>
+      </view>
+    </scroll-view>
   </view>
-  <view class="load-more">
-    <view class="{{loadState}}"></view>
-  </view>
-</scroll-view>
-  </view>
-  
+
 </scroll-view>
 
 <view class="page-tabbar page-ipx-safe-area"></view>

@@ -10,7 +10,7 @@ Page({
     scrollPos: 0,
     navList: [],
     sort: [],
-
+    OperateType:0,
   },
 
   /**
@@ -67,7 +67,7 @@ Page({
   },
   getSort() {
     wx.request({
-      url: getApp().globalData.baseUrl + `/wx/goods/showGoodsList?OperateType=0&categoryId=${this.data.activeId}`,
+      url: getApp().globalData.baseUrl + `/wx/goods/showGoodsList?OperateType=${this.data.OperateType}&categoryId=${this.data.activeId}`,
       method: "GET",
       success: (res) => {
         const {

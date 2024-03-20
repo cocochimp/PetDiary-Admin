@@ -265,141 +265,149 @@ page {
 	}
 }
 
-/* 拼接 */
-.index_swiper swiper {
-	height: 340rpx;
-	width: 750rpx;
+.container2 {
+  height: calc(100%);
 }
 
-.index_swiper swiper image {
-	width: 100%;
+.load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40px;
 }
 
-.category-box {
-	/* background-color: #fff; */
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 30rpx;
+
+/* 动画 */
+.loading {
+  width: 25px;
+  height: 25px;
+  background-color: grey;
+  animation: sk-plane 1.2s infinite ease-in-out;
 }
 
-.category-list {
-	width: 150rpx;
-	margin-top: 20rpx;
-	text-align: center;
-	display: inline-block;
-	overflow: hidden;
-}
+@keyframes sk-plane {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
 
-.category-column {
-	width: 100%;
-	margin-top: 20rpx;
-	overflow: hidden;
-}
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
 
-.category-imgbox {
-	width: 80rpx;
-	height: 80rpx;
-}
-
-.category-title {
-	font-size: 24rpx;
-	text-align: center;
-	margin-top: 10rpx;
-}
-
-.title-box {
-	/* margin-bottom: 0px; */
-	margin-top: 40rpx;
-	display: flex;
-	justify-content: center;
-	background-color: #F2f2f2;
-}
-
-.title {
-	padding: 24rpx;
-	color: rgba(0, 0, 0, .5);
-	font-size: 28rpx;
-}
-
-.weui-loadmore {
-	margin-bottom: 0px;
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }
 
 .goods-container {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	box-sizing: content-box;
-	padding: 24rpx;
-	background-color: #F2f2f2;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-sizing: content-box;
+  padding: 24rpx;
+  background-color: #F2f2f2;
 }
 
 .goods-box {
-	width: 339rpx;
-	height: 472rpx;
-	background-color: #fff;
-	overflow: hidden;
-	margin-bottom: 24rpx;
-	border-radius: 5px;
+  width: 339rpx;
+  height: 494rpx;
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  border-radius: 5px;
 }
 
 .goods-box .img-box {
-	width: 339rpx;
-	height: 339rpx;
-	overflow: hidden;
-	position: relative;
+  width: 339rpx;
+  height: 339rpx;
+  overflow: hidden;
+  position: relative;
 }
 
 .goods-box .img-box image {
-	width: 339rpx;
-	height: 339rpx;
+  width: 339rpx;
+  height: 339rpx;
 }
 
 .goods-box .img-box .label {
-	position: absolute;
-	right: 0;
-	top: 0;
-	color: white;
-	background-color: black;
-	font-size: small;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: white;
+  background-color: rgb(63, 62, 62);
+  font-size: small;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  padding-top: 24rpx;
 }
 
 .goods-box .goods-title {
-	width: 280rpx;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	overflow: hidden;
-	font-size: 24rpx;
-	padding: 24rpx 0 0rpx 0;
-	color: #000;
-	margin-left: 24rpx;
+  width: 500rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 24rpx;
+  color: #000;
+  margin-left: 24rpx;
+}
+
+.goods-box .petLabel {
+  z-index: 9999;
+  width: 280rpx;
+  font-size: 22rpx;
+  color: white;
+  margin-left: 24rpx;
+}
+
+.goods-box .petLabel text {
+  background-color: #db6b49;
+  padding: 0 10rpx;
+  border-radius: 30px;
+  height: 40px;
 }
 
 .goods-box .goods-price image {
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	margin-right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 4px;
 }
 
 .goods-box .goods-price {
-	width: 280rpx;
-	overflow: hidden;
-	font-size: 24rpx;
-	padding: 24rpx 0;
-	color: #e64340;
-	margin-left: 24rpx;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-self: center;
+  width: 280rpx;
+  overflow: hidden;
+  font-size: 24rpx;
+  padding: 8rpx 0;
+  padding-bottom: 2rpx;
+  color: #e64340;
+  margin-left: 24rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: center;
 }
+
 .goods-box .like {
   margin-right: 4px;
   width: 40px;
+  color: rgb(134, 134, 134);
+}
+
+.goods-box .time {
+  width: 280rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 20rpx;
+  color: #ccc;
+  margin-left: 24rpx;
 }

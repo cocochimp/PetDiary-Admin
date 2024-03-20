@@ -42,4 +42,9 @@
   box-shadow: 0 0 20px -3px rgba(220, 220, 220, 0.8);
   height: 150px;
   border-radius: 10px;
+  display: flex;
+}
+.itemPic {
+  width: 70%;
+  height: 100%;
 }

@@ -60,7 +60,7 @@ Component({
         operationType: value,
         postsList: [],
         pageNum: 1,
-        noMore:false
+        noMore: false
       })
       this.getPosts()
       if (index != this.data.active) {
@@ -84,7 +84,7 @@ Component({
             const {
               data
             } = res
-          
+
             if (!data.rows[0]) {
               this.setData({
                 noMore: true,
@@ -93,12 +93,14 @@ Component({
               resolve();
             } else {
               console.log('data.rows', data.rows);
-              if (data.rows.coverPath) {
-                data.rows.forEach(item => {
+              data.rows.forEach(item => {
+                if (item.coverPath) {
+                  item.imgNum = item.coverPath.split(',').length
                   item.coverPath = item.coverPath.split(',')[0];
-                });
-              }
-              
+                }
+
+              });
+
               const originData = this.data.postsList
               this.setData({
                 postsList: [...originData, ...data.rows]
@@ -142,6 +144,17 @@ Component({
 
       wx.navigateTo({
         url: `/pages/home/Detail/Detail?contentId=${e.currentTarget.dataset.index}`,
+      })
+    },
+    goAnimal(e) {
+      console.log(e.currentTarget.dataset.id);
+      wx.navigateTo({
+        url: `/pages/social/animal/animal?id=${e.currentTarget.dataset.id}`,
+      })
+    },
+    goUser(e) {
+      wx.navigateTo({
+        url: `/pages/user/detail/detail?userId=${e.currentTarget.dataset.id}`,
       })
     }
   }

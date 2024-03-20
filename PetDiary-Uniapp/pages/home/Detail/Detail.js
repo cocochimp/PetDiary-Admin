@@ -23,15 +23,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    var coverPath = this.data.detailList.coverPath.split(',')
-    var videoPath = this.data.detailList.videoPath.split(',')
-    var comments = this.data.detailList.userComment
-    this.setData({
-      'detailList.coverPath': coverPath,
-      'detailList.videoPath': videoPath,
-      comments:comments
-    })
-    console.log(this.data.comments);
+    // var coverPath = this.data.detailList.coverPath.split(',')
+    // var videoPath = this.data.detailList.videoPath.split(',')
+    // var comments = this.data.detailList.userComment
+    // console.log(11);
+    // this.setData({
+    //   'detailList.coverPath': coverPath,
+    //   'detailList.videoPath': videoPath,
+    //   comments:comments
+    // }) 
+    // console.log(this.data.comments);
+    console.log(11);
     wx.request({
       url: getApp().globalData.baseUrl + `/wx/home/showContentInfoById?contentId=${options.contentId}`,
       method: "GET",
