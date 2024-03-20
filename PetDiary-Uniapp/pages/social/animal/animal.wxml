@@ -1,5 +1,6 @@
 
-<ant-container>
+<view class="card">
+  <ant-container >
 <!-- pages/index/index.wxml -->
 <view class="content container">
   <!-- 左侧显示头像 -->
@@ -19,4 +20,25 @@
       <view class="type"><text>特征：{{petInfo.feature}}</text></view>
     <!-- 其他相关信息根据需求添加 -->
   </view>
-</view></ant-container>
+</view></ant-container></view>
+<scroll-view scroll-y refresher-enabled scroll-with-animation enable-back-to-top="{{isActive}}" refresher-triggered="{{refreshState}}" bindrefresherrefresh="onRefresh" bindrefresherrestore="abortRefresh" bindrefresherabort="abortRefresh" bindscrolltolower="onLoadMore" scroll-top="{{pos}}" class="container2">
+  <view class="goods-container">
+    <view class="goods-box" bindtap="goDetail" data-index="{{item.contentId}}" wx:for="{{postsList}}">
+      <view class="img-box">
+        <image src="{{item.coverPath}}" class="image" mode="aspectFill" lazy-load="true" />
+		<view class="label" >
+			{{item.contentType ==='0'?'图片':'视频'}}
+		</view>
+      </view>
+      <view class="goods-title">{{item.title}}</view>
+      <view style='display:flex;'>
+        <view class="goods-price" style='color:#aaa;'><image src="{{item.userInfo.avatar}}" mode=""/><text>{{item.userInfo.nickname}}</text></view>
+        <view class="goods-price like" >❤️{{item.likeCount}}</view>
+      </view>
+    </view>
+
+  </view>
+  <view class="load-more">
+    <view class="{{loadState}}"></view>
+  </view>
+</scroll-view>

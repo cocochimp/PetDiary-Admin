@@ -4,7 +4,7 @@
   <view class="left"></view>
   <scroll-view scroll-x class="tab">
     <view class="list" style="justify-content: center;">
-      <view class="item {{active === index ? 'active' : ''}}" bindtap="switchTab" wx:for="{{navBarList}}" wx:key="index" data-index="{{index}}">
+      <view class="item {{active === index ? 'active' : ''}}" bindtap="switchTab" wx:for="{{navBarList}}" wx:key="index" data-index="{{index}}" data-value="{{item.value}}">
         {{item.title}}
       </view>
     </view>
@@ -14,24 +14,23 @@
 
 <scroll-view scroll-y refresher-enabled scroll-with-animation enable-back-to-top="{{isActive}}" refresher-triggered="{{refreshState}}" bindrefresherrefresh="onRefresh" bindrefresherrestore="abortRefresh" bindrefresherabort="abortRefresh" bindscrolltolower="onLoadMore" scroll-top="{{pos}}" class="container">
   <view class="goods-container">
-    <navigator class="goods-box" wx:for="{{goodList}}">
+    <view bindtap="goDetail" data-index="{{item.contentId}}" class="goods-box" wx:for="{{postsList}}">
       <view class="img-box">
-        <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+        <image src="{{item.coverPath}}" class="image" mode="aspectFill" lazy-load="true" />
 		<view class="label" >
-			{{item.type===0?'图片':'视频'}}
+			{{item.contentType ==='0'?'图片':'视频'}}
 		</view>
       </view>
-      <view class="goods-title">{{item.name}}</view>
+      <view class="goods-title">{{item.title}}</view>
       <view style='display:flex;'>
-        <view class="goods-price" style='color:#aaa;text-decoration:line-through'><image src="{{item.pic}}" mode=""/><text>{{item.minPrice}}</text></view>
-        <view class="goods-price" >
-			❤️
-        </view>
+        <view class="goods-price" style='color:#aaa;'><image src="{{item.userInfo.avatar}}" mode=""/><text>{{item.userInfo.nickname}}</text></view>
+        <view class="goods-price like" >❤️{{item.likeCount}}</view>
       </view>
-    </navigator>
+    </view>
 
   </view>
   <view class="load-more">
     <view class="{{loadState}}"></view>
+    <text wx:if="{{noMore}}">没有更多了</text>
   </view>
 </scroll-view>

@@ -325,3 +325,7 @@
 	align-items: center;
 	justify-self: center;
 }
+.goods-box .like {
+  margin-right: 4px;
+  width: 40px;
+}

@@ -3,6 +3,7 @@
     "pages/home/index/index",
     "pages/home/publish/publish",
     "pages/home/publishVideo/publishVideo",
+    "pages/home/Detail/Detail",
 
     "pages/shop/goods/goods",
     "pages/shop/index/index",
@@ -11,6 +12,8 @@
 
     "pages/user/index/index",
     "pages/user/cart/cart",
+    "pages/user/detail/detail",
+    "pages/user/fanList/fanList",
 
     "pages/search/search",
     "pages/social/index/index",

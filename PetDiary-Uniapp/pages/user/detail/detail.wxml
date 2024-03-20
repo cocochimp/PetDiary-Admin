@@ -1,0 +1,39 @@
+<!--pages/user/index/index.wxml-->
+<scroll-view scroll-y class="page-content">
+  <view class="a">
+    <view class="view" />
+  </view>
+  <view class="container">
+    <view class="bar1">
+      <view>
+        <image src="{{userInfo.userInfo.avatar}}" class="avatar" open-type="getUserInfo" />
+      </view>
+      <view class="user">
+        <view class="name">
+          <text>{{userInfo.userInfo.nickname}}</text>
+        </view>
+        <view class="sub">
+          <text wx:if="{{hasUserInfo}}">{{userInfo.signature}}</text>
+        </view>
+      </view>
+      <view class="card">
+        <iconfont type="saoyisao" size="25px" color="white" />
+      </view>
+    </view>
+    <view class="bar2">
+      <navigator url="../fanList/fanList?type=2" class="item">
+        <view class="num">{{userInfo.fanCount}}</view>
+        粉丝
+      </navigator>
+      <navigator url="../fanList/fanList?type=2" class="item">
+        <view class="num">{{userInfo.attentionCount}}</view>
+        关注
+      </navigator>
+      <view class="item">
+        <view class="num">{{userInfo.likeCount}}</view>
+        喜欢
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class="page-tabbar page-ipx-safe-area"></view>

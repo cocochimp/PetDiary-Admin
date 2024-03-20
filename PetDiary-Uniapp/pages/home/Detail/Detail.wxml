@@ -1,0 +1,86 @@
+<!-- pages/postDetail/postDetail.wxml -->
+
+<view class="container">
+  <!-- 顶部 -->
+  <view class="top">
+    <!-- 用户信息 -->
+    <view class="user-info">
+      <image class="avatar" src="{{ detailList.userInfo.avatar }}"></image>
+      <view class="nickname">{{ detailList.userInfo.nickname }}</view>
+    </view>
+    <view class="button">
+      <!-- 关注按钮 -->
+      <button class="follow-btn">关注</button>
+      <!-- 分享按钮 -->
+      <button class="share-btn">分享</button>
+    </view>
+  </view>
+  <view class="content">
+    <!-- 图片列表 -->
+    <swiper wx:if="{{!detailList.videoPath}}" class="swiper" indicator-dots="{{true}}" autoplay="{{false}}" interval="{{5000}}" duration="{{500}}">
+      <block wx:for="{{ detailList.coverPath }}" wx:key="index">
+        <swiper-item>
+          <image class="image-item" src="{{ item }}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <!-- 视频 -->
+    <video wx:else="" class="video" src="{{ detailList.videoPath }}"></video>
+  </view>
+  <!-- 标题 -->
+  <view class="title">{{ detailList.title }}</view>
+  <!-- 文章描述 -->
+  <view class="description">{{ detailList.description }}</view>
+  <view class="updateTime">{{ detailList.updateTime }}</view>
+  <!-- <template name="renderComments" is="block" data="{{ comments }}"> -->
+    评论
+    <block wx:for="{{ comments }}" wx:key="commentId">
+      <!-- 检查是否是新建的评论 -->
+      <block wx:if="{{ item.parentCommentId === 666 }}">
+        <view class="comment-item">
+          <!-- 显示评论内容 -->
+          <view class="comment-content">{{ item.commentInfo }}</view>
+          <!-- 显示评论者信息 -->
+          <view class="comment-user">评论者: {{ item.userId }}</view>
+        </view>
+      </block>
+      <!-- 如果不是新建的评论，则表示是回复其他评论 -->
+      <block wx:else>
+        <view class="reply-item">
+          <!-- 显示回复内容 -->
+          <view class="reply-content">{{ item.commentInfo }}</view>
+          <!-- 显示回复者信息 -->
+          <view class="reply-user">回复者: {{ item.userId }}</view>
+        </view>
+        <!-- 递归渲染子评论 -->
+        <!-- <template is="renderComments" data="{{ comments: item.children }}"></template> -->
+      </block>
+    </block>
+  <!-- </template> -->
+
+
+  <!-- 用户宠物信息 -->
+  <!-- <view class="pet-info">
+    <image class="pet-avatar" src="{{ detailList.userPet.img }}"></image>
+    <view class="pet-name">{{ detailList.userPet.name }}</view>
+    <view class="pet-character">{{ detailList.userPet.character }}</view>
+  </view> -->
+  <view class="bottom-box"></view>
+
+  <!-- 点赞和评论信息 -->
+  <view class="interact-info">
+    <view data-position="bottom" bind:tap="handleShowBasic" class="ant-button1">
+      说点什么...
+    </view>
+    <ant-popup visible="{{ basicVisible }}" height="{{ 250 }}" width="{{ 250 }}" position="{{ position }}" animation="{{ animation }}" class="name1" bind:close="handlePopupClose">
+      <view style="padding: 12px">
+        从屏幕滑出或弹出一块自定义内容区，用于展示弹窗、信息提示、选择输入、切换等内容。
+      </view>
+    </ant-popup>
+    <view class="right">
+      <view class="like-count"><text class="iconfont icon-aixin"></text> {{ detailList.likeCount }}</view>
+      <view class="comment-count"><text class="iconfont icon-pinglun"></text> {{ detailList.userComment.length }}</view>
+    </view>
+  </view>
+</view>

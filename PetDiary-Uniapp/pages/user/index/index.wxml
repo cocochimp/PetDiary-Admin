@@ -21,17 +21,17 @@
       <view class="card"><iconfont type="saoyisao" size="25px" color="white" /></view>
     </view>
     <view class="bar2">
-      <view class="item">
-        <view class="num">63</view>
+      <navigator url="../fanList/fanList?type=2" class="item">
+        <view class="num">{{userInfo1.fanCount}}</view>
         粉丝
-      </view>
-      <view class="item">
-        <view class="num">286</view>
-        动态
-      </view>
-      <view class="item">
-        <view class="num">59</view>
+      </navigator>
+      <navigator url="../fanList/fanList?type=1" class="item">
+        <view class="num">{{userInfo1.attentionCount}}</view>
         关注
+      </navigator>
+      <view class="item">
+        <view class="num">{{userInfo1.likeCount}}</view>
+        喜欢
       </view>
     </view>
     <view class="bar3">
@@ -52,7 +52,33 @@
         <view>待评价</view>
       </view>
     </view>
+    <container title="基础用法">
+  <tabs items="{{ items }}" />
+  
+</container>
+    <scroll-view scroll-y refresher-enabled scroll-with-animation enable-back-to-top="{{isActive}}" refresher-triggered="{{refreshState}}" bindrefresherrefresh="onRefresh" bindrefresherrestore="abortRefresh" bindrefresherabort="abortRefresh" bindscrolltolower="onLoadMore" scroll-top="{{pos}}" class="container">
+  <view class="goods-container">
+    <view class="goods-box" bindtap="goDetail" data-index="{{item.contentId}}" wx:for="{{postsList}}">
+      <view class="img-box">
+        <image src="{{item.coverPath}}" class="image" mode="aspectFill" lazy-load="true" />
+		<view class="label" >
+			{{item.contentType ==='0'?'图片':'视频'}}
+		</view>
+      </view>
+      <view class="goods-title">{{item.title}}</view>
+      <view style='display:flex;'>
+        <view class="goods-price" style='color:#aaa;'><image src="{{item.userInfo.avatar}}" mode=""/><text>{{item.userInfo.nickname}}</text></view>
+        <view class="goods-price like" >❤️{{item.likeCount}}</view>
+      </view>
+    </view>
 
   </view>
+  <view class="load-more">
+    <view class="{{loadState}}"></view>
+  </view>
 </scroll-view>
+  </view>
+  
+</scroll-view>
+
 <view class="page-tabbar page-ipx-safe-area"></view>

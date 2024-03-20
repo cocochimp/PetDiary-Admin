@@ -1,6 +1,3 @@
-// pages/social/components/local/index/index.js
-var canLoading = true
-var loadPages = 1
 Component({
   /* 组件的属性列表 */
   properties: {
@@ -8,179 +5,96 @@ Component({
   },
   /* 组件的初始数据 */
   data: {
-    active: 3,
     refreshState: false,
-    loadState: "finish",
-    // navBarList: [
-    //   {title: "推荐"},
-    //   {title: "最新"},
-    //   {title: "热榜"}
-    // ],
-    videoId: null,
-    contentArray: [],
-    contentArrayLength: 0,
-    res: [],
-    list: []
+    postsList: [],
+    operationType: 5, //控制哪个类型数据获取
+    loadState: 'finish',
+    pageNum: 1,
+    noMore: false,
+
+
+
   },
   attached: function () {
-    console.log("进入:attached")
-    this.showContentInfo();
-    this.setData({
-      refreshState: true,
-    })
-    setTimeout(() => {
-      let data = this._getDemoData()
-      this._loadList(data)
-    }, 1000)
+    this.getPosts();
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    // 切换标签
-    switchTab(e) {
-      const index = e.currentTarget.dataset.index
-      console.log("index",index)
-      console.log("active",this.data.active)
-      if (index != this.data.active) {
-        console.log("center change tab")
+   
+    // 获取数据
+    getPosts() {
+      return new Promise((resolve, reject) => {
         this.setData({
-          refreshState: true,
-          active: index
+          loadState: 'loading'
         })
-      }
+        wx.request({
+          url: getApp().globalData.baseUrl + `/wx/home/showContentInfo?operationType=${this.data.operationType}&pageNum=${this.data.pageNum}&openId=${getApp().globalData.userInfo.openId}`,
+          method: "GET",
+          success: (res) => {
+            const {
+              data
+            } = res
+          
+            if (!data.rows[0]) {
+              this.setData({
+                noMore: true,
+                loadState: 'finish'
+              })
+              resolve();
+            } else {
+              console.log('data.rows', data.rows);
+              if (data.rows.coverPath) {
+                data.rows.forEach(item => {
+                  item.coverPath = item.coverPath.split(',')[0];
+                });
+              }
+              const originData = this.data.postsList
+              this.setData({
+                postsList: [...originData, ...data.rows]
+              });
+              console.log('postsList', this.data.postsList);
+              resolve();
+            }
+          },
+          fail: function (res) {
+            console.log(res);
+            reject(res);
+          }
+        });
+      });
     },
-    // 播放视频
-    onVideoPlay(e) {
-      const index = e.currentTarget.dataset.index
-      if (index != this.data.videoId) {
-        console.log("center change video play")
-        this.setData({
-          videoId: index
-        })
-      }
-    },
+
     /* 刷新开始处理 */
     onRefresh() {
-      this.showContentInfo();
+      console.log('开始刷新');
       this.setData({
-        refreshState: true,
-        videoId: null
+        postsList: []
       })
-      console.log("center onRefresh")
-      setTimeout(() => {
-        if (this.data.refreshState) {
-          console.log("center refreshing")
-          this.data.list = []
-          canLoading = true
-          loadPages = 1
-          let data = this._getDemoData()
-          this._loadList(data)
-        }
-      }, 1000)
-    },
-    /* 刷新停止处理 */
-    abortRefresh() {
-      console.log("center abortRefresh")
-      if (this.data.refreshState) {
-        this.setData({
-          refreshState: false,
-        })
-      }
-    },
-    /* 加载更多处理 */
-    onLoadMore() {
-      console.log("center loadmore")
-      if (canLoading) {
-        this.setData({
-          loadState: "loading",
-        })
+      // 返回一个 Promise 对象
+      this.getPosts().then(() => {
         setTimeout(() => {
-          let data = this._getDemoData()
-          loadPages++
-          this._loadList(data)
-        }, 1000)
-      }
-    },
-    _loadList(data) {
-      console.log("center loadlist",data)
-      // if (loadPages > 3 || data.length == 0) {
-      //   console.log("center finishloading")
-      //   canLoading = false
-      // }
-      this.setData({
-        list: this.data.list.concat(data),
-        refreshState: false,
-        loadState: "finish"
-      })
-    },
-    showContentInfo() {
-      const that = this;
-      console.log("进入formSubmit,active:", this.data.active);
-      wx.request({
-        url: getApp().globalData.baseUrl + '/wx/home/showContentInfo',
-        method: 'GET',
-        data: {
-          operationType: 3,
-          openId: getApp().globalData.userInfo.openId
-        },
-        header: {
-          "content-Type": "application/json"
-        },
-        success: function(res) {
-          if (res.data.code == 200) {
-            var contentArray = res.data.rows;
-            console.log('contentArray:', contentArray);
-            that.setData({
-              contentArray: contentArray,
-              contentArrayLength: res.data.rows.length
-            })
-            that._getDemoData();
-          } else {
-            console.log('服务器异常');
-          }
-        },
-        fail: function(error) {
-          //调用服务端登录接口失败
-          console.log(error);
-        }
-      })
-    },
-    _getDemoData() {
-      let data = []
-      for (let i = 0; i < this.data.contentArrayLength; i++) {
-        console.log(this.data.contentArray[i]);
-        const contentInfo = this.data.contentArray[i];
-        const userInfo = contentInfo.userInfo;
-        let tmp = {
-          id: contentInfo.contentId,
-          avatar: userInfo.avatar,
-          username: userInfo.nickname,
-          intro: contentInfo.description,
-          commentTotal: contentInfo.userComment.length,
-          likeTotal: contentInfo.likeCount,
-          fanTotal: contentInfo.fanCount,
-          publishTime: contentInfo.updateTime,
-          contentType: contentInfo.contentType,
-        };
-        if (contentInfo.contentType == "0") {
-          tmp.pic = {
-            type: "long",
-            url: contentInfo.coverPath.split(",")
-          };
-        } else if (contentInfo.contentType == "1") {
-          tmp.video = {
-            thumb: contentInfo.coverPath,
-            url: contentInfo.videoPath
-          };
-        }
-        data.push(tmp);
-      }
-      this.setData({
-        list: data
+          this.setData({
+            refreshState: false
+          });
+          console.log('刷新完成');
+        }, 1000);
       });
-      console.log("activeData",this.data.list)
+    },
+
+    /* 下拉到底处理 */
+    onLoadMore() {
+      this.data.pageNum += 1
+      this.getPosts()
+    },
+
+    goDetail(e) {
+
+      wx.navigateTo({
+        url: `/pages/home/Detail/Detail?contentId=${e.currentTarget.dataset.index}`,
+      })
     }
   }
 })
