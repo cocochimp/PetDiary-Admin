@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "container": "antd-mini/Container/index",
+    "tabs": "antd-mini/Tabs/index"
+  }
 }

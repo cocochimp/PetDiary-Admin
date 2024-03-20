@@ -4,15 +4,17 @@
   <view class="countdown">
     <view class="time">{{hour}}</view>:
     <view class="time">{{minute}}</view>:
-    <view class="time">{{second}}</view>:
-    <view class="time">{{millisecond}}</view>
+    <view class="time">{{second}}</view>
   </view>
   <view class="sub">每天10点 限时限量</view>
 </view>
-<swiper circular previous-margin="30px" next-margin="30px" class="list">
+<swiper autoplay circular previous-margin="30px" next-margin="30px" class="list">
   <swiper-item wx:for="{{list}}" wx:key="index">
     <view class="item">
-      {{index}}
+      <image class="itemPic" src="{{item.coverPhoto}}" mode="" data-index="{{index}}" binderror="handleImageError" />
+      <view>
+        {{item.name}}
+      </view>
     </view>
   </swiper-item>
 </swiper>

@@ -26,7 +26,7 @@
     </swiper>
 
     <!-- 视频 -->
-    <video wx:else="" class="video" src="{{ detailList.videoPath }}"></video>
+    <video wx:else class="video" src="{{ detailList.videoPath }}"></video>
   </view>
   <!-- 标题 -->
   <view class="title">{{ detailList.title }}</view>

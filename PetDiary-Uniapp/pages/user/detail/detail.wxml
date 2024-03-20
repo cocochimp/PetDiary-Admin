@@ -34,6 +34,40 @@
         喜欢
       </view>
     </view>
+    <tabs items="{{ items }}" current="{{index}}" bind:change="handleChange" />
+    <scroll-view scroll-y refresher-enabled scroll-with-animation enable-back-to-top="{{isActive}}" refresher-triggered="{{refreshState}}" bindrefresherrefresh="onRefresh" bindrefresherrestore="abortRefresh" bindrefresherabort="abortRefresh" bindscrolltolower="onLoadMore" scroll-top="{{pos}}" class="container">
+      <view class="goods-container">
+        <view bindtap="goDetail" data-index="{{item.contentId}}" class="goods-box" wx:for="{{postsList}}">
+          <view class="img-box">
+            <image src="{{item.coverPath}}" class="image" mode="aspectFill" lazy-load="true" />
+            <view class="label1">
+              <block wx:if="{{item.contentType==0}}">
+                {{item.imgNum}} </block>
+              <block wx:else>
+                ▶
+              </block>
+            </view>
+          </view>
+          <view class="titleBox">
+            <view class="goods-title">{{item.title}}</view>
+            <view catchtap="goAnimal" class="petLabel" data-id="{{item.userPet.petId}}">
+              <text>{{item.userPet.name}}</text>
+            </view>
+          </view>
+
+          <view style='display:flex;'>
+            <view catchtap="goUser" data-id="{{item.userInfo.openid}}" class="goods-price" style='color:rgb(31, 30, 30);'>
+              <image src="{{item.userInfo.avatar}}" mode="" /><text>{{item.userInfo.nickname}}</text>
+            </view>
+            <view class="goods-price like">❤️{{item.likeCount}}</view>
+          </view>
+          <view class="time">{{item.updateTime}}</view>
+        </view>
+      </view>
+      <view class="load-more">
+        <view class="{{loadState}}"></view>
+        <text wx:if="{{noMore}}">没有更多了</text>
+      </view>
+    </scroll-view>
   </view>
 </scroll-view>
-<view class="page-tabbar page-ipx-safe-area"></view>
