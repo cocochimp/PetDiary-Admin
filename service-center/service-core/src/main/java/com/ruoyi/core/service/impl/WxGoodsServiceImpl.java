@@ -58,6 +58,11 @@ public class WxGoodsServiceImpl implements WxGoodsService
     }
 
     @Override
+    public List<Goods> showGoodsDetailById(Integer goodId) {
+        return wxGoodsMapper.showGoodsDetailById(goodId);
+    }
+
+    @Override
     public List<CarGoodsListInfo> showCarListByUserId(String uId) {
         return wxGoodsMapper.showCarListByUserId(uId);
     }

@@ -1,5 +1,6 @@
 package com.ruoyi.core.service;
 
+import com.ruoyi.core.domain.Goods;
 import com.ruoyi.core.domain.GoodsCar;
 import com.ruoyi.core.domain.GoodsCategory;
 import com.ruoyi.core.domain.vo.CarGoodsListInfo;
@@ -20,6 +21,7 @@ public interface WxGoodsService
      */
     List<GoodsListInfo> showGoodsList(String OperateType, int categoryId);
     List<GoodsCategory> showCategoryInfo();
+    List<Goods> showGoodsDetailById(Integer goodId);
 
     /**
      * 购物车

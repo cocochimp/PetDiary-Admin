@@ -52,6 +52,15 @@ public class WxGoodsController extends BaseController {
     }
 
     /**
+     * 查看商品详情
+     */
+    @GetMapping("/showGoodsDetailById")
+    @Operation(summary = "查看商品详情", security = {@SecurityRequirement(name = "Authorization")})
+    public TableDataInfo showGoodsDetailById(@RequestParam("goodId") Integer goodId){
+        return getDataTable(wxGoodsService.showGoodsDetailById(goodId));
+    }
+
+    /**
      * 购物车List
      */
     @GetMapping("/showCarListByUserId")
@@ -66,10 +75,7 @@ public class WxGoodsController extends BaseController {
     @PostMapping("/addCarShop")
     @Operation(summary = "加入购物车", security = {@SecurityRequirement(name = "Authorization")})
     public GlobalResult showCarListByUserId(@RequestBody GoodsCar goodsCar){
-//        GlobalResult globalResult = new GlobalResult();
         boolean res = wxGoodsService.addCarShop(goodsCar);
-//        globalResult.setMsg(res ?"成功":"失败");
-//        globalResult.setStatus(res ?200:500);
         return GlobalResult.ok(res);
     }
 
