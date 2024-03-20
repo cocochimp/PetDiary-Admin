@@ -22,14 +22,14 @@ public class GoodsCar implements Serializable {
     private Long id;
 
     /** 商品ID */
-    private Long pId;
+    private Long pid;
 
     /** 用户ID */
-    private String uId;
+    private String uid;
 
     /** 数量 */
     private Integer num;
 
     /** 删除标志（0代表存在 2代表删除） */
-    private Character delFlag;
+    private Integer delFlag;
 }

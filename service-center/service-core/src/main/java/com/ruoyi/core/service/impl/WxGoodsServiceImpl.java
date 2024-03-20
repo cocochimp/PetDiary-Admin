@@ -1,7 +1,9 @@
 package com.ruoyi.core.service.impl;
 
 import com.ruoyi.core.domain.Goods;
+import com.ruoyi.core.domain.GoodsCar;
 import com.ruoyi.core.domain.GoodsCategory;
+import com.ruoyi.core.domain.vo.CarGoodsListInfo;
 import com.ruoyi.core.domain.vo.GoodsListInfo;
 import com.ruoyi.core.mapper.WxGoodsMapper;
 import com.ruoyi.core.service.WxGoodsService;
@@ -55,5 +57,27 @@ public class WxGoodsServiceImpl implements WxGoodsService
         return wxGoodsMapper.showCategoryInfo();
     }
 
+    @Override
+    public List<CarGoodsListInfo> showCarListByUserId(String uId) {
+        return wxGoodsMapper.showCarListByUserId(uId);
+    }
+
+    @Override
+    public boolean addCarShop(GoodsCar goodsCar) {
+        List<CarGoodsListInfo> carGoodsListInfos = wxGoodsMapper.showCarListByUserId(goodsCar.getUid());
+        if(carGoodsListInfos==null) return false;
+        boolean isExistShop = carGoodsListInfos.stream()
+                .anyMatch(carGoodsListInfo -> carGoodsListInfo.getPId().equals(goodsCar.getPid()));
+        //判断购物车是否有该数据
+        if(!isExistShop){
+//            goodsCar.setUid("'"+goodsCar.getUid()+"'");
+            int addCarShopRes = wxGoodsMapper.addCarShop(goodsCar.getPid(),goodsCar.getUid(),goodsCar.getNum());
+            return addCarShopRes>0;
+        } else{
+            if(goodsCar.getNum()>0) wxGoodsMapper.updateCarNum(goodsCar.getPid(),goodsCar.getUid(), goodsCar.getNum());
+            else wxGoodsMapper.deleteCarShop(goodsCar.getPid(), goodsCar.getUid());
+        }
+        return true;
+    }
 
 }

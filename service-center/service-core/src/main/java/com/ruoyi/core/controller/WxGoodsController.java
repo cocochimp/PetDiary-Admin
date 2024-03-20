@@ -1,16 +1,15 @@
 package com.ruoyi.core.controller;
 
+import com.ruoyi.common.core.domain.GlobalResult;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.page.TableDataInfo;
+import com.ruoyi.core.domain.GoodsCar;
 import com.ruoyi.core.domain.vo.GoodsListInfo;
 import com.ruoyi.core.service.WxGoodsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +50,31 @@ public class WxGoodsController extends BaseController {
     public TableDataInfo showCategoryInfo(){
         return getDataTable(wxGoodsService.showCategoryInfo());
     }
+
+    /**
+     * 购物车List
+     */
+    @GetMapping("/showCarListByUserId")
+    @Operation(summary = "购物车List", security = {@SecurityRequirement(name = "Authorization")})
+    public TableDataInfo showCarListByUserId(@RequestParam String uId){
+        return getDataTable(wxGoodsService.showCarListByUserId(uId));
+    }
+
+    /**
+     * 加入购物车
+     */
+    @PostMapping("/addCarShop")
+    @Operation(summary = "加入购物车", security = {@SecurityRequirement(name = "Authorization")})
+    public GlobalResult showCarListByUserId(@RequestBody GoodsCar goodsCar){
+//        GlobalResult globalResult = new GlobalResult();
+        boolean res = wxGoodsService.addCarShop(goodsCar);
+//        globalResult.setMsg(res ?"成功":"失败");
+//        globalResult.setStatus(res ?200:500);
+        return GlobalResult.ok(res);
+    }
+
+
+
 }
 
 

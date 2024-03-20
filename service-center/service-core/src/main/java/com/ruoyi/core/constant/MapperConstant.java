@@ -9,7 +9,8 @@ public class MapperConstant {
     /**
      * 逻辑删除
      */
-    public static final String del_flag=" del_flag=0 ";
+    public static final String del_flag=" del_flag=0 "; //正常状态
+    public static final String no_del_flag=" del_flag=2 "; //删除状态
 
     /**
      * 正常状态
