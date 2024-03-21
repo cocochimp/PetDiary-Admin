@@ -5,19 +5,18 @@
   indicator-dots
   >
     <swiper-item
-    wx:for="{{goodsObj.pics}}"
-    wx:key="pics_id"
+    wx:for="{{goodsObj.coverPhoto}}"
     bindtap="handlePrevewImage"
     data-url="{{item.pics_mid}}"
     >
-    <image mode="widthFix" src="{{item.pics_mid}}" ></image>
+    <image mode="widthFix" src="{{item}}" ></image>
     </swiper-item>
   </swiper>
 </view>
 
-<view class="goods_price">￥{{goodsObj.goods_price}}</view>
+<view class="goods_price">￥{{goodsObj.amount}}</view>
 <view class="goods_name_row">
-  <view class="goods_name">{{goodsObj.goods_name}}</view>
+  <view class="goods_name">{{goodsObj.name}}</view>
   <view class="goods_collect" bindtap="handleCollect" >
     <text class="iconfont   {{isCollect?'icon-shoucang1':'icon-shoucang'}} "></text>
     <view class="collect_text">收藏</view>
@@ -28,8 +27,7 @@
   <view class="goods_info_title">图文详情</view>
   <view class="goods_info_content">
     <!-- 富文本 -->
-    <!-- {{goodsObj.goods_introduce}} -->
-    <rich-text nodes="{{goodsObj.goods_introduce}}"></rich-text>
+    <rich-text nodes="{{goodsObj.content}}"></rich-text>
   </view>
 </view>
 

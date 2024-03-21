@@ -4,7 +4,7 @@
   <!-- 顶部 -->
   <view class="top">
     <!-- 用户信息 -->
-    <view class="user-info">
+    <view class="user-info" catchtap="goUser" data-id="{{detailList.userInfo.openid}}">
       <image class="avatar" src="{{ detailList.userInfo.avatar }}"></image>
       <view class="nickname">{{ detailList.userInfo.nickname }}</view>
     </view>

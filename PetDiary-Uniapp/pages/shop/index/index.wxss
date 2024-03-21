@@ -234,3 +234,6 @@
 .none {
   display: none;
 }
+.bg-p {
+  background-color: #9c4fc9;
+}

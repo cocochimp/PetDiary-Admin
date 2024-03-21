@@ -38,8 +38,8 @@
     </view>
     <view class="bar3">
       <view class="item" bindtap="gotoCart">
-        <image class="ico" src="/images/2.png"></image>
-        <view>待付款</view>
+        <image class="ico" src="/images/7.png"></image>
+        <view>购物车</view>
       </view>
       <view class="item">
         <image class="ico" src="/images/1.png"></image>
@@ -50,8 +50,8 @@
         <view>待收货</view>
       </view>
       <view class="item">
-        <image class="ico" src="/images/4.png"></image>
-        <view>待评价</view>
+        <image class="ico" src="/images/2.png"></image>
+        <view>全部订单</view>
       </view>
     </view>
     <tabs items="{{ items }}" current="{{index}}" bind:change="handleChange" />

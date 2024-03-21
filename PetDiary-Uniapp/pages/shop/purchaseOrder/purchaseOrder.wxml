@@ -1,0 +1,11 @@
+<ant-container headerInBox="{{ false }}">
+  <view slot="title">
+    <view class="icon">
+      <ant-icon
+        type="EnvironmentOutline"
+        style="margin-right: 2px" />
+      收货地址
+    </view>
+  </view>
+  <view class="Topcontent" >选择省市</view>
+</ant-container>
