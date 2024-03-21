@@ -23,17 +23,17 @@ export default {
       default: '300px'
     }
   },
-  data() {
+  data () {
     return {
       chart: null
     }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.initChart()
     })
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (!this.chart) {
       return
     }
@@ -41,10 +41,18 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart() {
+    initChart () {
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({
+        title: {
+          text: '宠物数量', // 标题文本
+          left: 'top', // 标题位置
+          textStyle: {
+            color: '#333', // 标题文字颜色
+            fontSize: 12 // 标题文字大小
+          }
+        },
         tooltip: {
           trigger: 'item',
           formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -52,21 +60,18 @@ export default {
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['Industries', 'Technology', 'Forex', 'Gold', 'Forecasts']
+          data: ['狗', '猫']
         },
         series: [
           {
-            name: 'WEEKLY WRITE ARTICLES',
+            name: '宠物比例',
             type: 'pie',
             roseType: 'radius',
             radius: [15, 95],
             center: ['50%', '38%'],
             data: [
-              { value: 320, name: 'Industries' },
-              { value: 240, name: 'Technology' },
-              { value: 149, name: 'Forex' },
-              { value: 100, name: 'Gold' },
-              { value: 59, name: 'Forecasts' }
+              { value: 71, name: '狗' },
+              { value: 64, name: '猫' },
             ],
             animationEasing: 'cubicInOut',
             animationDuration: 2600

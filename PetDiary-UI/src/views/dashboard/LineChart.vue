@@ -31,7 +31,7 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       chart: null
     }
@@ -39,17 +39,17 @@ export default {
   watch: {
     chartData: {
       deep: true,
-      handler(val) {
+      handler (val) {
         this.setOptions(val)
       }
     }
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.initChart()
     })
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (!this.chart) {
       return
     }
@@ -57,14 +57,14 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart() {
+    initChart () {
       this.chart = echarts.init(this.$el, 'macarons')
       this.setOptions(this.chartData)
     },
-    setOptions({ expectedData, actualData } = {}) {
+    setOptions ({ expectedData, actualData } = {}) {
       this.chart.setOption({
         xAxis: {
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
           boundaryGap: false,
           axisTick: {
             show: false
@@ -82,7 +82,8 @@ export default {
           axisPointer: {
             type: 'cross'
           },
-          padding: [5, 10]
+          padding: [5, 10],
+          show: true
         },
         yAxis: {
           axisTick: {
@@ -90,10 +91,10 @@ export default {
           }
         },
         legend: {
-          data: ['expected', 'actual']
+          data: ['预期', '实质']
         },
         series: [{
-          name: 'expected', itemStyle: {
+          name: '预期', itemStyle: {
             normal: {
               color: '#FF005A',
               lineStyle: {
@@ -109,7 +110,7 @@ export default {
           animationEasing: 'cubicInOut'
         },
         {
-          name: 'actual',
+          name: '实质',
           smooth: true,
           type: 'line',
           itemStyle: {
