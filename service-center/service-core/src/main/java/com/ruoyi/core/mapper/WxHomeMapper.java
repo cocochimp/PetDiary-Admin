@@ -135,15 +135,19 @@ public interface WxHomeMapper
             "where openid=#{openid} and " + MapperConstant.status + "and" + MapperConstant.del_flag)
     ContentUserInfo showUserInfoByUserId(@Param("openid") String openid);
 
-    @Select("select up.pet_id petId, name,img,type,sum\n" +
-            "from user_pet up\n" +
-            "inner join (\n" +
-            "    select uc.pet_id, COUNT(uc.pet_id) sum\n" +
-            "    from user_content uc\n" +
-            "\t\twhere uc.status=0\n" +
-            "    group by uc.pet_id\n" +
-            ") uc\n" +
-            "on up.pet_id = uc.pet_id\n" +
+    @Select("select up.pet_id petId, name,img,type,sum " +
+            "from user_pet up " +
+            "inner join ( " +
+            "    select uc.pet_id, COUNT(uc.pet_id) sum " +
+            "    from user_content uc " +
+            "    where uc.status=0 " +
+            "    group by uc.pet_id " +
+            ") uc " +
+            "on up.pet_id = uc.pet_id " +
             "order by uc.sum desc ")
     List<HotPetListInfo> showHotList();
+
+    @Insert("insert into `user_content_comment` (`user_id`, `content_id`, `comment_info`, `parent_comment_id`)  " +
+            "values (#{userId}, #{contentId}, #{commentInfo}, #{parentCommentId})")
+    int addUserComment(UserCommentRes userCommentRes);
 }

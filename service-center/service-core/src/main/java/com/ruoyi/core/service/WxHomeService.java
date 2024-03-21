@@ -42,6 +42,10 @@ public interface WxHomeService
      * 发布新内容
      */
     void insertContentInfo(UserContent userContent);
+    /**
+     * 添加内容
+     */
+    int addUserComment(UserCommentRes userCommentRes);
 
     /**
      * 通过id查询个人信息

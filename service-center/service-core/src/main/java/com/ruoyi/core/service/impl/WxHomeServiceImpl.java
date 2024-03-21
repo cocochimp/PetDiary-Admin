@@ -150,6 +150,11 @@ public class WxHomeServiceImpl implements WxHomeService
     }
 
     @Override
+    public int addUserComment(UserCommentRes userCommentRes) {
+        return wxHomeMapper.addUserComment(userCommentRes);
+    }
+
+    @Override
     public UserDetailInfo showUserDetailInfo(String userId) {
         UserDetailInfo userDetailInfo = new UserDetailInfo();
         userDetailInfo.setUserId(userId);

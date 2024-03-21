@@ -7,10 +7,7 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.core.constant.ContentTypeConstant;
 import com.ruoyi.core.constant.MapperConstant;
 import com.ruoyi.core.domain.UserContent;
-import com.ruoyi.core.domain.vo.ContentInfo;
-import com.ruoyi.core.domain.vo.ContentUserInfo;
-import com.ruoyi.core.domain.vo.HotPetListInfo;
-import com.ruoyi.core.domain.vo.WxPetListInfo;
+import com.ruoyi.core.domain.vo.*;
 import com.ruoyi.core.service.WxHomeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -134,6 +131,16 @@ public class WxHomeController extends BaseController {
     public TableDataInfo showHotList() {
         List<HotPetListInfo> hotPetListInfo = wxHomeService.showHotList();
         return getDataTable(hotPetListInfo);
+    }
+
+    /**
+     * 添加评论
+     */
+    @PostMapping("/addUserComment")
+    @ResponseBody
+    @Operation(summary = "添加评论", security = {@SecurityRequirement(name = "Authorization")})
+    public GlobalResult addUserComment(@RequestBody UserCommentRes userCommentRes){
+        return GlobalResult.ok("affectRow:"+wxHomeService.addUserComment(userCommentRes));
     }
 }
 
