@@ -4,7 +4,9 @@ import com.ruoyi.common.core.domain.GlobalResult;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.core.domain.GoodsCar;
+import com.ruoyi.core.domain.vo.DeleteCarGoodsRequest;
 import com.ruoyi.core.domain.vo.GoodsListInfo;
+import com.ruoyi.core.domain.vo.GoodsOrderInfo;
 import com.ruoyi.core.service.WxGoodsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -79,6 +81,15 @@ public class WxGoodsController extends BaseController {
         return GlobalResult.ok(res);
     }
 
+    /**
+     * 删除购物车
+     */
+    @PostMapping("/deleteCarGoods")
+    @Operation(summary = "删除购物车", security = {@SecurityRequirement(name = "Authorization")})
+    public GlobalResult deleteCarGoods(@RequestBody DeleteCarGoodsRequest request){
+        int affectRows = wxGoodsService.deleteCarGoods(request.getProductIdList(),request.getUserId());
+        return GlobalResult.ok("affectRows:"+affectRows);
+    }
 
     /**
      * 订单地址列表
@@ -89,7 +100,15 @@ public class WxGoodsController extends BaseController {
         return getDataTable(wxGoodsService.showLocationByParentId(parentId));
     }
 
-
+    /**
+     * 购买商品
+     */
+    @GetMapping("/buyGoods")
+    @Operation(summary = "购买商品", security = {@SecurityRequirement(name = "Authorization")})
+    public GlobalResult buyGoods(@RequestBody GoodsOrderInfo goodsListInfo){
+        int affectRows = wxGoodsService.buyGoods(goodsListInfo);
+        return GlobalResult.ok("affectRows:"+affectRows);
+    }
 
 }
 

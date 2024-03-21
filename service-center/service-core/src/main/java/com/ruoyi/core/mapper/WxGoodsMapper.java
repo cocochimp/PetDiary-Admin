@@ -4,6 +4,7 @@ import com.ruoyi.core.constant.MapperConstant;
 import com.ruoyi.core.domain.ChinaLocation;
 import com.ruoyi.core.domain.Goods;
 import com.ruoyi.core.domain.GoodsCategory;
+import com.ruoyi.core.domain.GoodsOrder;
 import com.ruoyi.core.domain.vo.CarGoodsListInfo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -79,8 +80,8 @@ public interface WxGoodsMapper
     /*如果有商品，修改num=0时*/
     @Update("update goods_car " +
             "set " + MapperConstant.no_del_flag +
-            "where pId=#{pid} and uId=#{uid} and "+ MapperConstant.del_flag)
-    int deleteCarShop(@Param("pid") Long pid,@Param("uid") String uid);
+            "where pId in (#{pid}) and uId=#{uid} and "+ MapperConstant.del_flag)
+    int deleteCarShop(@Param("pid") String pid,@Param("uid") String uid);
 
 
     /*
@@ -93,8 +94,9 @@ public interface WxGoodsMapper
             "where parentId=#{parentId} ")
     List<ChinaLocation> showLocationByParentId(@Param("parentId") String parentId);
 
-
-
-
+    /*购买商品*/
+    @Insert("insert into `goods_order` (`userId`, `pId`, `amount`, `num`, `receiverName`, `receiverPhone`, `addProv`, `addCity`, `address`) " +
+            "values (#{userId}, #{productId}, #{amount}, #{num}, #{receiverName}, #{receiverPhone}, #{addProv},#{addCity}, #{address})")
+    int buyGoods(GoodsOrder goodsOrder);
 
 }

@@ -30,16 +30,16 @@ public class GoodsOrder implements Serializable {
     private String userId;
 
     /** 产品id */
-    private Long pId;
+    private Long productId;
 
     /** 优惠后价格 */
     private BigDecimal amount;
 
     /** 商品数量 */
-    private Integer productNum;
+    private Integer num;
 
     /** 购买时间 */
-    private LocalDateTime addtime;
+    private LocalDateTime addTime;
 
     /** 订单状态{0未知  1待发货  2 已发货  3 已收货  4 完成交易} */
     private Integer status;

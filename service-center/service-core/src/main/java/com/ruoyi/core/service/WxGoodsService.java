@@ -6,6 +6,7 @@ import com.ruoyi.core.domain.GoodsCar;
 import com.ruoyi.core.domain.GoodsCategory;
 import com.ruoyi.core.domain.vo.CarGoodsListInfo;
 import com.ruoyi.core.domain.vo.GoodsListInfo;
+import com.ruoyi.core.domain.vo.GoodsOrderInfo;
 
 import java.util.List;
 
@@ -29,6 +30,11 @@ public interface WxGoodsService
      */
     List<CarGoodsListInfo> showCarListByUserId(String uId);
     boolean addCarShop(GoodsCar goodsCar);
-    List<ChinaLocation> showLocationByParentId(String parentId);
+    int deleteCarGoods(List<String> pIdList,String uId);
 
+    /**
+     * 订单
+     */
+    List<ChinaLocation> showLocationByParentId(String parentId);
+    int buyGoods(GoodsOrderInfo goodsOrderInfo);
 }

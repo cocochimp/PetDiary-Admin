@@ -1,11 +1,10 @@
 package com.ruoyi.core.service.impl;
 
-import com.ruoyi.core.domain.ChinaLocation;
-import com.ruoyi.core.domain.Goods;
-import com.ruoyi.core.domain.GoodsCar;
-import com.ruoyi.core.domain.GoodsCategory;
+import com.ruoyi.core.domain.*;
 import com.ruoyi.core.domain.vo.CarGoodsListInfo;
 import com.ruoyi.core.domain.vo.GoodsListInfo;
+import com.ruoyi.core.domain.vo.GoodsOrderInfo;
+import com.ruoyi.core.domain.vo.GoodsPrice;
 import com.ruoyi.core.mapper.WxGoodsMapper;
 import com.ruoyi.core.service.WxGoodsService;
 import org.springframework.beans.BeanUtils;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -81,14 +81,40 @@ public class WxGoodsServiceImpl implements WxGoodsService
             return addCarShopRes>0;
         } else{
             if(goodsCar.getNum()>0) wxGoodsMapper.updateCarNum(goodsCar.getPid(),goodsCar.getUid(), goodsCar.getNum());
-            else wxGoodsMapper.deleteCarShop(goodsCar.getPid(), goodsCar.getUid());
+            else wxGoodsMapper.deleteCarShop(String.valueOf(goodsCar.getPid()), goodsCar.getUid());
         }
         return true;
     }
 
     @Override
+    public int deleteCarGoods(List<String> pIdList, String uId) {
+        if(pIdList==null || pIdList.size()==0) return 0;
+        long collect = pIdList.stream()
+                .filter(Objects::nonNull)
+                .map(pId -> wxGoodsMapper.deleteCarShop(pId,uId))
+                .filter(res->res>0)
+                .count();
+        return (int) collect;
+    }
+
+    @Override
     public List<ChinaLocation> showLocationByParentId(String parentId) {
         return wxGoodsMapper.showLocationByParentId(parentId);
+    }
+
+    @Override
+    public int buyGoods(GoodsOrderInfo goodsOrderInfo) {
+        List<GoodsPrice> goodsPriceList = goodsOrderInfo.getGoodsPriceList();
+        long collect = goodsPriceList.stream()
+                .filter(goodsPrice -> goodsPrice.getProductId() != null)
+                .map(goodsPrice -> {
+                    GoodsOrder goodsOrder = new GoodsOrder();
+                    BeanUtils.copyProperties(goodsOrderInfo, goodsOrder);
+                    BeanUtils.copyProperties(goodsPrice, goodsOrder);
+                    return wxGoodsMapper.buyGoods(goodsOrder);
+                }).filter(res->res>0)
+                .count();
+        return (int) collect;
     }
 
 }
