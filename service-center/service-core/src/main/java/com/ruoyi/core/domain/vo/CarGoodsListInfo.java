@@ -20,4 +20,7 @@ public class CarGoodsListInfo extends GoodsListInfo implements Serializable{
 
     /** 产品id */
     private Long PId;
+
+    /** 产品id */
+    private Long num;
 }
