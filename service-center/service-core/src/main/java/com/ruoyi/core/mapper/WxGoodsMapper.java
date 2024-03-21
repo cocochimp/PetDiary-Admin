@@ -6,6 +6,7 @@ import com.ruoyi.core.domain.Goods;
 import com.ruoyi.core.domain.GoodsCategory;
 import com.ruoyi.core.domain.GoodsOrder;
 import com.ruoyi.core.domain.vo.CarGoodsListInfo;
+import com.ruoyi.core.domain.vo.GoodsOrderList;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -94,9 +95,21 @@ public interface WxGoodsMapper
             "where parentId=#{parentId} ")
     List<ChinaLocation> showLocationByParentId(@Param("parentId") String parentId);
 
+    @Select("select name " +
+            "from china_locations " +
+            "where id=#{id} ")
+    String showLocationById(@Param("id") String id);
+
     /*购买商品*/
     @Insert("insert into `goods_order` (`userId`, `pId`, `amount`, `num`, `receiverName`, `receiverPhone`, `addProv`, `addCity`, `address`) " +
             "values (#{userId}, #{productId}, #{amount}, #{num}, #{receiverName}, #{receiverPhone}, #{addProv},#{addCity}, #{address})")
     int buyGoods(GoodsOrder goodsOrder);
+
+    /*展示待发货、待收货、总订单列表*/
+    @Select("select id,paySn,pId productId,amount,num,addTime addressTime,receiverName,receiverPhone,addProv,addCity,address " +
+            "from goods_order " +
+            "where status=#{status} and userId=#{userId} and "+MapperConstant.isBack)
+    List<GoodsOrderList> showOrderListByStatus(@Param("status") String status,@Param("userId") String userId);
+
 
 }

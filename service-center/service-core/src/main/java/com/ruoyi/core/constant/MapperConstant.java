@@ -33,4 +33,8 @@ public class MapperConstant {
     public static final int pageHotSize=5; //返回宠物热榜数据
     public static final int StartPage=1; //初始页面
 
+    /**
+     * 订单是否退货
+     */
+    public static final String isBack=" back='0' "; //返回宠物热榜数据
 }

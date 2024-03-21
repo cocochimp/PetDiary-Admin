@@ -7,6 +7,7 @@ import com.ruoyi.core.domain.GoodsCategory;
 import com.ruoyi.core.domain.vo.CarGoodsListInfo;
 import com.ruoyi.core.domain.vo.GoodsListInfo;
 import com.ruoyi.core.domain.vo.GoodsOrderInfo;
+import com.ruoyi.core.domain.vo.GoodsOrderListRes;
 
 import java.util.List;
 
@@ -37,4 +38,7 @@ public interface WxGoodsService
      */
     List<ChinaLocation> showLocationByParentId(String parentId);
     int buyGoods(GoodsOrderInfo goodsOrderInfo);
+    List<GoodsOrderListRes> showOrderListByStatus(String status, String userId);
+
+
 }

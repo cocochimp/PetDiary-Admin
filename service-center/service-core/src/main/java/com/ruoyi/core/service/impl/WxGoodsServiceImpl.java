@@ -1,19 +1,14 @@
 package com.ruoyi.core.service.impl;
 
 import com.ruoyi.core.domain.*;
-import com.ruoyi.core.domain.vo.CarGoodsListInfo;
-import com.ruoyi.core.domain.vo.GoodsListInfo;
-import com.ruoyi.core.domain.vo.GoodsOrderInfo;
-import com.ruoyi.core.domain.vo.GoodsPrice;
+import com.ruoyi.core.domain.vo.*;
 import com.ruoyi.core.mapper.WxGoodsMapper;
 import com.ruoyi.core.service.WxGoodsService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -115,6 +110,25 @@ public class WxGoodsServiceImpl implements WxGoodsService
                 }).filter(res->res>0)
                 .count();
         return (int) collect;
+    }
+
+    @Override
+    public List<GoodsOrderListRes> showOrderListByStatus(String status, String userId) {
+        if(status==null || userId==null) return new ArrayList<>();
+        List<GoodsOrderList> goodsOrderLists = wxGoodsMapper.showOrderListByStatus(status, userId);
+
+        return goodsOrderLists.stream()
+                .map(goodsOrderList -> {
+                    String province = wxGoodsMapper.showLocationById(String.valueOf(goodsOrderList.getAddProv()));
+                    String city = wxGoodsMapper.showLocationById(String.valueOf(goodsOrderList.getAddCity()));
+                    String address = goodsOrderList.getAddress();
+                    //Bean拷贝返回结果
+                    GoodsOrderListRes goodsOrderListRes = new GoodsOrderListRes();
+                    BeanUtils.copyProperties(goodsOrderList, goodsOrderListRes);
+                    if(!province.equals(city)) goodsOrderListRes.setGoodsAddressList(province + "省," + city + "市," +  address);
+                    else goodsOrderListRes.setGoodsAddressList(province + "市," +  address);
+                    return goodsOrderListRes;
+                }).collect(Collectors.toList());
     }
 
 }

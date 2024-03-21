@@ -110,6 +110,17 @@ public class WxGoodsController extends BaseController {
         return GlobalResult.ok("affectRows:"+affectRows);
     }
 
+
+    /**
+     * 展示待发货、待收货、总订单列表
+     */
+    @GetMapping("/showOrderListByStatus")
+    @Operation(summary = "展示待发货、待收货、总订单列表", security = {@SecurityRequirement(name = "Authorization")})
+    public TableDataInfo showOrderListByStatus(@RequestParam("status") String status,
+                                               @RequestParam("userId") String userId){
+        return getDataTable(wxGoodsService.showOrderListByStatus(status,userId));
+    }
+
 }
 
 
