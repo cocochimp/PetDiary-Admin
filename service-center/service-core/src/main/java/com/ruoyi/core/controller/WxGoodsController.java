@@ -80,6 +80,16 @@ public class WxGoodsController extends BaseController {
     }
 
 
+    /**
+     * 订单地址列表
+     */
+    @GetMapping("/showLocationByParentId")
+    @Operation(summary = "订单地址列表", security = {@SecurityRequirement(name = "Authorization")})
+    public TableDataInfo showLocationByParentId(@RequestParam String parentId){
+        return getDataTable(wxGoodsService.showLocationByParentId(parentId));
+    }
+
+
 
 }
 

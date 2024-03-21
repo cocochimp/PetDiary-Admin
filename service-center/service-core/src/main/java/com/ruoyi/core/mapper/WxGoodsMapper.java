@@ -1,6 +1,7 @@
 package com.ruoyi.core.mapper;
 
 import com.ruoyi.core.constant.MapperConstant;
+import com.ruoyi.core.domain.ChinaLocation;
 import com.ruoyi.core.domain.Goods;
 import com.ruoyi.core.domain.GoodsCategory;
 import com.ruoyi.core.domain.vo.CarGoodsListInfo;
@@ -56,8 +57,8 @@ public interface WxGoodsMapper
     /*
         购物车模块
      */
-    /*购物车列表*/
 
+    /*购物车列表*/
     @Select("select goods_car.id id,pId,name,coverPhoto,categoryId,price,amount,num,isSale " +
             "from goods,goods_car " +
             "where goods.id=goods_car.pId and goods_car.del_flag=0 and uId=#{uId}  ")
@@ -80,6 +81,17 @@ public interface WxGoodsMapper
             "set " + MapperConstant.no_del_flag +
             "where pId=#{pid} and uId=#{uid} and "+ MapperConstant.del_flag)
     int deleteCarShop(@Param("pid") Long pid,@Param("uid") String uid);
+
+
+    /*
+        订单模块
+     */
+
+    /*地址列表*/
+    @Select("select id,name " +
+            "from china_locations " +
+            "where parentId=#{parentId} ")
+    List<ChinaLocation> showLocationByParentId(@Param("parentId") String parentId);
 
 
 

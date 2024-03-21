@@ -1,5 +1,6 @@
 package com.ruoyi.core.service.impl;
 
+import com.ruoyi.core.domain.ChinaLocation;
 import com.ruoyi.core.domain.Goods;
 import com.ruoyi.core.domain.GoodsCar;
 import com.ruoyi.core.domain.GoodsCategory;
@@ -83,6 +84,11 @@ public class WxGoodsServiceImpl implements WxGoodsService
             else wxGoodsMapper.deleteCarShop(goodsCar.getPid(), goodsCar.getUid());
         }
         return true;
+    }
+
+    @Override
+    public List<ChinaLocation> showLocationByParentId(String parentId) {
+        return wxGoodsMapper.showLocationByParentId(parentId);
     }
 
 }

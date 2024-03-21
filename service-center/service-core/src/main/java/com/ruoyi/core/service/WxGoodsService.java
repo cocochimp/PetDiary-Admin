@@ -1,5 +1,6 @@
 package com.ruoyi.core.service;
 
+import com.ruoyi.core.domain.ChinaLocation;
 import com.ruoyi.core.domain.Goods;
 import com.ruoyi.core.domain.GoodsCar;
 import com.ruoyi.core.domain.GoodsCategory;
@@ -28,5 +29,6 @@ public interface WxGoodsService
      */
     List<CarGoodsListInfo> showCarListByUserId(String uId);
     boolean addCarShop(GoodsCar goodsCar);
+    List<ChinaLocation> showLocationByParentId(String parentId);
 
 }
