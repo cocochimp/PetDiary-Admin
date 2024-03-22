@@ -103,7 +103,7 @@ public class WxGoodsController extends BaseController {
     /**
      * 购买商品
      */
-    @GetMapping("/buyGoods")
+    @PostMapping("/buyGoods")
     @Operation(summary = "购买商品", security = {@SecurityRequirement(name = "Authorization")})
     public GlobalResult buyGoods(@RequestBody GoodsOrderInfo goodsListInfo){
         int affectRows = wxGoodsService.buyGoods(goodsListInfo);
