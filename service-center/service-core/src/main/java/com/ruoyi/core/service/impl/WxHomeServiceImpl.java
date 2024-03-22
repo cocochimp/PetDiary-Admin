@@ -55,6 +55,8 @@ public class WxHomeServiceImpl implements WxHomeService
 
             int petId = wxHomeMapper.showPetIdByContentId(contentInfo.getContentId());
             contentInfo.setUserPet(wxHomeMapper.showPetDetailByPetId(petId));
+            int like = wxHomeMapper.isLike(contentInfo.getUserId(), contentInfo.getContentId());
+            contentInfo.setLike(like > 0);
         }
         return Collections.singletonList(contentInfo);
     }
@@ -188,6 +190,14 @@ public class WxHomeServiceImpl implements WxHomeService
     public List<HotPetListInfo> showHotList() {
         PageHelper.startPage(MapperConstant.StartPage, MapperConstant.pageHotSize);
         return wxHomeMapper.showHotList();
+    }
+
+    @Override
+    public boolean likeContent(UserContentLike userContentLike) {
+        int like = wxHomeMapper.isLike(userContentLike.getUserId(), userContentLike.getContentId());
+        if(like>0) wxHomeMapper.deleteLike(userContentLike);
+        else wxHomeMapper.addLike(userContentLike);
+        return true;
     }
 
     /*封装content返回信息*/

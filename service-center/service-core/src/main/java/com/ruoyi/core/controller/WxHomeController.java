@@ -142,6 +142,14 @@ public class WxHomeController extends BaseController {
     public GlobalResult addUserComment(@RequestBody UserCommentRes userCommentRes){
         return GlobalResult.ok("affectRow:"+wxHomeService.addUserComment(userCommentRes));
     }
+
+    /**
+     * 添加评论
+     */
+    @PostMapping("/likeContent")
+    public GlobalResult likeContent(@RequestBody UserContentLike userContentLike){
+        return GlobalResult.ok(wxHomeService.likeContent(userContentLike));
+    }
 }
 
 

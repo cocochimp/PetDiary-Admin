@@ -58,4 +58,8 @@ public class ContentDetailInfo
     /** 宠物标签 */
     private WxPetListInfo userPet;
 
+    /** 是否点赞 */
+    private boolean isLike;
+    /** 是否关注 */
+    private boolean isAttention;
 }

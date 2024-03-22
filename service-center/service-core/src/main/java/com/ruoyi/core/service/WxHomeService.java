@@ -61,4 +61,9 @@ public interface WxHomeService
      * 展示宠物热榜
      */
     List<HotPetListInfo> showHotList();
+
+    /**
+     * 点赞
+     */
+    boolean likeContent(UserContentLike userContentLike);
 }

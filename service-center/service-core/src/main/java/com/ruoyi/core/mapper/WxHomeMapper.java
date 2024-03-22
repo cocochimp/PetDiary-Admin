@@ -150,4 +150,23 @@ public interface WxHomeMapper
     @Insert("insert into `user_content_comment` (`user_id`, `content_id`, `comment_info`, `parent_comment_id`)  " +
             "values (#{userId}, #{contentId}, #{commentInfo}, #{parentCommentId})")
     int addUserComment(UserCommentRes userCommentRes);
+
+    /**
+     *
+     */
+    //点赞
+    @Insert("insert into user_content_like(user_id,content_id) " +
+            "values (#{userId},#{contentId})")
+    int addLike(UserContentLike userContentLike);
+    //取消点赞
+    @Delete("delete from user_content_like " +
+            "where user_id=#{userId} and content_id=#{contentId}")
+    int deleteLike(UserContentLike userContentLike);
+    //是否点赞
+    @Select("select count(*) " +
+            "from user_content_like " +
+            "where user_id=#{userId} and content_id=#{contentId}")
+    int isLike(@Param("userId") String userId,@Param("contentId") long contentId);
+
+
 }
