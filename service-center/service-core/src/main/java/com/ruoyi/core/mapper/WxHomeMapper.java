@@ -152,7 +152,7 @@ public interface WxHomeMapper
     int addUserComment(UserCommentRes userCommentRes);
 
     /**
-     *
+     * 点赞
      */
     //点赞
     @Insert("insert into user_content_like(user_id,content_id) " +
@@ -168,5 +168,22 @@ public interface WxHomeMapper
             "where user_id=#{userId} and content_id=#{contentId}")
     int isLike(@Param("userId") String userId,@Param("contentId") long contentId);
 
+
+    /**
+     * 关注
+     */
+    //添加关注
+    @Insert("insert into user_attention(user_id,attention_user_id) " +
+            "values (#{userId},#{attentionUserId})")
+    int addAttention(UserAttentionRes userAttention);
+    //取消关注
+    @Delete("delete from user_attention " +
+            "where user_id=#{userId} and attention_user_id=#{attentionUserId}")
+    int deleteAttention(UserAttentionRes userAttention);
+    //是否关注
+    @Select("select count(*) " +
+            "from user_attention " +
+            "where user_id=#{userId} and attention_user_id=#{attentionUserId} and "+MapperConstant.del_flag)
+    int isAttention(UserAttentionRes userAttention);
 
 }

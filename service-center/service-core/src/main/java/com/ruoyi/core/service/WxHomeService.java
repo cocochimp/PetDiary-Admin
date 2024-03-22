@@ -66,4 +66,9 @@ public interface WxHomeService
      * 点赞
      */
     boolean likeContent(UserContentLike userContentLike);
+
+    /**
+     * 关注
+     */
+    boolean isAttention(String operation, UserAttentionRes userAttention);
 }

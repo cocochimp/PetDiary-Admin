@@ -150,6 +150,15 @@ public class WxHomeController extends BaseController {
     public GlobalResult likeContent(@RequestBody UserContentLike userContentLike){
         return GlobalResult.ok(wxHomeService.likeContent(userContentLike));
     }
+
+    /**
+     * 是否关注
+     */
+    @PostMapping("/isAttention")
+    public GlobalResult isAttention(@RequestBody UserAttentionRes UserAttentionRes,
+                                    @RequestParam String operation){
+        return GlobalResult.ok(wxHomeService.isAttention(operation,UserAttentionRes));
+    }
 }
 
 

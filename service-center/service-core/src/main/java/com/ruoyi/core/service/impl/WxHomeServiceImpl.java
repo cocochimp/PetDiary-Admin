@@ -200,6 +200,17 @@ public class WxHomeServiceImpl implements WxHomeService
         return true;
     }
 
+    @Override
+    public boolean isAttention(String operation, UserAttentionRes userAttention) {
+        int attention = wxHomeMapper.isAttention(userAttention);
+        if("1".equals(operation)){
+            if(attention>0) wxHomeMapper.deleteAttention(userAttention);
+            else wxHomeMapper.addAttention(userAttention);
+            return true;
+        }
+        return attention>0;
+    }
+
     /*封装content返回信息*/
     private List<ContentInfo> getContentInfos(List<ContentInfo> contentInfo) {
         if(contentInfo!=null && contentInfo.size()>0){
