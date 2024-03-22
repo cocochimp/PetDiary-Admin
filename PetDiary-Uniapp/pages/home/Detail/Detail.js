@@ -43,6 +43,11 @@ Page({
           data
         } = res
         console.log(data.rows);
+        data.rows.forEach(item=>{
+          if(item.coverPath) {
+            item.coverPath=item.coverPath.split(',')
+          }
+        })
         this.setData({
           detailList: data.rows[this.data.skipId]
         })
@@ -82,4 +87,10 @@ Page({
       closeVisible: true
     });
   },
+  // 跳转至用户主页
+  goUser(e) {
+    wx.navigateTo({
+      url: `/pages/user/detail/detail?userId=${e.currentTarget.dataset.id}`,
+    })
+  }
 })

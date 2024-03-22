@@ -25,7 +25,6 @@
       </el-col>
     </el-row>
 
-    
   </div>
 </template>
 
@@ -64,13 +63,13 @@ export default {
     PieChart,
     BarChart
   },
-  data() {
+  data () {
     return {
       lineChartData: lineChartData.newVisitis
     }
   },
   methods: {
-    handleSetLineChartData(type) {
+    handleSetLineChartData (type) {
       this.lineChartData = lineChartData[type]
     }
   }
@@ -90,7 +89,7 @@ export default {
   }
 }
 
-@media (max-width:1024px) {
+@media (max-width: 1024px) {
   .chart-wrapper {
     padding: 8px;
   }

@@ -203,6 +203,7 @@ Page({
         this.setData({
           animalList: updatedAnimalList,
         });
+        console.log(this.data.animalList);
       },
       fail: (err) => {
         console.log(err);

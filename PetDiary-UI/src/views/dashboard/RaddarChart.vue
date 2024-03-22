@@ -24,12 +24,12 @@ export default {
       default: '300px'
     }
   },
-  data() {
+  data () {
     return {
       chart: null
     }
   },
-  mounted() {
+  mounted () {
     this.initChart()
     this.__resizeHandler = debounce(() => {
       if (this.chart) {
@@ -38,7 +38,7 @@ export default {
     }, 100)
     window.addEventListener('resize', this.__resizeHandler)
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (!this.chart) {
       return
     }
@@ -47,12 +47,20 @@ export default {
     this.chart = null
   },
   methods: {
-    initChart() {
+    initChart () {
       this.chart = echarts.init(this.$el, 'macarons')
 
       this.chart.setOption({
+        title: {
+          text: '商品种类数量', // 标题文本
+          left: 'top', // 标题位置
+          textStyle: {
+            color: '#333', // 标题文字颜色
+            fontSize: 12 // 标题文字大小
+          }
+        },
         tooltip: {
-          trigger: 'axis',
+          trigger: 'item', // 提示框触发类型
           axisPointer: { // 坐标轴指示器，坐标轴触发有效
             type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
           }
@@ -72,18 +80,19 @@ export default {
             }
           },
           indicator: [
-            { name: 'Sales', max: 10000 },
-            { name: 'Administration', max: 20000 },
-            { name: 'Information Techology', max: 20000 },
-            { name: 'Customer Support', max: 20000 },
-            { name: 'Development', max: 20000 },
-            { name: 'Marketing', max: 20000 }
+            { name: '主食', max: 100 },
+            { name: '零食', max: 200 },
+            { name: '日用品', max: 200 },
+            { name: '清洁', max: 200 },
+            { name: '玩具', max: 200 },
+            { name: '服饰', max: 200 },
+            { name: '药品', max: 200 }
           ]
         },
         legend: {
           left: 'center',
           bottom: '10',
-          data: ['Allocated Budget', 'Expected Spending', 'Actual Spending']
+          data: ['商品种类']
         },
         series: [{
           type: 'radar',
@@ -99,22 +108,15 @@ export default {
           },
           data: [
             {
-              value: [5000, 7000, 12000, 11000, 15000, 14000],
-              name: 'Allocated Budget'
+              value: [50, 200, 120, 110, 150, 140, 180],
+              name: '商品种类'
             },
-            {
-              value: [4000, 9000, 15000, 15000, 13000, 11000],
-              name: 'Expected Spending'
-            },
-            {
-              value: [5500, 11000, 12000, 15000, 12000, 12000],
-              name: 'Actual Spending'
-            }
           ],
           animationDuration: animationDuration
         }]
       })
     }
+
   }
 }
 </script>

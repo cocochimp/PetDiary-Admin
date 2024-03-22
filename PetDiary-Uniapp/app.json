@@ -9,6 +9,7 @@
     "pages/shop/index/index",
     "pages/shop/goods_detail/goods_detail",
     "pages/shop/cart/cart",
+    "pages/shop/purchaseOrder/purchaseOrder",
 
     "pages/user/index/index",
     "pages/user/cart/cart",

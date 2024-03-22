@@ -1,14 +1,15 @@
 <!--pages/shop/components/cart/cart.wxml-->
 <view class="container">
-  <view class="cart" wx:if="{{list.length > 0}}">
-    <view class="item" wx:for="{{list}}">
+  <view class="cart" wx:if="{{carList.length > 0}}">
+    <view class="item" wx:for="{{carList}}">
       <checkbox class="checkbox" />
       <view class="pic"></view>
       <view class="info">
-        <view class="title">我是一个大标题我是一个大标题我是一个大标题我是一个大标题</view>
+        <view class="title">
+        {{item.name}}</view>
         <view class="param">{{item.id}}</view>
         <view class="box">
-          <view class="price">99</view>
+          <view class="price">{{item.amount}}</view>
         </view>
       </view>
     </view>

@@ -9,7 +9,7 @@
         <view class="pic"></view>
         <view class="title">AirPower 平价代替？开合妙恋，三十分钟续航，价格感人</view>
       </view>
-      <view class="item" wx:for="{{'111111111'}}">
+      <view class="item" wx:for="{{'3'}}">
         <view class="info">
           <view class="title">这里是测试，断货王香水。大牌调香实力打造，想为高级，男女通用</view>
           <view class="tags">

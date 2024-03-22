@@ -28,27 +28,28 @@ Page({
    */
   data: {
     goodsObj: {
-      goods_id:21321,
-      goods_name:'小熊猫',
-      goods_price:898,
-      goods_number:100,
-      goods_weight:100,
-      goods_introduce:'很可爱',
-      goods_big_logo:'../../../images/testData/吉娃娃犬.jpg',
-      goods_small_logo:'../../../images/testData/吉娃娃犬.jpg',
-      goods_state:2,
-      is_del:0,
-      add_time:123142321,
-      upd_time:123142321,
-      delete_time:0,
-      pics:[
-        {pics_id: 1,
-          pics_mid:'../../../images/testData/吉娃娃犬.jpg'
-      },
-      {pics_id: 2,
-        pics_mid:'../../../images/testData/短毛猫.jpg'
-    },
-    ]
+      goods_id: 21321,
+      goods_name: '小熊猫',
+      goods_price: 898,
+      goods_number: 100,
+      goods_weight: 100,
+      goods_introduce: '很可爱',
+      goods_big_logo: '../../../images/testData/吉娃娃犬.jpg',
+      goods_small_logo: '../../../images/testData/吉娃娃犬.jpg',
+      goods_state: 2,
+      is_del: 0,
+      add_time: 123142321,
+      upd_time: 123142321,
+      delete_time: 0,
+      pics: [{
+          pics_id: 1,
+          pics_mid: '../../../images/testData/吉娃娃犬.jpg'
+        },
+        {
+          pics_id: 2,
+          pics_mid: '../../../images/testData/短毛猫.jpg'
+        },
+      ]
 
     },
     // 商品是否被收藏
@@ -64,38 +65,40 @@ Page({
     let currentPage = pages[pages.length - 1];
     let options = currentPage.options;
     const {
-      goods_id
+      goodId
     } = options;
-    // this.getGoodsDetail(goods_id);
+    this.getGoodDetail(goodId);
 
 
   },
   // 获取商品详情数据
-  // async getGoodsDetail(goods_id) {
-  //   const goodsObj = await request({
-  //     url: "/goods/detail",
-  //     data: {
-  //       goods_id
-  //     }
-  //   });
-  //   this.GoodsInfo = goodsObj;
-  //   // 1 获取缓存中的商品收藏的数组
-  //   let collect = wx.getStorageSync("collect") || [];
-  //   // 2 判断当前商品是否被收藏
-  //   let isCollect = collect.some(v => v.goods_id === this.GoodsInfo.goods_id);
-  //   this.setData({
-  //     goodsObj: {
-  //       goods_name: goodsObj.goods_name,
-  //       goods_price: goodsObj.goods_price,
-  //       // iphone部分手机 不识别 webp图片格式 
-  //       // 最好找到后台 让他进行修改 
-  //       // 临时自己改 确保后台存在 1.webp => 1.jpg 
-  //       goods_introduce: goodsObj.goods_introduce.replace(/\.webp/g, '.jpg'),
-  //       pics: goodsObj.pics
-  //     },
-  //     isCollect
-  //   })
-  // },
+  getGoodDetail(goodId) {
+    wx.request({
+      url: getApp().globalData.baseUrl + `/wx/goods/showGoodsDetailById?goodId=${goodId}`,
+      method: "GET",
+      success: (res) => {
+        const {
+          data: {
+            rows
+          }
+        } = res
+        console.log(rows[0].coverPhoto);
+        rows.forEach(item=>{
+          if(item.coverPhoto) {
+            item.coverPhoto=item.coverPhoto.split(',')
+          }
+          if(item.detailPhoto) {
+            item.detailPhoto=item.detailPhoto.split(',')
+          }
+        })
+        console.log(rows);
+        this.setData({
+          goodsObj: rows[0]
+        })
+        console.log(rows);
+      }
+    })
+  },
   // 点击轮播图 放大预览
   handlePrevewImage(e) {
     // 1 先构造要预览的图片数组 

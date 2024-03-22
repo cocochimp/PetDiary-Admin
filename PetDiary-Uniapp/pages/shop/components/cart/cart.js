@@ -11,22 +11,11 @@ Component({
    * 组件的初始数据
    */
   data: {
-    list: []
+    carList: []
   },
   lifetimes: {
     attached() {
-      // this.setData({
-      //   list: [
-      //     {
-      //       id: 12580,
-      //       num: 1
-      //     },
-      //     {
-      //       id: 12580,
-      //       num: 1
-      //     },
-      //   ]
-      // })
+      this.getCarList()
     }
   },
 
@@ -34,6 +23,18 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    getCarList() {
+      wx.request({
+        url: getApp().globalData.baseUrl + '/wx/goods/showCarListByUserId?uId=omyzG6xGFX9OUPIcTHmOdQ8DVSFk',
+        method: "GET",
+        success: (res) => {
+          const{data:{rows}} =res
+          this.setData({
+            carList:rows
+          })
+          console.log(this.data.carList);
+        }
+      })
+    }
   }
 })

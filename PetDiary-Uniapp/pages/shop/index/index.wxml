@@ -26,12 +26,6 @@
   </navigator>
 </view>
 <scroll-view scroll-y refresher-enabled scroll-with-animation scroll-top="{{scrollPos}}" bindscroll="{{tools.onScroll}}" class="page-content bg-white">
-  <!-- <swiper circular autoplay class="banner">
-    <swiper-item class="item bg-red">
-    </swiper-item>
-    <swiper-item class="item bg-yellow">
-    </swiper-item>
-  </swiper> -->
   <view class="about-bar">
     <view class="tab">
       <iconfont type="jiagebaohu" size="18px" /> 全球直采
@@ -61,7 +55,7 @@
     </view>
     <view class="content">
       <view class="list">
-        <navigator url="../goods_detail/goods_detail" class="item" wx:for="{{sort}}" wx:key="index" wx:for-index="index">
+        <navigator url="../goods_detail/goods_detail?goodId={{item.id}}" class="item" wx:for="{{sort}}" wx:key="index" wx:for-index="index">
           <view class="pic">
             <image src="{{item.coverPhoto}}" mode="" />
           </view>
@@ -69,7 +63,7 @@
             <view class="title">{{item.name}}</view>
             <view class="sub">{{item.sub}}</view>
             <view class="tags">
-              <view class="{{item.isSale===0?'tag bg-red':'tag'}}">热销</view>
+              <view class="{{item.isSale===0?'tag bg-red':'bg-p tag'}}">{{item.isSale===0?'热销':'秒杀'}}</view>
             </view>
             <view class="price">
               <view class="current">{{item.amount}}</view>
@@ -86,4 +80,4 @@
   <iconfont type="up" size="25px" />
 </view>
 
-<view class="page-tabbar page-ipx-safe-area"></view>
+<!-- <view class="page-tabbar page-ipx-safe-area"></view> -->

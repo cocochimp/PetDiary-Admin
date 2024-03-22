@@ -9,11 +9,14 @@
   <view class="sub">每天10点 限时限量</view>
 </view>
 <swiper autoplay circular previous-margin="30px" next-margin="30px" class="list">
-  <swiper-item wx:for="{{list}}" wx:key="index">
+  <swiper-item wx:for="{{list}}" wx:key="index" >
     <view class="item">
       <image class="itemPic" src="{{item.coverPhoto}}" mode="" data-index="{{index}}" binderror="handleImageError" />
-      <view>
-        {{item.name}}
+      <view class="message">
+        <view class="name">{{item.name}}</view>
+        <view class="category">{{item.category}}</view>
+        <view class="amount">￥{{item.amount}}</view>
+        <view class="price">￥{{item.price}}</view>
       </view>
     </view>
   </swiper-item>

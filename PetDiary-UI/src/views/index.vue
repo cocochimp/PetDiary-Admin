@@ -1,7 +1,6 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-editor-container">
-      <github-corner class="github-corner" />
 
       <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
@@ -16,7 +15,7 @@
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
           <div class="chart-wrapper">
-            <pie-chart />
+            <raddar-chart />
           </div>
         </el-col>
         <el-col :xs="24" :sm="24" :lg="8">
@@ -35,15 +34,16 @@ import PanelGroup from './dashboard/PanelGroup'
 import LineChart from './dashboard/LineChart'
 import PieChart from '@/views/dashboard/PieChart'
 import BarChart from '@/views/dashboard/BarChart';
+import RaddarChart from '@/views/dashboard/RaddarChart';
 
 const lineChartData = {
   newVisitis: {
-    expectedData: [100, 120, 161, 134, 105, 160, 165],
-    actualData: [120, 82, 91, 154, 162, 140, 145]
+    expectedData: [12, 22, 45, 22, 12, 30, 14],
+    actualData: [12, 8, 22, 30, 42, 40, 50]
   },
   messages: {
     expectedData: [200, 192, 120, 144, 160, 130, 140],
-    actualData: [180, 160, 151, 106, 145, 150, 130]
+    Data: [180, 160, 151, 106, 145, 150, 130]
   },
   purchases: {
     expectedData: [80, 100, 121, 104, 105, 90, 100],
@@ -62,15 +62,16 @@ export default {
     PanelGroup,
     LineChart,
     PieChart,
-    BarChart
+    BarChart,
+    RaddarChart
   },
-  data() {
+  data () {
     return {
       lineChartData: lineChartData.newVisitis
     }
   },
   methods: {
-    handleSetLineChartData(type) {
+    handleSetLineChartData (type) {
       this.lineChartData = lineChartData[type]
     }
   }
@@ -97,7 +98,7 @@ export default {
   }
 }
 
-@media (max-width:1024px) {
+@media (max-width: 1024px) {
   .chart-wrapper {
     padding: 8px;
   }

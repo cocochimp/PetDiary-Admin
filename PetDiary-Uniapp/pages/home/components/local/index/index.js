@@ -18,6 +18,7 @@ Component({
   attached: function () {
     this.getPosts();
   },
+ 
 
   /**
    * 组件的方法列表
