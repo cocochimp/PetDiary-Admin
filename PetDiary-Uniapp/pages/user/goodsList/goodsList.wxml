@@ -1,0 +1,13 @@
+<!-- order-list.wxml -->
+<view class="order-list">
+  <block wx:for="{{orders}}" wx:key="id">
+    <view class="order-item">
+      <view class="order-info">订单号：<text>{{item.paySn}}</text></view>
+      <view class="order-info">总金额：<text>{{item.amount}}</text></view>
+      <view class="order-info">数量：<text>{{item.num}}</text></view>
+      <view class="order-info">收货人：<text>{{item.receiverName}}</text></view>
+      <view class="order-info">联系电话：<text>{{item.receiverPhone}}</text></view>
+      <view class="order-info">收货地址：<text>{{item.goodsAddressList}}</text></view>
+    </view>
+  </block>
+</view>

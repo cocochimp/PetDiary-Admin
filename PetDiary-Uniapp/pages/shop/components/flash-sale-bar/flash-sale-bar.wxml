@@ -10,7 +10,7 @@
 </view>
 <swiper autoplay circular previous-margin="30px" next-margin="30px" class="list">
   <swiper-item wx:for="{{list}}" wx:key="index" >
-    <view class="item">
+    <navigator  url="/pages/shop/goods_detail/goods_detail?goodId={{item.id}}" class="item">
       <image class="itemPic" src="{{item.coverPhoto}}" mode="" data-index="{{index}}" binderror="handleImageError" />
       <view class="message">
         <view class="name">{{item.name}}</view>
@@ -18,6 +18,6 @@
         <view class="amount">￥{{item.amount}}</view>
         <view class="price">￥{{item.price}}</view>
       </view>
-    </view>
+    </navigator>
   </swiper-item>
 </swiper>

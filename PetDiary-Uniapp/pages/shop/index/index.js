@@ -74,7 +74,7 @@ Page({
           data
         } = res
         this.setData({
-          sort:data.rows
+          sort:data.rows 
         })
         console.log(data);
       }

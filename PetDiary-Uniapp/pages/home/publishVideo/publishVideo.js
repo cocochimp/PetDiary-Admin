@@ -69,7 +69,7 @@ Page({
       detail
     } = fileList
     var paths = detail.map((item) => {
-      return item.path
+      return item.url
     })
     var pathString = paths.join(",");
     this.setData({
@@ -109,8 +109,57 @@ Page({
   reset() {
     this.form.reset();
   },
-  async submit() {
+  chooseVideo: function () {
+    return new Promise((resolve, reject) => {
+      wx.chooseVideo({
+        sourceType: ['album', 'camera'],
+        maxDuration: 60,
+        camera: 'back',
+        success: (res) => {
+          console.log(res.tempFilePath); // 选择的视频文件路径
+          wx.uploadFile({
+            filePath: res.tempFilePath,
+            name: 'file',
+            url: getApp().globalData.functionUrl + '/upload', //服务器端接收图片的路径
+            success: (res) => { // 使用箭头函数确保回调中的 this 指向正确的对象
+              var userJson = JSON.parse(res.data);
+              console.log("上传成功：", userJson.data.url); //发送成功回调
+              this.setData({
+                videoSrc: userJson.data.url
+              });
+              console.log(this.data.videoSrc);
+              resolve(); // 视频上传成功，执行 resolve
+            },
+            fail: (res) => { // 使用箭头函数确保回调中的 this 指向正确的对象
+              console.log("上传失败：", res); //发送失败回调，可以在这里了解失败原因
+              reject(res); // 视频上传失败，执行 reject
+            }
+          })
+        },
+        fail: (error) => {
+          console.log("选择视频失败：", error);
+          reject(error); // 视频选择失败，执行 reject
+        }
+      });
+    });
+  },
+
+  submitAfterChooseVideo: function () {
+    // 选择视频并上传成功后执行 submit 函数
+    this.chooseVideo()
+      .then(() => {
+        // 在视频选择并上传成功后执行 submit 函数
+        this.submit();
+      })
+      .catch((error) => {
+        console.error("选择视频或上传失败：", error);
+      });
+  },
+
+
+  submit() {
     if (!this.data.title || !this.data.description || !this.data.coverPath || !this.data.petId || !this.data.videoSrc) {
+      console.log(this.data.videoSrc);
       wx.showToast({
         title: '存在内容未填写',
         duration: 1000,
@@ -118,25 +167,29 @@ Page({
       })
       return
     }
-    // 提示提交中
-    wx.showLoading({
-      title: '提交中...',
-      mask: true
-    });
-    try {
-      const response = await wx.request({
-        url: getApp().globalData.baseUrl + '/wx/home/insertContentInfo',
-        method: "POST",
-        data: {
-          title: this.data.title,
-          description: this.data.description,
-          userId: this.data.userId,
-          contentType: this.data.contentType,
-          coverPath: this.data.coverPath,
-          videoSrc: this.data.videoSrc,
-          petId: this.data.petId,
-        }
-      });
+  
+ if(this.data.videoSrc) {
+  console.log(this.data.videoSrc);
+  console.log(11);
+  // 提示提交中
+  wx.showLoading({
+    title: '提交中...',
+    mask: true
+  });
+
+  wx.request({
+    url: getApp().globalData.baseUrl + '/wx/home/insertContentInfo',
+    method: "POST",
+    data: {
+      title: this.data.title,
+      description: this.data.description,
+      userId: this.data.userId,
+      contentType: this.data.contentType,
+      coverPath: this.data.coverPath,
+      videoPath: this.data.videoSrc,
+      petId: this.data.petId,
+    },
+    success: (response) => {
       console.log(response);
       // 隐藏提交中提示
       wx.hideLoading();
@@ -151,8 +204,9 @@ Page({
       wx.redirectTo({
         url: '/pages/user/index/index',
       });
-    } catch (err) {
-      console.error(err);
+    },
+    fail: (error) => {
+      console.error(error);
 
       // 隐藏提交中提示
       wx.hideLoading();
@@ -164,7 +218,27 @@ Page({
         duration: 2000
       });
     }
+  });
+ }
   },
+  
+
+  chooseImageAndSubmit: function () {
+    wx.chooseImage({
+      count: 1,
+      success: (res) => {
+        const tempFilePath = res.tempFilePaths[0];
+        this.setData({
+          imageUrl: tempFilePath
+        });
+        console.log('选择的图片地址：', tempFilePath);
+
+        // 视频上传成功后执行提交操作
+        this.chooseVideoAndSubmit();
+      }
+    });
+  },
+
 
   showToast() {
     this.setData({
@@ -259,34 +333,8 @@ Page({
       description: e.detail
     })
   },
-  // 视频部分
-  chooseVideo: function () {
-    var that = this;
-    wx.chooseVideo({
-      sourceType: ['album', 'camera'],
-      maxDuration: 60,
-      camera: 'back',
-      success: function (res) {
-        console.log(res.tempFilePath); // 选择的视频文件路径
-        wx.uploadFile({
-          filePath: res.tempFilePath,
-          name: 'file',
-          url: getApp().globalData.functionUrl + '/upload', //服务器端接收图片的路径
-          success: (res) => { // 使用箭头函数确保回调中的 this 指向正确的对象
-            var userJson = JSON.parse(res.data);
-            console.log("上传成功：", userJson.data.url); //发送成功回调
-            that.setData({
-              videoSrc: userJson.data.url
-            });
-            console.log(that.data.videoSrc);
-          },
-          fail: (res) => { // 使用箭头函数确保回调中的 this 指向正确的对象
-            console.log("上传失败：", res); //发送失败回调，可以在这里了解失败原因
-          }
-        })
-      }
-    });
-  },
+
+
   deleteVideo: function () {
     // 删除已上传的视频
     this.setData({

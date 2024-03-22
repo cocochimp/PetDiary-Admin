@@ -41,18 +41,18 @@
         <image class="ico" src="/images/7.png"></image>
         <view>购物车</view>
       </view>
-      <view class="item">
+      <navigator class="item" url="/pages/user/goodsList/goodsList?type=1">
         <image class="ico" src="/images/1.png"></image>
         <view>待发货</view>
-      </view>
-      <view class="item">
+      </navigator>
+      <navigator class="item" url="/pages/user/goodsList/goodsList?type=2">
         <image class="ico" src="/images/3.png"></image>
         <view>待收货</view>
-      </view>
-      <view class="item">
+      </navigator>
+      <navigator class="item" url="/pages/user/goodsList/goodsList?type=3">
         <image class="ico" src="/images/2.png"></image>
         <view>全部订单</view>
-      </view>
+      </navigator>
     </view>
     <tabs items="{{ items }}" current="{{index}}" bind:change="handleChange" />
     <scroll-view scroll-y refresher-enabled scroll-with-animation enable-back-to-top="{{isActive}}" refresher-triggered="{{refreshState}}" bindrefresherrefresh="onRefresh" bindrefresherrestore="abortRefresh" bindrefresherabort="abortRefresh" bindscrolltolower="onLoadMore" scroll-top="{{pos}}" class="container">

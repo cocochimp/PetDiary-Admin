@@ -24,17 +24,25 @@ Component({
    */
   methods: {
     getCarList() {
-      wx.request({
-        url: getApp().globalData.baseUrl + '/wx/goods/showCarListByUserId?uId=omyzG6xGFX9OUPIcTHmOdQ8DVSFk',
-        method: "GET",
-        success: (res) => {
-          const{data:{rows}} =res
-          this.setData({
-            carList:rows
-          })
-          console.log(this.data.carList);
-        }
-      })
+      console.log(getApp().globalData.userIngo.openId);
+      if (getApp().globalData.userIngo.openId) {
+        wx.request({
+          url: getApp().globalData.baseUrl + `/wx/goods/showCarListByUserId?uId=omyzG6xGFX9OUPIcTHmOdQ8DVSFk`,
+          method: "GET",
+          success: (res) => {
+            const {
+              data: {
+                rows
+              }
+            } = res
+            this.setData({
+              carList: rows
+            })
+            console.log(this.data.carList);
+          }
+        })
+      }
+
     }
   }
 })

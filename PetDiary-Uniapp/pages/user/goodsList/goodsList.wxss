@@ -1,0 +1,20 @@
+/* order-list.wxss */
+page {
+  background-color: #F0F0F0;
+}
+.order-list {
+  padding: 10px;
+}
+
+.order-item {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.order-info {
+  margin-bottom: 5px;
+  font-size: 16px;
+}

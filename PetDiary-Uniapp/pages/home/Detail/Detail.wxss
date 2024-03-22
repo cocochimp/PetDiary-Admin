@@ -190,3 +190,26 @@
   font-size: 12px;
   color: #999;
 }
+.interact-info .button1 {
+  position: absolute;
+  top: 15px;
+  font-size: small;
+  border: 1px solid black;
+  width: 90px;
+  padding:6px 2px;
+}
+.pinlun {
+  position: relative;
+}
+.touxiang {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.user {
+  display: flex;
+  margin-bottom: 4px;
+}.comment-user {
+  line-height: 30px;
+  margin-left: 10px;
+}

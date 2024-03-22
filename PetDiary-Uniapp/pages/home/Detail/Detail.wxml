@@ -34,29 +34,33 @@
   <view class="description">{{ detailList.description }}</view>
   <view class="updateTime">{{ detailList.updateTime }}</view>
   <!-- <template name="renderComments" is="block" data="{{ comments }}"> -->
-    评论
-    <block wx:for="{{ comments }}" wx:key="commentId">
-      <!-- 检查是否是新建的评论 -->
-      <block wx:if="{{ item.parentCommentId === 666 }}">
-        <view class="comment-item">
-          <!-- 显示评论内容 -->
-          <view class="comment-content">{{ item.commentInfo }}</view>
+  评论
+  <block wx:for="{{ comments }}" wx:key="commentId">
+    <!-- 检查是否是新建的评论 -->
+    <block wx:if="{{ item.parentCommentId === 0 }}">
+      <view class="comment-item">
+        <!-- 显示评论内容 -->
+        <view class="user">
+          <image class="touxiang" src="{{item.img}}" mode="" />
           <!-- 显示评论者信息 -->
-          <view class="comment-user">评论者: {{ item.userId }}</view>
+          <view class="comment-user">{{ item.username }}</view>
         </view>
-      </block>
-      <!-- 如果不是新建的评论，则表示是回复其他评论 -->
-      <block wx:else>
-        <view class="reply-item">
-          <!-- 显示回复内容 -->
-          <view class="reply-content">{{ item.commentInfo }}</view>
-          <!-- 显示回复者信息 -->
-          <view class="reply-user">回复者: {{ item.userId }}</view>
-        </view>
-        <!-- 递归渲染子评论 -->
-        <!-- <template is="renderComments" data="{{ comments: item.children }}"></template> -->
-      </block>
+        <view class="comment-content">{{ item.commentInfo }}</view>
+
+      </view>
     </block>
+    <!-- 如果不是新建的评论，则表示是回复其他评论 -->
+    <block wx:else>
+      <view class="reply-item">
+        <!-- 显示回复内容 -->
+        <view class="reply-content">{{ item.commentInfo }}</view>
+        <!-- 显示回复者信息 -->
+        <view class="reply-user">回复者: {{ item.userId }}</view>
+      </view>
+      <!-- 递归渲染子评论 -->
+      <!-- <template is="renderComments" data="{{ comments: item.children }}"></template> -->
+    </block>
+  </block>
   <!-- </template> -->
 
 
@@ -74,8 +78,11 @@
       说点什么...
     </view>
     <ant-popup visible="{{ basicVisible }}" height="{{ 250 }}" width="{{ 250 }}" position="{{ position }}" animation="{{ animation }}" class="name1" bind:close="handlePopupClose">
-      <view style="padding: 12px">
-        从屏幕滑出或弹出一块自定义内容区，用于展示弹窗、信息提示、选择输入、切换等内容。
+      <view class="pinlun" style="padding: 12px">
+        <ant-container title=" ">
+          <ant-textarea bind:change="onBlur" placeholder="请输入内容" autoHeight allowClear />
+        </ant-container>
+        <button class="button1" bindtap="pushNew">发布评论</button>
       </view>
     </ant-popup>
     <view class="right">

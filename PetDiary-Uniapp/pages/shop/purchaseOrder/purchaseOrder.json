@@ -1,6 +1,13 @@
 {
   "usingComponents": {
     "ant-icon": "antd-mini/Icon/index",
-    "ant-container": "antd-mini/Container/index"
+    "ant-container": "antd-mini/Container/index",
+    "ant-cascader-picker": "antd-mini/Picker/CascaderPicker/index",
+    "ant-list-item": "antd-mini/List/ListItem/index",
+    "ant-list": "antd-mini/List/index",
+    "ant-textarea": "antd-mini/Input/Textarea/index",
+    "form-input": "antd-mini/Form/FormInput/index",
+    "form-cascader-picker": "antd-mini/Form/FormCascaderPicker/index",
+    "ant-button": "antd-mini/Button/index"
   }
 }

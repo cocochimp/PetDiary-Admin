@@ -71,12 +71,13 @@ Page({
     } = fileList
     console.log(detail);
     var paths = detail.map((item) => {
-      return item.path
+      return item.url
     })
     var pathString = paths.join(",");
     this.setData({
       coverPath: pathString
     })
+    console.log(this.data.coverPath);
   },
 
   chooseImage() {

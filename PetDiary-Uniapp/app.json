@@ -15,6 +15,7 @@
     "pages/user/cart/cart",
     "pages/user/detail/detail",
     "pages/user/fanList/fanList",
+    "pages/user/goodsList/goodsList",
 
     "pages/search/search",
     "pages/social/index/index",

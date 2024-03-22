@@ -41,6 +41,23 @@ page {
   .goods_name_row .goods_collect .icon-shoucang1 {
     color: orangered;
   }
+  .remen {
+    background-color: orangered;
+    color: #fff;
+    font-size: small;
+    padding:1px 12px;
+    border-radius: 10px;
+  }
+  .goods_name_row .goods_collect .icon-shoucang {
+    color: rgb(138, 77, 179);
+  }
+  .miaosha {
+    background-color: rgb(138, 77, 179);
+    color: #fff;
+    font-size: small;
+    padding:1px 12px;
+    border-radius: 10px;
+  }
   .goods_info .goods_info_title {
     font-size: 32rpx;
     color: var(--themeColor);

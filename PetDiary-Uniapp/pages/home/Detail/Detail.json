@@ -6,6 +6,8 @@
     "list": "antd-mini/List/index",
     "list-item": "antd-mini/List/ListItem/index",
     "switch": "antd-mini/Switch/index",
-    "ant-icon": "antd-mini//Icon/index"
+    "ant-icon": "antd-mini//Icon/index",
+    "ant-textarea": "antd-mini/Input/Textarea/index",
+    "ant-container": "antd-mini/Container/index"
   }
 }
