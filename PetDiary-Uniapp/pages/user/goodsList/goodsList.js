@@ -26,7 +26,7 @@ Page({
         method: "GET",
         data: {
           status: this.data.type,
-          userId: 'omyzG6xGFX9OUPIcTHmOdQ8DVSFk' //getApp().globalData.userInfo.openId
+          userId: getApp().globalData.userInfo.openId //
         },
         success: (res) => {
           this.setData({
@@ -53,8 +53,9 @@ Page({
         success: (res) => {
           console.log(res);
           // 更新订单项的图片信息 
-          const img = res.data.rows[0].img; // 假设接口返回的数据中有图片信息
+          const img = res.data.rows[0].coverPhoto; // 假设接口返回的数据中有图片信息
           item.img = img;
+          item.name=res.data.rows[0].name; 
           console.log(img);
           // 更新数据到页面
           this.setData({
