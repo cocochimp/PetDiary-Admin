@@ -1,0 +1,40 @@
+<ant-container headerInBox="{{ false }}">
+  <view slot="title">
+    <view class="icon">
+      <ant-icon type="EnvironmentOutline" style="margin-right: 2px" />
+      收货地址
+    </view>
+  </view>
+  <form-cascader-picker label="城市" arrow options="{{ province }}" name="city" tooltip="选择城市" placeholder="请输入城市" bind:ref="handleRef" />
+  <form-input label="地址" name="address" placeholder="请输入详细地址" allowClear bind:ref="handleRef" />
+  <form-input label="姓名" name="name" placeholder="请输入收货人姓名" allowClear bind:ref="handleRef" />
+  <form-input label="电话" name="phone" placeholder="请输入收货人电话号码" allowClear bind:ref="handleRef" />
+
+</ant-container>
+<ant-container headerInBox="{{ false }}">
+  <view slot="title">
+    <view class="icon">
+      <ant-icon type="BillOutline" style="margin-right: 2px" />
+      商品
+    </view>
+  </view>
+  <view class="goods" wx:for="{{goodList}}">
+    <view class="name">{{item.name}}</view>
+    <view class="bottom">
+      <view class="left"><image src="{{item.coverPhoto}}" mode="" />
+        <view class="jianjie">{{item.content}}</view>
+      </view>
+      <view class="money">
+        <view class="num1">x1</view>
+        <view class="num2"> ￥{{item.amount}}</view>
+      </view>
+    </view>
+  </view>
+</ant-container>
+<ant-container headerInBox="{{ false }}" >
+总价：￥{{totalAmount}}
+</ant-container>
+
+<ant-button type="primary" bind:tap="submit" className="button">
+  立即购买
+</ant-button>

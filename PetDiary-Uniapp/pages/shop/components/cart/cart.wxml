@@ -1,21 +1,36 @@
-<!--pages/shop/components/cart/cart.wxml-->
 <view class="container">
   <view class="cart" wx:if="{{carList.length > 0}}">
-    <view class="item" wx:for="{{carList}}">
-      <checkbox class="checkbox" />
-      <view class="pic"></view>
-      <view class="info">
-        <view class="title">
-        {{item.name}}</view>
-        <view class="param">{{item.id}}</view>
-        <view class="box">
-          <view class="price">{{item.amount}}</view>
+    <!-- 全选复选框 -->
+    <checkbox class="checkbox" bindtap="selectAll" checked="{{selectAllStatus}}">全选</checkbox>
+    <checkbox-group bindchange="fuxuankuang">
+      <view class="item" wx:for="{{carList}}" wx:key="index">
+        <!-- 单个商品复选框 -->
+        <checkbox class="checkbox" value="{{item.pid}}" checked="{{item.checked}}"/>
+        <!-- 其他商品信息展示 -->
+        <view class="pic">
+          <image src="{{item.coverPhoto}}" alt="" />
+        </view>
+        <view class="info">
+          <view class="title">
+            {{item.name}}
+          </view>
+          <view class="cart-item">
+            <!-- 减少数量按钮 -->
+            <button class="minus" bindtap="handleMinus" data-pid="{{item.pid}}" data-num="{{item.num}}">-</button>
+            <!-- 显示数量 -->
+            <view class="quantity">{{ item.num }}</view>
+            <!-- 增加数量按钮 -->
+            <button class="plus" bindtap="handlePlus" data-pid="{{item.pid}}" data-num="{{item.num}}">+</button>
+          </view>
+          <view class="box">
+            <view class="price">{{item.amount*item.num}}</view>
+          </view>
+          <view class="del" bindtap="del" data-pid="{{item.pid}}">x</view>
         </view>
       </view>
-    </view>
-  </view>
-  <view class="default" wx:else>
-    <image src="/images/404.png" mode="aspectFit" />
-    <text>您的购物车啥也没有，啥也不是</text>
+    </checkbox-group>
+    <view class="total">总价：￥{{totalPrice}}</view>
+    <button bindtap="bug">立即购买</button>
   </view>
 </view>
+

@@ -27,7 +27,8 @@
   <view class="goods_info_title">图文详情</view>
   <view class="goods_info_content">
     <!-- 富文本 -->
-    <rich-text nodes="{{goodsObj.content}}"></rich-text>
+    <rich-text class="rich-text" nodes="{{goodsObj.content}}"></rich-text>
+    <image wx:for="{{goodsObj.detailPhoto}}" src="{{item}}" mode=""/>
   </view>
 </view>
 

@@ -113,4 +113,9 @@ page {
     font-size: 30rpx;
     font-weight: 600;
   }
-  
+  .goods_info_content  image{
+    width: 100%;
+  }
+  .goods_info_content .rich-text {
+    line-height: 30px;
+  }

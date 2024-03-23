@@ -1,15 +1,15 @@
 import {
   Form
 } from 'antd-mini/Form/form';
-// import { stringify } from 'json5';
 
 Page({
   data: {
     province: [],
     city: [],
-    pid: '',
+    pids: [],
     goodsPriceList: [],
     goodList: [],
+    nums:[]
   },
 
   getProvince() {
@@ -69,8 +69,8 @@ Page({
       });
     });
   },
-  // 格式化省市数据
-  format() {
+   // 格式化省市数据
+   format() {
     const newData = this.data.province.map(province => {
       const newProvince = {
         label: province.name,
@@ -103,24 +103,24 @@ Page({
   },
 
   async onLoad(options) {
-    console.log(options);
-    if (options.pid) {
-      this.setData({ 
-        pid: options.pid
-
-      })
-    }
-    this.getByPid()
-    console.log(options);
-    this.form = new Form();
-    if (this.formRefList) {
-      this.formRefList.forEach((ref) => {
-        this.form.addItem(ref);
-      });
-    }
     try {
-      await this.getProvince();
-      this.format();
+      this.setData({ 
+        pids: JSON.parse(options.pids),
+        nums: JSON.parse(options.nums)
+      });
+      
+      console.log(this.data.pids); 
+      await this.getProvince(); // 等待获取省份信息完成
+      this.getByPid(); // 在获取省份信息后获取商品信息
+      console.log(options);
+  
+      this.form = new Form();
+      if (this.formRefList) {
+        this.formRefList.forEach((ref) => {
+          this.form.addItem(ref);
+        });
+      }
+  
     } catch (error) {
       console.error('Error:', error);
     }
@@ -130,35 +130,63 @@ Page({
     console.log(value, e);
   },
   handleRef(ref) {
-    console.log(ref);
+    // console.log(ref);
     if (!this.formRefList) {
       this.formRefList = [];
     }
     this.formRefList.push(ref.detail);
   },
-  getByPid() {
-    wx.request({
-      url: getApp().globalData.baseUrl + '/wx/goods/showGoodsDetailById',
-      data: {
-        goodId: this.data.pid
-      },
-      method: "GET",
-      success: (res) => {
-        console.log(res.data.rows[0]);
-        const goodsPriceList = {
-          productId: res.data.rows[0].id,
-          amount: res.data.rows[0].amount,
-          num: 1
-        }
-        const alist = this.data.goodsPriceList.concat(goodsPriceList)
-        this.setData({
-          goodList: res.data.rows[0],
-          goodsPriceList: alist
+  async getByPid() {
+    try {
+      const requests = this.data.pids.map(pid => {
+        return new Promise((resolve, reject) => {
+          wx.request({
+            url: getApp().globalData.baseUrl + '/wx/goods/showGoodsDetailById',
+            data: { goodId: pid },
+            method: "GET",
+            success: (res) => {
+              // 处理请求成功的逻辑
+              resolve(res.data.rows[0]);
+            },
+            fail: (error) => {
+              reject(error);
+            }
+          });
         });
-        console.log(this.data.goodsPriceList);
-      }
-    });
-  },
+      });
+  
+      // 等待所有请求完成
+      const responses = await Promise.all(requests);
+  
+      // 更新商品列表和总金额
+      const goodList = [];
+      let totalAmount = 0; // 保存所有商品总金额的变量
+  
+      responses.forEach((res, index) => {
+        const num = this.data.nums[index];
+        const amount = res.amount;
+        const productId = res.id;
+  
+        goodList.push(res);
+        const itemAmount = amount * num; // 计算当前商品的总金额
+        totalAmount += itemAmount; // 累加到总金额中
+      });
+  
+      // 将总金额保存到页面数据中
+      this.setData({
+        goodList: goodList,
+        totalAmount: totalAmount.toFixed(2) // 新增一个字段保存所有商品的总金额
+      });
+  
+      console.log(this.data.goodList);
+      console.log('Total Amount:', this.data.totalAmount);
+  
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+,  
+  
 
   async submit() {
     const values = await this.form.submit();
@@ -183,20 +211,6 @@ Page({
       data: requestData, // 使用requestData作为请求体的数据
       success: (res) => {
         console.log('请求成功，返回数据为：', res.data);
-        // 显示购买成功提示
-        wx.showToast({
-          title: '购买成功',
-          icon: 'success',
-          duration: 2000,
-          success: () => {
-            // 跳转到其他页面
-            setTimeout(() => {
-              wx.switchTab({
-                url: '/pages/user/index/index',
-              })
-            }, 2000); // 两秒后跳转
-          }
-        });
       },
       fail: (err) => {
         console.log('请求失败，错误信息为：', err);

@@ -99,6 +99,7 @@
   font-size: 22rpx;
   color: white;
   margin-left: 24rpx;
+  white-space: nowrap; 
 }
 
 .goods-box .petLabel text {
@@ -106,6 +107,7 @@
   padding: 0 10rpx;
   border-radius: 30px;
   height: 40px;
+  white-space: nowrap; 
 }
 
 .goods-box .goods-price image {

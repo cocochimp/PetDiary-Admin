@@ -10,6 +10,7 @@
     "pages/shop/goods_detail/goods_detail",
     "pages/shop/cart/cart",
     "pages/shop/purchaseOrder/purchaseOrder",
+    "pages/shop/purchaseOrder2/purchaseOrder2",
 
     "pages/user/index/index",
     "pages/user/cart/cart",

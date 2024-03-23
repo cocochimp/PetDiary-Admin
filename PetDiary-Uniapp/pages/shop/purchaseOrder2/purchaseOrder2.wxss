@@ -1,0 +1,46 @@
+page {
+  padding: 12px;
+  color: #333333;
+  box-sizing: border-box;
+  background-color: #F5F5F5;
+}
+.Topcontent {
+  height: 70px;
+  display: flex;
+}
+.content .box {
+  background-color: #eeeeee;
+  flex: 1;
+  border-radius: 4px;
+}
+.content .box:not(:first-of-type) {
+  margin-left: 8px;
+}
+.goods .name {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+.goods image {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  margin: 4px 0;
+}
+.goods .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.goods .bottom .num1 {
+  padding-left: 50px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+.left{
+  display: flex;
+}
+.left .jianjie {
+  margin: 4px 0;
+  margin-left: 4px;
+  padding:0 4px;
+  font-size: 14px;
+}

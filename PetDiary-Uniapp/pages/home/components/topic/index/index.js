@@ -63,7 +63,7 @@ Component({
             } else {
               console.log('data.rows', data.rows);
               data.rows.forEach(item => {
-                if (item.coverPath) {
+                if (item.coverPath) { 
                   item.imgNum = item.coverPath.split(',').length
                   item.coverPath = item.coverPath.split(',')[0];
                 }

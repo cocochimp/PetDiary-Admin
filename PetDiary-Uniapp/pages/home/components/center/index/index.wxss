@@ -311,10 +311,13 @@
 
 .goods-box .petLabel {
   z-index: 9999;
-  width: 280rpx;
+  width: 380rpx;
   font-size: 22rpx;
   color: white;
   margin-left: 24rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }
 
 .goods-box .petLabel text {
@@ -322,6 +325,9 @@
   padding:0 10rpx ;
   border-radius: 30px;
   height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; 
 }
 
 .goods-box .goods-price image {

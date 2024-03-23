@@ -471,6 +471,7 @@ page {
   padding: 0 10rpx;
   border-radius: 30px;
   height: 40px;
+  white-space: nowrap; 
 }
 
 .goods-box .goods-price image {
