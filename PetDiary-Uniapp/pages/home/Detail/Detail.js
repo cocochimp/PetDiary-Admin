@@ -141,6 +141,8 @@ Page({
             icon: 'success',
             duration: 2000
           });
+          // 评论成功后重新渲染评论
+          this.reloadComments();
         } else {
           wx.showToast({
             title: '评论失败，请重试',
@@ -158,6 +160,58 @@ Page({
         });
       }
     })
+  },
+  
+  // 重新加载评论
+  reloadComments() {
+    wx.request({
+      url: getApp().globalData.baseUrl + `/wx/home/showContentInfoById?contentId=${this.data.contentId}`,
+      method: "GET",
+      success: (res) => {
+        const { data } = res;
+        data.rows.forEach(item => {
+          if (item.coverPath) {
+            item.coverPath = item.coverPath.split(',');
+          }
+        });
+  
+        // 发起请求获取每条评论的用户信息
+        const requests = data.rows[0].userComment.map(comment => {
+          return new Promise((resolve, reject) => {
+            wx.request({
+              url: getApp().globalData.baseUrl + `/wx/home/showUserDetailInfo?userId=${comment.userId}`,
+              method: "GET",
+              success: (res) => {
+                comment.username = res.data.data.userInfo.nickname;
+                comment.img = res.data.data.userInfo.avatar;
+                resolve(comment);
+              },
+              fail: reject
+            });
+          });
+        });
+  
+        // 等待所有请求完成
+        Promise.all(requests)
+          .then(comments => {
+            this.setData({
+              detailList: data.rows[this.data.skipId],
+              comments: comments,
+              newComment: '' // 清空输入框内容
+            });
+            console.log(this.data.comments);
+          })
+          .catch(error => {
+            console.error('请求失败：', error);
+            // 处理请求失败的情况
+          });
+      },
+      fail: (error) => {
+        console.error('请求失败：', error);
+        // 处理请求失败的情况
+      }
+    });
   }
+  
 
 })
