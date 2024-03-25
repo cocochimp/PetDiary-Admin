@@ -11,20 +11,7 @@
                     <image style="border-radius: 16rpx;" src="{{imageUrl}}"></image>
                 </view>
             </view>
-
-            <!-- 上传按钮 -->
-            <!-- <view class="controls">
-                <view>
-                    <image style="margin-left:100rpx" class="buttonimage" src="/images/pic.png" mode="aspectFit" bindtap="get_image">
-                    </image>
-                    <image style="margin-right:0rpx" class="buttonimage" src="/images/order.png" mode="aspectFit" bindtap="recognition_image">
-                    </image>
-                </view>
-                <view>
-                    <text style="margin-right:150rpx;margin-left:100rpx;">拍照/选取图片</text>
-                    <text>识别菜品</text>
-                </view>
-            </view> -->
+            
             <!-- <text class="page__desc">👇上传按钮👇</text> -->
             <view class="upload">
                 <view class="upload_button">

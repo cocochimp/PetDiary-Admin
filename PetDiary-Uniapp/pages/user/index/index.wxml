@@ -38,19 +38,19 @@
     </view>
     <view class="bar3">
       <view class="item" bindtap="gotoCart">
-        <image class="ico" src="/images/7.png"></image>
+        <image class="ico" src="https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/7.png"></image>
         <view>购物车</view>
       </view>
       <navigator class="item" url="/pages/user/goodsList/goodsList?type=1">
-        <image class="ico" src="/images/1.png"></image>
+        <image class="ico" src="https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/1.png"></image>
         <view>待发货</view>
       </navigator>
       <navigator class="item" url="/pages/user/goodsList/goodsList?type=2">
-        <image class="ico" src="/images/3.png"></image>
+        <image class="ico" src="https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/3.png"></image>
         <view>待收货</view>
       </navigator>
       <navigator class="item" url="/pages/user/goodsList/goodsList?type=3">
-        <image class="ico" src="/images/2.png"></image>
+        <image class="ico" src="https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/2.png"></image>
         <view>全部订单</view>
       </navigator>
     </view>

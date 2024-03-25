@@ -13,19 +13,19 @@
         <cover-view class="list">
             <cover-view class="btn" bindtap="goToPublish">
                 <cover-view class="ico1">
-                    <cover-image src="/images/6.png" />
+                    <cover-image src="https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/5.png" />
                 </cover-view>
                 <cover-view>发表图片</cover-view>
             </cover-view>
             <cover-view class="btn" bindtap="goToVideoPublish">
                 <cover-view class="ico2">
-                    <cover-image src="/images/5.png" />
+                    <cover-image src="https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/5.png" />
                 </cover-view>
                 <cover-view>发表视频</cover-view>
             </cover-view>
         </cover-view>
         <cover-view class="close">
-            <cover-image src="/images/close.png" class="pic" />
+            <cover-image src="https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/close.png" class="pic" />
         </cover-view>
     </cover-view>
 </cover-view>

@@ -34,8 +34,8 @@ Page({
       goods_number: 100,
       goods_weight: 100,
       goods_introduce: '很可爱',
-      goods_big_logo: '../../../images/testData/吉娃娃犬.jpg',
-      goods_small_logo: '../../../images/testData/吉娃娃犬.jpg',
+      goods_big_logo: 'https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/%E5%90%89%E5%A8%83%E5%A8%83%E7%8A%AC.jpg',
+      goods_small_logo: 'https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/%E5%90%89%E5%A8%83%E5%A8%83%E7%8A%AC.jpg',
       goods_state: 2,
       is_del: 0,
       add_time: 123142321,
@@ -43,11 +43,11 @@ Page({
       delete_time: 0,
       pics: [{
           pics_id: 1,
-          pics_mid: '../../../images/testData/吉娃娃犬.jpg'
+          pics_mid: 'https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/%E5%90%89%E5%A8%83%E5%A8%83%E7%8A%AC.jpg'
         },
         {
           pics_id: 2,
-          pics_mid: '../../../images/testData/短毛猫.jpg'
+          pics_mid: 'https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/%E7%9F%AD%E6%AF%9B%E7%8C%AB.jpg'
         },
       ]
 

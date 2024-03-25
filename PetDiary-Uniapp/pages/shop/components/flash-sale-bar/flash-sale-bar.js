@@ -85,7 +85,7 @@ Component({
       const {
         list
       } = this.data; // 获取列表数据
-      list[index].coverPhoto = '../../../../images/1.png'; // 将加载失败的图片替换为默认图片路径或者其他替代内容
+      list[index].coverPhoto = 'https://pet-diary.oss-cn-beijing.aliyuncs.com/2024-03/1.png'; // 将加载失败的图片替换为默认图片路径或者其他替代内容
 
       this.setData({
         list: list
