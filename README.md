@@ -4,14 +4,6 @@
 
 github地址：[https://github.com/cocochimp/PetDiary-Admin](https://github.com/cocochimp/PetDiary-Admin)
 
-⚠⚠
-
-近期发现有很多无良商家没有征得我的同意，私自盗取我的开源项目作为毕设、课设以及论文去高价卖！！！因此将数据库闭源！
-
-如果有需要可以留言我并说明用意，如果有毕设项目、毕业论文、课设的用途，请私聊我
-
-![](https://cocochimp-img.oss-cn-beijing.aliyuncs.com/13.png)
-
 # 项目介绍
 
 主要有“后台管理系统”端和“微信小程序”端，在代码项目上主要分为三个部分：
