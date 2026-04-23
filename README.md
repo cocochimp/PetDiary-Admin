@@ -1,6 +1,6 @@
-# 宠物社区小程序（毕设、课设）
+# 宠物社区小程序
 
-🎉基于SpringCloud Alibaba（gateway/nacos）、MyBatis-Plus、Redis、Druid、Knife4j、Vue、ElementUI、Ant Design mini微服务架构的宠物短视频社区小程序🐱🐶**【本科毕设】**
+🎉基于SpringCloud Alibaba（gateway/nacos）、MyBatis-Plus、Redis、Druid、Knife4j、Vue、ElementUI、Ant Design mini微服务架构的宠物短视频社区小程序🐱🐶
 
 github地址：[https://github.com/cocochimp/PetDiary-Admin](https://github.com/cocochimp/PetDiary-Admin)
 
